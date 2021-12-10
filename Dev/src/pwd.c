@@ -71,7 +71,7 @@ int verifierPwdAdmin(){
     /*on compare l identifiant avec l identifiant saisie par l'utilisateur
     si ils ne sont pas identique on affiche un message d'erreur et return une valeur d'erreur
     sinon on continue la verification avec ce coup si le mot de passe 0*/
-    if((strcmp(login,loginPropose)) != 0)
+    if((strcmp(login,loginPropose)) != 0)//strcmp renvoie 0 si la comparaison est bonne
     {
         fclose(id);
         printf("###########################################\n");
@@ -88,7 +88,7 @@ int verifierPwdAdmin(){
         printf("\n");
         lire(pwdPropose,20,stdin);
         fflush(stdin);
-        crypterVigenere(pwdPropose,pwdProposeCrypte);
+        //crypterVigenere(pwdPropose,pwdProposeCrypte);
         //crypterVigenere(pwdPropose,pwdProposeCrypte);
         printf("\n");
         // on recupere le mot de passe dans le fichier controleur.txt correspondant au controleur qui se connecte
@@ -96,7 +96,7 @@ int verifierPwdAdmin(){
         /*on compare le mot de passe avec le mot de passe saisie par l'utilisateur
         si ils ne sont pas identique on affiche un message d'erreur et return une valeur d'erreur
         sinon on affiche un message pour informer de la connexion et on return 0*/
-        if((strcmp(pwdProposeCrypte,pwd)) != 0)
+        if((strcmp(pwdPropose,pwd)) != 0)//strcmp renvoie 0 si la comparaison est bonne
         {
             fclose(id);
             printf("###########################################\n");

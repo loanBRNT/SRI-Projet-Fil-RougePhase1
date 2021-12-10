@@ -1,0 +1,1 @@
+test1: gcc src/* -o prog -I include -L lib -lmingw32

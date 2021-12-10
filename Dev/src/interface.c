@@ -1,5 +1,6 @@
 #include "interface.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 
 
 
@@ -87,9 +88,69 @@ void afficheMenuUtilisateur(){
 	printf("###########################################\n");
 	printf("\n");
 }
+void afficheRechercheMotCle(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#          RECHERCHE PAR MOT CLÉ          #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        1: // AFFICHAGE DES DIFF CONFIG  #\n");
+	printf("#                                         #\n");
+	printf("#        2: RETOUR MENU ADMIN             #\n");
+	printf("#                                         #\n");
+	printf("#        3: RETOUR MENU PRINCIPAL         #\n");
+	printf("#                                         #\n");
+	printf("#        0: QUITTER                       #\n");
+	printf("#                                         #\n");
+	printf("#        << choisissez un menu >>         #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+void afficheRechercheNom(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#            RECHERCHE PAR NOM            #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        1: // AFFICHAGE DES DIFF CONFIG  #\n");
+	printf("#                                         #\n");
+	printf("#        2: RETOUR MENU ADMIN             #\n");
+	printf("#                                         #\n");
+	printf("#        3: RETOUR MENU PRINCIPAL         #\n");
+	printf("#                                         #\n");
+	printf("#        0: QUITTER                       #\n");
+	printf("#                                         #\n");
+	printf("#        << choisissez un menu >>         #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+void afficheRechercheChemin(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#           RECHERCHE PAR CHEMIN          #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        1: // AFFICHAGE DES DIFF CONFIG  #\n");
+	printf("#                                         #\n");
+	printf("#        2: RETOUR MENU ADMIN             #\n");
+	printf("#                                         #\n");
+	printf("#        3: RETOUR MENU PRINCIPAL         #\n");
+	printf("#                                         #\n");
+	printf("#        0: QUITTER                       #\n");
+	printf("#                                         #\n");
+	printf("#        << choisissez un menu >>         #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
 
-//##########################################################
-//##################### MENU PRINCIPAL #####################
+//#################################################################################################################################
+//##################### MENU PRINCIPAL ############################################################################################
 
 int afficheMenuPrincipal(){
 	/* lance l'affichage du menu principale
@@ -110,7 +171,7 @@ int afficheMenuPrincipal(){
 				menuAdminVerification();
 				break;
 			case 2:
-				menuClient(reseau);
+				//menuClient(reseau);
 				break;
 			case 3:
 				afficheMessageQuitter();
@@ -123,11 +184,11 @@ int afficheMenuPrincipal(){
 	printf("\n");
 }
 
-//##########################################################
-//######### MENUS DE LA PARTIE ADMINISTRATEUR ##############
+//#################################################################################################################################
+//######### MENUS DE LA PARTIE ADMINISTRATEUR #####################################################################################
 
 int cpt = 0;
-int choix = 0;
+int choix = 0;//question est ce que si je met dedans ca va remmettre a 0
 int menuAdminVerification(){
 	//on informe l'utilisateur qui rentre sur un menu prive
  //ici je voulais mettre les const
@@ -143,7 +204,7 @@ int menuAdminVerification(){
 		// on verifie la valeur de retour de verifierPwdAdmin pour savoir si l'utilisateur a saisi le bon mot de passe
  		cpt=verifierPwdAdmin();
  		// si le mot de passe est faux on demande a l'utilisateur si il veut reesayer la saisie car une erreur de frappe peut arriver
- 		if(cpt==4)//si identifiant mauvais alors retourne 4
+ 		if(cpt==1)//si identifiant ou mdp mauvais alors retourne 1 sinon 0
  		{
 
  			while(choix != 4)
@@ -165,11 +226,19 @@ int menuAdminVerification(){
  				switch(option)
 				{
 					case 1:
-						choix++; //au bout de 3 essai choix = 3
+						/*if (choix == 1){
+							printf("###########################################\n");
+			 				printf("#             !! ATTENTION !!             #\n");
+			  				printf("#                                         #\n");
+			  				printf("#          Il vous reste 3 essai          #\n");
+			 				printf("###########################################\n");
+							printf("\n");
+						}*/
+						choix++; //au bout de 3 essai en comptant le prmier choix = 4
 						cpt=1;//rentre dans la boucle verif mdp
 						break;
 					case 2:
-						choix=1;
+						choix=4;
 						cpt=-1;
 						break;
 					default:
@@ -179,18 +248,28 @@ int menuAdminVerification(){
 						break;
  				}
  			}
+ 						if (choix == 4){
+				printf("###########################################\n");
+ 				printf("#      Trop de tentative effectuer !      #\n");
+  				printf("#                                         #\n");
+  				printf("#      Vous êtes sortie du mode Admin     #\n");
+ 				printf("###########################################\n");
+				printf("\n");
+				choix=4;
+				cpt=-1;
+				break;
  		}
  		/* si le mot de passe est correct on lance la fonction menuAdmin
  		 lorsque la fonction menuAdmin ce termine on sort de la boucle
  		 pour finir la fonction menuAdminVerification ce qui nous ramene dans la fonction main du programme */
- 		else{
- 			menuAdmin(r);
+ 		else{ //qd verifierPwdAdmin renvoi 0 c'est que c'est bon
+ 			menuAdmin();
  			cpt=-1;
  		}
 	}
 }
 
-
+/*
 
 			if (choix == 4){
 				printf("###########################################\n");
@@ -226,7 +305,7 @@ int menuAdminVerification(){
  				printf("###########################################\n");
 				printf("\n");
 			}
-			else{choix=0;}
+			else*/
 
 
 int menuAdmin(){
@@ -259,3 +338,7 @@ int menuAdmin(){
 int menuPointConfig(){
 	afficheMenuPointConfig();
 }
+
+//#################################################################################################################################
+//######### MENUS DE LA PARTIE UTILISATEUR ########################################################################################
+
