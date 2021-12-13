@@ -11,3 +11,8 @@
 |															|
  ----------------------------------------------------------- 
  */
+
+
+char* lanceRechercheViaNom(char* nom_fichier_cible){
+    
+}
