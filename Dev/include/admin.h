@@ -2,7 +2,7 @@
 #define ADMIN_H
 
 typedef struct s_config{
-	int tauxSimillaire;
+	int tauxSim;
 	int nbMotParTxt;
 	int seuilOccMot;
 	int nbIntervalle;
@@ -12,6 +12,10 @@ typedef struct s_config{
 
 //Permet de mettre en memoire
 PTR_CONFIG ouvrirPanneauDeConfiguration();
+
+//Permet d'affecter un attribut a sa valeur depuis le .config. 
+//Renvoie 0 si le nomAttribut n'est pas reconnu. 1 si l'affectation c'est bien deroule
+int affectAttributConfig(PTR_CONFIG config, char* nomAttribut, int valeur);
 
 //Permet de sauvegarder Apres modif
 void sauvegarderConfig();
@@ -30,5 +34,8 @@ char* changerNbIntervalle(int nb);
 char* changerNbFenetre(int nb);
 
 char* changerNbBits(int nb);
+
+
+//-------------------- ACCESSEUR ---------------------------
 
 #endif
