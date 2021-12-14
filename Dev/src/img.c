@@ -28,7 +28,8 @@ void quantificationNB(Descripteur *descripteur, int longueur, int hauteur){
     int val;
     for (int cpt = 0; cpt < longueur*hauteur; cpt++){
             scanf("%d", &val);
-            val = ( (val & conversion_masques[n-1]) >> (8-n) );
+            val = ( (val & conversion_masques[n-1]) >> (8-n));
+            //printf("Indice : %d, Valeur : %d\n",cpt, val);
             (*descripteur).histogramme[val] ++;
     }
 }

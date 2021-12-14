@@ -6,7 +6,7 @@
 #include <math.h>
 #define n 2
 
-static const int conversion_masques[8]= {0x10000000 ,0x11000000, 0x11100000, 0x11110000, 0x11111000, 0x11111100, 0x11111110, 0x11111111};
+static const int conversion_masques[8]= {0b10000000 ,0b11000000, 0b11100000, 0b11110000, 0b11111000, 0b11111100, 0b11111110, 0b11111111};
 
 /* DECLARATIONS DES TYPES */
 
