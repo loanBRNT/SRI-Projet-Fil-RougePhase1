@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "../include/interface.h"
 #include "../include/pwd.h"
+#include "../include/admin.h"
 
 
 //########## FONCTIONS DE GESTION DES MENUS ###############
@@ -170,6 +171,24 @@ void afficheRechercheChemin(){
 	printf("\n");
 }
 
+void affichageSaisieTauxSim(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#     MODIFIER LE TAUX DE SIMILARITE      #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",recupTauxSimmilaritudeDuConfig());
+	printf("#                                         #\n");
+	printf("#        DOIT ETRE COMPRIS ENTRE          #\n");
+	printf("#                1 ET 100                 #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
 //#################################################################################################################################
 
 
@@ -219,8 +238,6 @@ int menuUtilisateur(){
 	printf("\n");
 	}
 	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
-
-	return 0;
 }
 
 int menuAdmin(){
@@ -256,7 +273,66 @@ int menuAdmin(){
 }
 
 int menuPointConfig(){
-	afficheMenuPointConfig();
+	//On a besoin du pointeur pour les modifications
+	PTR_CONFIG ptr_sur_config = ouvrirPanneauDeConfiguration();
+
+	int event = 1 ;
+	long choixMenu;
+	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
+		afficheMenuPointConfig();
+		choixMenu=lireLong();
+		printf("\n");
+		switch(choixMenu)
+		{
+			case 1:
+				
+				break;
+			case 2:
+				
+				break;
+			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				
+				break;
+			case 6:
+				
+				break;
+			case 7:
+				event = -1; //retour menu d'avant
+				break;
+			case 0:
+				event = 0; //quitte le logiciel
+				break;
+			default:
+				printf("SAISIE INCORRECTE\n");
+				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				break;
+		}
+	printf("\n");
+	}
+
+	//On libere l'espace memoire
+	fermeturePanneauDeConfiguration(ptr_sur_config);
+
+	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+
+}
+
+int menuModifierTauxSim(PTR_CONFIG config){
+	affichageSaisieTauxSim();
+	/*
+	int choix = . Pour lire l'entree
+	if (changerTauxSimmilaritude(config, choix) == 0){
+		c'est que y a une erreur
+	} else {
+		ca c'est bien passe
+	}
+	*/
 	return -1;
 }
 
