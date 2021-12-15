@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "../include/interface.h"
 #include "../include/pwd.h"
+#include "../include/admin.h"
 
 int main(int argc, char const *argv[])
 {
