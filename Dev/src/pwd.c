@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "pwd.h"
+#include "../include/pwd.h"
 
 int lire(char* chaine, int longueur ,FILE* fichier){
     char *positionEntree = NULL;
