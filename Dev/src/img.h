@@ -6,11 +6,11 @@
 #include <math.h>
 #define n 2
 
-static const int conversion_masques[8]= {0b10000000 ,0b11000000, 0b11100000, 0b11110000, 0b11111000, 0b11111100, 0b11111110, 0b11111111};
+static const int conversion_masques[8]= {0x80 ,0xC0, 0xE0, 0xF0, 0xF8, 0xFC, 0xFE, 0xFF};
 
 /* DECLARATIONS DES TYPES */
 
-typedef int* TAB;
+typedef long* TAB;
 
 typedef struct Descripteur {
     int ID;
@@ -22,7 +22,7 @@ typedef struct Descripteur {
 
 Descripteur initDescripteur(int nb_composantes);
 
-void quantificationRGB(TAB *temporaire, int longueur, int hauteur);
+void quantificationRGB(int longueur, int hauteur, Descripteur *des);
 
 void quantificationNB(Descripteur *descripteur, int longueur, int hauteur);
 

@@ -16,12 +16,36 @@ Descripteur initDescripteur(int nb_composantes){
     return descri;
 }
 
-void quantificationRGB(TAB *temporaire, int longueur, int hauteur){
+
+
+void quantificationRGB(int longueur, int hauteur, Descripteur *des){
     int val;
-    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){
+    TAB tempo;
+
+    tempo = malloc(longueur*hauteur*sizeof(long));
+    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification rouge dans temporaire
         scanf("%d", &val);
-        *temporaire[cptemp] = val & conversion_masques[n-1];
+        tempo[cptemp] = ( (val & conversion_masques[n-1]) >> 2 );
     }
+
+    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){
+        printf("%ld\n",tempo[cptemp]);
+    }
+
+    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification verte dans temporaire
+        scanf("%d", &val);
+        tempo[cptemp] = tempo[cptemp] + ( (val & conversion_masques[n-1]) >> 4 );
+    }
+
+    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification bleu dans temporaire
+        scanf("%d", &val);
+        tempo[cptemp] = tempo[cptemp] + ( (val & conversion_masques[n-1]) >> 6 );
+    }
+
+    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){
+        (*des).histogramme[tempo[cptemp]]++;
+    }
+    free(tempo);
 }
 
 void quantificationNB(Descripteur *descripteur, int longueur, int hauteur){
@@ -39,7 +63,6 @@ void indexer_image(/*char* nom*/){
     // Declaration varibales
     int longueur , hauteur, d;
     Descripteur descripteur;
-    TAB tempo;
 
     // Ouverture de l'image
 
@@ -47,7 +70,6 @@ void indexer_image(/*char* nom*/){
     scanf("%d", &longueur);
     scanf("%d", &hauteur);
     scanf("%d", &d);
-    tempo = malloc(longueur*hauteur*sizeof(int));
 
     // Initialisation en fonction du fichier
     descripteur = initDescripteur(d);
@@ -59,9 +81,9 @@ void indexer_image(/*char* nom*/){
 
             break;
         case 3 : // Quantification RGB
-            quantificationRGB(&tempo,longueur,hauteur);
+            quantificationRGB(longueur,hauteur,&descripteur);
             break;
-        default : printf("Erreur sur le nombre de composantes de l'image\n");
+        default : printf("Format de l'image pas supporté\n");
         exit(0);
     }
     printf("ID du fichier : %d\n",descripteur.ID);
