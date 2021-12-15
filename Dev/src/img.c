@@ -16,8 +16,6 @@ Descripteur initDescripteur(int nb_composantes){
     return descri;
 }
 
-
-
 void quantificationRGB(int longueur, int hauteur, Descripteur *des){
     int val;
     TAB tempo;
@@ -58,11 +56,14 @@ void quantificationNB(Descripteur *descripteur, int longueur, int hauteur){
     }
 }
 
-void indexer_image(/*char* nom*/){
+void indexer_image(char* nom){
 
     // Declaration varibales
     int longueur , hauteur, d;
     Descripteur descripteur;
+    FILE* fichier = NULL;
+
+    //Récupération de la valeur n du .config
 
     // Ouverture de l'image
 
@@ -86,9 +87,17 @@ void indexer_image(/*char* nom*/){
         default : printf("Format de l'image pas supporté\n");
         exit(0);
     }
-    printf("ID du fichier : %d\n",descripteur.ID);
-    printf("Taille du tableau : %d\n",descripteur.t_max);
-    for(int i = 0; i<descripteur.t_max; i++){
-        printf("%d\n",descripteur.histogramme[i]);
+
+    // Ecriture du descripteur dans la pile
+    fichier = fopen("/Database/Descripteur/dI.txt","w");
+    if (fichier != NULL)
+    {
+        fprintf(fichier, "{%d,%d,",descripteur.ID,descripteur.t_max);
+        for(int i = 0; i<descripteur.t_max; i++){
+            fprintf(fichier, "%d ",descripteur.histogramme[i]);
+        }
+        fprintf(fichier, "}\n");
+        fclose(fichier);
     }
+    else printf("echec");
 }
