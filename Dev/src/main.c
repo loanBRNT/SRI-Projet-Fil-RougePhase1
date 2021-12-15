@@ -22,18 +22,18 @@ int main(int argc, char const *argv[])
 		switch(choixMenu)
 		{
 			case 1:
-				menuAdminVerif();
+				if (menuAdminVerif() == 0) event = -1;
 				break;
 			case 2:
-				menuUtilisateur();
+				if (menuUtilisateur() == 0) event = -1;
 				break;
-			case 3:
+			case 0:
 				//afficheMessageQuitter();
-			printf("On quitte");
+				printf("On quitte\n");
 				event = -1;
 				break;
 			default:
-			printf("On affiche une erreur");
+				printf("Saisie Incorrecte\n");
 				//afficheErreurMenu();
 				break;
 		}
