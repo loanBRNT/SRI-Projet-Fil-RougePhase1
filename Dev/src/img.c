@@ -1,5 +1,4 @@
 #include "img.h"
-#include "math.h"
 
 Descripteur initDescripteur(int nb_composantes){
     Descripteur descri;
@@ -16,27 +15,23 @@ Descripteur initDescripteur(int nb_composantes){
     return descri;
 }
 
-void quantificationRGB(int longueur, int hauteur, Descripteur *des){
+void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichier){
     int val;
     TAB tempo;
 
     tempo = malloc(longueur*hauteur*sizeof(long));
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification rouge dans temporaire
-        scanf("%d", &val);
+        fscanf(fichier,"%d", &val);
         tempo[cptemp] = ( (val & conversion_masques[n-1]) >> 2 );
     }
 
-    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){
-        printf("%ld\n",tempo[cptemp]);
-    }
-
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification verte dans temporaire
-        scanf("%d", &val);
+        fscanf(fichier, "%d", &val);
         tempo[cptemp] = tempo[cptemp] + ( (val & conversion_masques[n-1]) >> 4 );
     }
 
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification bleu dans temporaire
-        scanf("%d", &val);
+        fscanf(fichier, "%d", &val);
         tempo[cptemp] = tempo[cptemp] + ( (val & conversion_masques[n-1]) >> 6 );
     }
 
@@ -46,17 +41,16 @@ void quantificationRGB(int longueur, int hauteur, Descripteur *des){
     free(tempo);
 }
 
-void quantificationNB(Descripteur *descripteur, int longueur, int hauteur){
+void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier){
     int val;
     for (int cpt = 0; cpt < longueur*hauteur; cpt++){
-            scanf("%d", &val);
+            fscanf(fichier,"%d", &val);
             val = ( (val & conversion_masques[n-1]) >> (8-n));
-            //printf("Indice : %d, Valeur : %d\n",cpt, val);
             (*descripteur).histogramme[val] ++;
     }
 }
 
-void indexer_image(char* nom){
+Descripteur indexer_image(char* nom){
 
     // Declaration varibales
     int longueur , hauteur, d;
@@ -66,38 +60,28 @@ void indexer_image(char* nom){
     //Récupération de la valeur n du .config
 
     // Ouverture de l'image
+    fichier = fopen("../Database/Image/NB/test.txt","r");
+    if (fichier != NULL) {
 
-    // Récupération des données image
-    scanf("%d", &longueur);
-    scanf("%d", &hauteur);
-    scanf("%d", &d);
+        // Récupération des données image
+        fscanf(fichier,"%d %d %d", &longueur, &hauteur, &d);
+        // Initialisation en fonction du fichier
+        descripteur = initDescripteur(d);
+        descripteur.ID = 234;
 
-    // Initialisation en fonction du fichier
-    descripteur = initDescripteur(d);
-    descripteur.ID = 234;
-
-    switch(d){
-        case 1 : // Quantification NB
-            quantificationNB(&descripteur,longueur,hauteur);
-
-            break;
-        case 3 : // Quantification RGB
-            quantificationRGB(longueur,hauteur,&descripteur);
-            break;
-        default : printf("Format de l'image pas supporté\n");
-        exit(0);
-    }
-
-    // Ecriture du descripteur dans la pile
-    fichier = fopen("/Database/Descripteur/dI.txt","w");
-    if (fichier != NULL)
-    {
-        fprintf(fichier, "{%d,%d,",descripteur.ID,descripteur.t_max);
-        for(int i = 0; i<descripteur.t_max; i++){
-            fprintf(fichier, "%d ",descripteur.histogramme[i]);
+        switch(d){
+            case 1 : // Quantification NB
+                quantificationNB(&descripteur,longueur,hauteur,fichier);
+                break;
+            case 3 : // Quantification RGB
+                quantificationRGB(longueur,hauteur,&descripteur,fichier);
+                break;
+         default : printf("Format de l'image pas supporté\n");
         }
-        fprintf(fichier, "}\n");
         fclose(fichier);
     }
-    else printf("echec");
+    else
+        printf("Echec de l'ouverture de l'image à indexer");
+
+    return descripteur;
 }

@@ -10,7 +10,7 @@ static const int conversion_masques[8]= {0x80 ,0xC0, 0xE0, 0xF0, 0xF8, 0xFC, 0xF
 
 /* DECLARATIONS DES TYPES */
 
-typedef long* TAB;
+typedef int* TAB;
 
 typedef struct Descripteur {
     int ID;
@@ -22,10 +22,10 @@ typedef struct Descripteur {
 
 Descripteur initDescripteur(int nb_composantes);
 
-void quantificationRGB(int longueur, int hauteur, Descripteur *des);
+void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichier);
 
-void quantificationNB(Descripteur *descripteur, int longueur, int hauteur);
+void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier);
 
-void indexer_image(/*char* nom*/);
+Descripteur indexer_image(char* nom);
 
 #endif
