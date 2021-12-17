@@ -85,17 +85,17 @@ void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichie
     tempo = malloc(longueur*hauteur*sizeof(long));
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification rouge dans temporaire
         fscanf(fichier,"%d", &val);
-        tempo[cptemp] = decalageRouge((val & conversion_masques[n-1]), 2);
+        tempo[cptemp] = decalageRouge((val & conversion_masques[n-1]), n);
     }
 
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification verte dans temporaire
         fscanf(fichier, "%d", &val);
-        tempo[cptemp] = tempo[cptemp] + decalageVert((val & conversion_masques[n-1]),4 );
+        tempo[cptemp] = tempo[cptemp] + decalageVert((val & conversion_masques[n-1]),n );
     }
 
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification bleu dans temporaire
         fscanf(fichier, "%d", &val);
-        tempo[cptemp] = tempo[cptemp] + decalageBleu( (val & conversion_masques[n-1]), 6 );
+        tempo[cptemp] = tempo[cptemp] + decalageBleu( (val & conversion_masques[n-1]), n);
     }
 
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){
@@ -119,15 +119,9 @@ Descripteur indexer_image(char* nom, int n){
     int longueur , hauteur, d;
     Descripteur descripteur;
     FILE* fichier = NULL;
-    char* debut = "../Database/Image/";
-    char* path;
 
     // Ouverture de l'image
-    path = malloc(strlen( debut ) + 1 +  strlen( nom ) + 1);
-    strcpy(path,debut);
-    strcat(path,nom);
-    fichier = fopen(path,"r");
-    free(path);
+    fichier = fopen(nom,"r");
 
     if (fichier != NULL) {
 

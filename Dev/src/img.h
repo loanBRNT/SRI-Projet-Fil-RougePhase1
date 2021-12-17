@@ -32,6 +32,6 @@ void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichie
 
 void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier, int n);
 
-Descripteur indexer_image(char* nom, int n);
+Descripteur indexer_image(char* adresse, int n);
 
 #endif
