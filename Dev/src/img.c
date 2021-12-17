@@ -1,6 +1,6 @@
 #include "img.h"
 
-Descripteur initDescripteur(int nb_composantes){
+Descripteur initDescripteur(int nb_composantes, int n){
     Descripteur descri;
     descri.t_max = pow(2,(n*nb_composantes));
     descri.histogramme = NULL;
@@ -15,24 +15,87 @@ Descripteur initDescripteur(int nb_composantes){
     return descri;
 }
 
-void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichier){
+int decalageRouge(int val, int n){
+    int res;
+    switch(n){
+        case 1 :
+            res = val >> 5;
+            break;
+        case 2 :
+            res = val >> 2;
+            break;
+        case 3 :
+            res = val << 1;
+            break;
+        case 4 :
+            res = val << 4;
+            break;
+        default :
+            printf("Erreur sur la valeur de n");
+    }
+    return res;
+}
+
+int decalageVert(int val, int n){
+    int res;
+    switch(n){
+        case 1 :
+            res = val >> 6;
+            break;
+        case 2 :
+            res = val >> 4;
+            break;
+        case 3 :
+            res = val >> 2;
+            break;
+        case 4 :
+            res = val;
+            break;
+        default :
+            printf("Erreur sur la valeur de n");
+    }
+    return res;
+}
+
+int decalageBleu(int val, int n){
+    int res;
+    switch(n){
+        case 1 :
+            res = val >> 7;
+            break;
+        case 2 :
+            res = val >> 6;
+            break;
+        case 3 :
+            res = val >> 5;
+            break;
+        case 4 :
+            res = val >> 4;
+            break;
+        default :
+            printf("Erreur sur la valeur de n");
+    }
+    return res;
+}
+
+void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichier, int n){
     int val;
     TAB tempo;
 
     tempo = malloc(longueur*hauteur*sizeof(long));
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification rouge dans temporaire
         fscanf(fichier,"%d", &val);
-        tempo[cptemp] = ( (val & conversion_masques[n-1]) >> 2 );
+        tempo[cptemp] = decalageRouge((val & conversion_masques[n-1]), 2);
     }
 
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification verte dans temporaire
         fscanf(fichier, "%d", &val);
-        tempo[cptemp] = tempo[cptemp] + ( (val & conversion_masques[n-1]) >> 4 );
+        tempo[cptemp] = tempo[cptemp] + decalageVert((val & conversion_masques[n-1]),4 );
     }
 
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){     //Sauvegarde de la quantification bleu dans temporaire
         fscanf(fichier, "%d", &val);
-        tempo[cptemp] = tempo[cptemp] + ( (val & conversion_masques[n-1]) >> 6 );
+        tempo[cptemp] = tempo[cptemp] + decalageBleu( (val & conversion_masques[n-1]), 6 );
     }
 
     for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){
@@ -41,7 +104,7 @@ void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichie
     free(tempo);
 }
 
-void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier){
+void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier, int n){
     int val;
     for (int cpt = 0; cpt < longueur*hauteur; cpt++){
             fscanf(fichier,"%d", &val);
@@ -50,31 +113,36 @@ void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE*
     }
 }
 
-Descripteur indexer_image(char* nom){
+Descripteur indexer_image(char* nom, int n){
 
     // Declaration varibales
     int longueur , hauteur, d;
     Descripteur descripteur;
     FILE* fichier = NULL;
-
-    //Récupération de la valeur n du .config
+    char* debut = "../Database/Image/";
+    char* path;
 
     // Ouverture de l'image
-    fichier = fopen("../Database/Image/NB/test.txt","r");
+    path = malloc(strlen( debut ) + 1 +  strlen( nom ) + 1);
+    strcpy(path,debut);
+    strcat(path,nom);
+    fichier = fopen(path,"r");
+    free(path);
+
     if (fichier != NULL) {
 
         // Récupération des données image
         fscanf(fichier,"%d %d %d", &longueur, &hauteur, &d);
         // Initialisation en fonction du fichier
-        descripteur = initDescripteur(d);
-        descripteur.ID = 234;
+        descripteur = initDescripteur(d,n);
+        descripteur.ID = 2;
 
         switch(d){
             case 1 : // Quantification NB
-                quantificationNB(&descripteur,longueur,hauteur,fichier);
+                quantificationNB(&descripteur,longueur,hauteur,fichier,n);
                 break;
             case 3 : // Quantification RGB
-                quantificationRGB(longueur,hauteur,&descripteur,fichier);
+                quantificationRGB(longueur,hauteur,&descripteur,fichier,n);
                 break;
          default : printf("Format de l'image pas supporté\n");
         }
