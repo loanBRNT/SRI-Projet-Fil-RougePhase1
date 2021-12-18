@@ -1,12 +1,43 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "../include/interface.h"
-#include "../include/pwd.h"
 #include "../include/admin.h"
+#include "../include/pwd.h"
+#include "../include/interface.h"
+
 
 
 //########## FONCTIONS DE GESTION DES MENUS ###############
 
+void afficheAccueil(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#              BIENVENUE                  #\n");
+	printf("#                                         #\n");
+	printf("#             DESQL CORP.                 #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#                                         #\n");
+	printf("#          ***************                #\n");
+	printf("#          ****************               #\n");
+	printf("#          ****          ***              #\n");
+	printf("#          *** *        * ***             #\n");
+	printf("#          ***  *      *   ***            #\n");
+	printf("#          ***   *    *     ***           #\n");
+	printf("#          ***    *  *       ***          #\n");
+	printf("#          ***     **         ***         #\n");
+	printf("#          ***     **         ***         #\n");
+	printf("#          ***    *  *       ***          #\n");
+	printf("#          ***   *    *     ***           #\n");
+	printf("#          ***  *      *   ***            #\n");
+	printf("#          *** *        * ***             #\n");
+	printf("#          ****          ***              #\n");
+	printf("#          ***************                #\n");
+	printf("#          **************                 #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
 
 //########## FONCTIONS D AFFICHAGE DES MENUS ##############
 void afficheMenuPrincipal(){
@@ -27,7 +58,6 @@ void afficheMenuPrincipal(){
 	printf("###########################################\n");
 	printf("\n");
 }
-
 
 void afficheMenuAdmin(){
 	printf("###########################################\n");
@@ -79,6 +109,18 @@ void afficheMenuPointConfig(){
 	printf("\n");
 }
 
+void afficheErreurMenu(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#    SAISIE INCORECT VEUILLEZ RÉESSAYER   #\n");
+	printf("#                                         #\n");
+	printf("#                                         #\n");
+	printf("#       VEUILLEZ APPUYER SUR ESPACE       #\n");
+	printf("#            POUR CONTINUER...            #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
 
 void afficheMenuUtilisateur(){
 	printf("###########################################\n");
@@ -196,48 +238,32 @@ void affichageSaisieTauxSim(){
 // ======================================================================================================
 
 int menuAdminVerif(){
-	printf("La verif du mot de passe se lance\n\n");
-	/*
-	Il faut coder la vérification du mot de passe à partir de mdp/admin.txt
-	*/
-	return menuAdmin();
-}
+	int cpt = 1;
 
-int menuUtilisateur(){
-	int event = 1 ;
-	long choixMenu;
-	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
-		afficheMenuUtilisateur();
-		choixMenu=lireLong();
-		printf("\n");
-		switch(choixMenu)
-		{
-			case 1:
-				//lancer recherche mot cle
-				break;
-			case 2:
-				//lancer recherche Nom
-				break;
-			case 3:
-				//lancer recherche chemin
-				break;
-			case 4:
-				//LancerRecherche Selection
-				break;
-			case 5:
-				event = -1; //retour menu d'avant
-				break;
-			case 0:
-				event = 0; //quitte le logiciel
-				break;
-			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
-				break;
-		}
-	printf("\n");
-	}
-	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+	while(cpt != (-1)) {
+		printf("La verif du mot de passe se lance\n\n");
+		//on informe l'utilisateur qui rentre sur un menu prive
+        // on verifie la valeur de retour de verifierPwdAdmin pour savoir si l'utilisateur a saisi le bon mot de passe
+        cpt = verifierPwdAdmin();
+        // si le mot de passe est faux on demande a l'utilisateur si il veut reesayer la saisie car une erreur de frappe peut arriver
+        if(cpt==1)//si identifiant ou mdp mauvais alors retourne 1 sinon 0
+        {
+            printf("trompe");
+            cpt=1; //on rerentre ds la boucle pour verif mdp
+            break;
+            }
+
+            /*
+            Il faut coder la vérification du mot de passe à partir de mdp/admin.txt
+            */
+        else {
+            printf("pas troupe sort de la boucle");
+            cpt = -1; //on sort
+            menuAdmin();
+            break;
+        }
+    }
+    return cpt;
 }
 
 int menuAdmin(){
@@ -263,8 +289,8 @@ int menuAdmin(){
 				event = 0;
 				break;
 			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				afficheErreurMenu();
+				getchar();
 				break;
 		}
 	printf("\n");
@@ -309,15 +335,14 @@ int menuPointConfig(){
 				event = 0; //quitte le logiciel
 				break;
 			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				afficheErreurMenu();
 				break;
 		}
 	printf("\n");
 	}
 
 	//On libere l'espace memoire
-	fermeturePanneauDeConfiguration(ptr_sur_config);
+	fermerPanneauDeConfiguration(ptr_sur_config);
 
 	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
 
@@ -325,17 +350,110 @@ int menuPointConfig(){
 
 int menuModifierTauxSim(PTR_CONFIG config){
 	affichageSaisieTauxSim();
-	/*
-	int choix = . Pour lire l'entree
+	/*int choix = 0; //Pour lire l'entree
 	if (changerTauxSimmilaritude(config, choix) == 0){
-		c'est que y a une erreur
+		printf("Veuillez choisir un taux de similarité entre 0 et 100");
 	} else {
-		ca c'est bien passe
-	}
-	*/
+		printf("ca c'est bien passe");
+	}*/
+	
 	return -1;
 }
 
 //#################################################################################################################################
 //######### MENUS DE LA PARTIE UTILISATEUR ########################################################################################
 
+int menuUtilisateur(){
+	int event = 1 ;
+	long choixMenu;
+	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
+		afficheMenuUtilisateur();
+		choixMenu=lireLong();
+		printf("\n");
+		switch(choixMenu)
+		{
+			case 1:
+				//lancer recherche mot cle
+				if (menuRechercheParMot() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				break;
+			case 2:
+				//lancer recherche Nom
+			if (menuRechercheParNom() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				break;
+			case 3:
+				//lancer recherche chemin
+				break;
+			case 4:
+				//LancerRecherche Selection
+				break;
+			case 5:
+				event = -1; //retour menu d'avant
+				break;
+			case 0:
+				event = 0; //quitte le logiciel
+				break;
+			default:
+				printf("SAISIE INCORRECTE\n");
+				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				break;
+		}
+	printf("\n");
+	}
+	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+}
+
+int menuRechercheParMot(){
+	int event = 1 ;
+	long choixMenu;
+	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
+		afficheRechercheMotCle();
+		choixMenu=lireLong();
+		printf("\n");
+		switch(choixMenu)
+		{
+			case 1:
+				printf("Vous avez lancer la recherche par Mot");
+				break;
+			case 2:
+				event = -1; //retour menu utilisateur
+				break;
+			case 0:
+				event = 0; //quitte le logiciel
+				break;
+			default:
+				printf("SAISIE INCORRECTE\n");
+				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				break;
+		}
+	printf("\n");
+	}
+	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+}
+
+int menuRechercheParNom(){
+	int event = 1 ;
+	long choixMenu;
+	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
+		afficheRechercheNom();
+		choixMenu=lireLong();
+		printf("\n");
+		switch(choixMenu)
+		{
+			case 1:
+				printf("Vous avez lancer la recherche par Nom");
+				break;
+			case 2:
+				event = -1; //retour menu utilisateur
+				break;
+			case 0:
+				event = 0; //quitte le logiciel
+				break;
+			default:
+				printf("SAISIE INCORRECTE\n");
+				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				break;
+		}
+	printf("\n");
+	}
+	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+}

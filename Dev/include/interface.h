@@ -1,5 +1,6 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
+#include "admin.h"
 
 // ------------ fonction afffichage des differents menus --------------
 
