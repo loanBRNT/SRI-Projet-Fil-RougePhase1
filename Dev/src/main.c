@@ -15,8 +15,6 @@ int main(int argc, char const *argv[])
 	  le choix numero 0 modifie la valeur de la variable event afin de sortir de la boucle et pouvoir arreter le programme
 	*/
 	afficheAccueil();
-	printf("Appuyer sur une touche pour continuer...");
-	getchar();
 	int event = 1 ;
 	long choixMenu;
 	while(event != -1){
@@ -39,6 +37,7 @@ int main(int argc, char const *argv[])
 			default:
 				afficheErreurMenu();
 				getchar();
+				fflush(stdin);
 				break;
 		}
 	printf("\n");

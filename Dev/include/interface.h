@@ -6,15 +6,13 @@
 
 void afficheMenuAdmin();
 void afficheMenuControleur();
-
-//void afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+void afficheAccueil();
+void afficheErreurMenu();
 
 // void afficheMessageQuitter(); CETTE FONCTION N'EXISTE PAS
 
 void afficheMenuPrincipal();
 void afficheMenuPointConfig();
-
-// CETTE FONCTION N'EXISTE PAS  : void afficheMessageBienvenue();
 
 void affichageSaisieTauxSim();
 
@@ -24,7 +22,9 @@ int menuModifierTauxSim(PTR_CONFIG config);
 
 
 //---------------------- LES FONCTIONS DES MENUS -----------------------
+int menuRechercheParMot();
 
+int menuRechercheParNom();
 
 int menuUtilisateur();
 
