@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "../include/pwd.h"
 
 int lire(char* chaine, int longueur ,FILE* fichier){
@@ -43,7 +44,6 @@ long lireLong()
 int verifierPwdAdmin(){
     char pwdPropose[20];
     char pwd[30];
-    char pwdProposeCrypte[30];
     char loginPropose[20]; //l'identifiant rentrer par l'utilisateur
     char login[20]; //l'identifiant dans le texte
     FILE* id =NULL;
@@ -55,11 +55,10 @@ int verifierPwdAdmin(){
     lire(loginPropose,20,stdin);// lis le clavier de 20 caractere et mettre dans loginpropose
     fflush(stdin); //il clean le sdin pour que à la prochaine saisie il ne prend pas en compte les float >20
     printf("\n");
-    id=fopen("sauv/admin.txt","r"); // id est un pointeur sur fichier
+    id=fopen("mdp/admin.txt","r"); // id est un pointeur sur fichier
     // verification du l'ouverture du fichier admin.txt qui contient le mot de passe de l administrateur
     if(id == NULL) //si il ne pointe pas sur un fichier alors impossible
     {
-        fclose(id);// ne pas oublié de fermé le pointeur sur fichier
         printf("############################################\n");
         printf("# Impossible d'ouvrir le fichier admin.txt #\n");
         printf("############################################\n");

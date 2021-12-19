@@ -15,8 +15,6 @@ int main(int argc, char const *argv[])
 	  le choix numero 0 modifie la valeur de la variable event afin de sortir de la boucle et pouvoir arreter le programme
 	*/
 	afficheAccueil();
-	printf("Appuyer sur une touche pour continuer...");
-	getchar(); 
 	//afficheMessageBienvenue(); | fonction à écrire |
 	int event = 1 ;
 	long choixMenu;
@@ -41,8 +39,9 @@ int main(int argc, char const *argv[])
 				event = -1;
 				break;
 			default:
-				printf("Saisie Incorrecte\n");
-				//afficheErreurMenu();
+				afficheErreurMenu();
+				getchar();
+				fflush(stdin);
 				break;
 		}
 	printf("\n");

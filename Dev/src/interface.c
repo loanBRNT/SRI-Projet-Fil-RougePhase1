@@ -250,7 +250,6 @@ int menuAdminVerif(){
         {
             printf("trompe");
             cpt=1; //on rerentre ds la boucle pour verif mdp
-            break;
             }
 
             /*
@@ -260,8 +259,7 @@ int menuAdminVerif(){
             printf("pas troupe sort de la boucle");
             cpt = -1; //on sort
             menuAdmin();
-            break;
-        }
+            }
     }
     return cpt;
 }
@@ -291,6 +289,7 @@ int menuAdmin(){
 			default:
 				afficheErreurMenu();
 				getchar();
+				fflush(stdin);
 				break;
 		}
 	printf("\n");
@@ -350,12 +349,12 @@ int menuPointConfig(){
 
 int menuModifierTauxSim(PTR_CONFIG config){
 	affichageSaisieTauxSim();
-	/*int choix = 0; //Pour lire l'entree
+	int choix = 0; //Pour lire l'entree
 	if (changerTauxSimmilaritude(config, choix) == 0){
 		printf("Veuillez choisir un taux de similarité entre 0 et 100");
 	} else {
 		printf("ca c'est bien passe");
-	}*/
+	}
 	
 	return -1;
 }
