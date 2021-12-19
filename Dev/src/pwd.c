@@ -21,12 +21,13 @@ int lire(char* chaine, int longueur ,FILE* fichier){
     else
     {
         fflush(stdin);
-        return 0; // On renvoie 0 s'il y a eu une erreur
+        return -1; // On renvoie -1 s'il y a eu une erreur
     }
 }
 
 long lireLong()
 {
+    fflush(stdin);
     char nombreTexte[100] = {0}; // 100 cases devraient suffire et pour les nom d'utilisateur
  
     if (lire(nombreTexte, 100,stdin))
@@ -36,8 +37,8 @@ long lireLong()
     }
     else
     {
-        // Si problème de lecture, renvoyer 0
-        return 0;
+        // Si problème de lecture, renvoyer -1
+        return -1;
     }
 }
 

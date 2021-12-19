@@ -29,8 +29,7 @@ int main(int argc, char const *argv[])
 			case 2:
 				if (menuUtilisateur() == 0) event = -1;
 				break;
-			case 0:
-				//afficheMessageQuitter();
+			case 3:
 				printf("On quitte\n");
 				event = -1;
 				break;
