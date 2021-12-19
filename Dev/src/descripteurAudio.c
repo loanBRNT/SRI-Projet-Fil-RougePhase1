@@ -3,6 +3,17 @@
 #include <string.h>
 #include "../include/descripteurAudio.h"
 
+/* 
+ ----------------------- Signature -------------------------
+|                                                           |
+|       Auteur : GAUDILLAT Eliott                           |
+|       Date de creation : 10/12/21                         |
+|       Date de derniere MAJ : 17/12/22                     |
+|                                                           |
+ ----------------------------------------------------------- 
+ */
+
+// -----------------  FONCTIONS initialisation strcuture -----------------------
 Histogramme init_histo(int m){
     Histogramme h=(Histogramme)malloc(sizeof(struct s_histo));
     h->histo_fenetre=(int *)malloc(sizeof(int)*m);
@@ -18,6 +29,24 @@ DescrpiteurAudio init_descripteurAudio(char* id){
     return DA;
 }
 
+// -----------------  FONCTIONS Affichage -----------------------
+void Affiche_histogramme(Histogramme h){
+    for(int i=0;i<h->taille;i++){
+                printf("%d ",h->histo_fenetre[i]);            
+            }
+            printf("\n");  
+}
+void Affiche_DescripteurAudio(DescrpiteurAudio DA){
+    printf("identifiant unique: %s\n",DA->identifiant);
+    Histogramme histo_courant=DA->histo;
+    while(histo_courant!=NULL){
+        Affiche_histogramme(histo_courant);
+        histo_courant=histo_courant->fenetre_suivante;
+    }
+}
+
+
+// -----------------  FONCTION Indexation -----------------------
 DescrpiteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille_echantillon){
     FILE* fic ;
     double tailleFic;
@@ -60,17 +89,4 @@ DescrpiteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
 
 
 }
-void Affiche_histogramme(Histogramme h){
-    for(int i=0;i<h->taille;i++){
-                printf("%d ",h->histo_fenetre[i]);            
-            }
-            printf("\n");  
-}
-void Affiche_DescripteurAudio(DescrpiteurAudio DA){
-    printf("identifiant unique: %s\n",DA->identifiant);
-    Histogramme histo_courant=DA->histo;
-    while(histo_courant!=NULL){
-        Affiche_histogramme(histo_courant);
-        histo_courant=histo_courant->fenetre_suivante;
-    }
-}
+
