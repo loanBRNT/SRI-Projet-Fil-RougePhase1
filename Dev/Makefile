@@ -7,8 +7,8 @@ bin/interface.o: src/interface.c include/interface.h
 bin/pwd.o: src/pwd.c include/pwd.h
 	gcc -c src/pwd.c -o bin/pwd.o -Wall
 
-bin/main.o : src/main.c
-	gcc -c src/main.c -o bin/main.o -Wall
-
 bin/admin.o : src/admin.c
 	gcc -c src/admin.c -o bin/admin.o -Wall
+
+bin/main.o : src/main.c
+	gcc -c src/main.c -o bin/main.o -Wall

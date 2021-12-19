@@ -16,13 +16,9 @@ int main(int argc, char const *argv[])
 	*/
 	afficheAccueil();
 	printf("Appuyer sur une touche pour continuer...");
-	getchar(); 
-	//afficheMessageBienvenue(); | fonction à écrire |
+	getchar();
 	int event = 1 ;
 	long choixMenu;
-	//afficheAccueil();
-	//printf("Appuyer sur une touche pour continuer...");
-	//getchar(); 
 	while(event != -1){
 		afficheMenuPrincipal();
 		choixMenu=lireLong();
@@ -41,8 +37,8 @@ int main(int argc, char const *argv[])
 				event = -1;
 				break;
 			default:
-				printf("Saisie Incorrecte\n");
-				//afficheErreurMenu();
+				afficheErreurMenu();
+				getchar();
 				break;
 		}
 	printf("\n");
