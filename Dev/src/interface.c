@@ -11,9 +11,9 @@
 void afficheAccueil(){
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#              BIENVENUE                  #\n");
+	printf("#            BIENVENUE DANS LA            #\n");
 	printf("#                                         #\n");
-	printf("#             DESQL CORP.                 #\n");
+	printf("#            DESQL CORPORATION            #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
@@ -159,8 +159,6 @@ void afficheRechercheMotCle(){
 	printf("#                                         #\n");
 	printf("#        2: RETOUR MENU ADMIN             #\n");
 	printf("#                                         #\n");
-	printf("#        3: RETOUR MENU PRINCIPAL         #\n");
-	printf("#                                         #\n");
 	printf("#        0: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
@@ -177,15 +175,8 @@ void afficheRechercheNom(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#        1: // AFFICHAGE DES DIFF CONFIG  #\n");
-	printf("#                                         #\n");
-	printf("#        2: RETOUR MENU ADMIN             #\n");
-	printf("#                                         #\n");
-	printf("#        3: RETOUR MENU PRINCIPAL         #\n");
-	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
-	printf("#                                         #\n");
-	printf("#        << choisissez un menu >>         #\n");
+	printf("#        RENTREZ LE NOM DU FICHIER :      #\n");//,recupNomDuConfig());
+	printf("#        APPUIE SUR 2 pour retour         #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
@@ -239,22 +230,48 @@ void affichageSaisieTauxSim(){
 
 int menuAdminVerif(){
 	int cpt = 1;
-
+	int choix = 1;
 	while(cpt != (-1)) {
 		printf("La verif du mot de passe se lance\n\n");
 		//on informe l'utilisateur qui rentre sur un menu prive
         // on verifie la valeur de retour de verifierPwdAdmin pour savoir si l'utilisateur a saisi le bon mot de passe
         cpt = verifierPwdAdmin();
         // si le mot de passe est faux on demande a l'utilisateur si il veut reesayer la saisie car une erreur de frappe peut arriver
-        if(cpt==1)//si identifiant ou mdp mauvais alors retourne 1 sinon 0
+        if(cpt==1 && choix!=3)//si identifiant ou mdp mauvais alors retourne 1 sinon 0
         {
-            printf("trompe");
-            cpt=1; //on rerentre ds la boucle pour verif mdp
-            }
+			if (choix == 2){
+				printf("###########################################\n");
+ 				printf("#             !! ATTENTION !!             #\n");
+  				printf("#                                         #\n");
+  				printf("#          Il vous reste 1 essai          #\n");
+ 				printf("###########################################\n");
+				printf("\n");
+				choix = choix+1;
+            	cpt=1; //on rerentre ds la boucle pour verif mdp
+			}
+			else if (choix == 1){
+				printf("###########################################\n");
+ 				printf("#             !! ATTENTION !!             #\n");
+  				printf("#                                         #\n");
+  				printf("#          Il vous reste 2 essai          #\n");
+ 				printf("###########################################\n");
+				printf("\n");
+				choix = choix+1;
+            	cpt=1; //on rerentre ds la boucle pour verif mdp
+			}
+			else{
+				choix = choix+1;
+            	cpt=1; //on rerentre ds la boucle pour verif mdp
+			}
+		}
 
             /*
             Il faut coder la vérification du mot de passe à partir de mdp/admin.txt
             */
+        else if (choix == 3){
+        	afficheErreurMenu();
+        	cpt =-1;
+        }
         else {
             printf("pas troupe sort de la boucle");
             cpt = -1; //on sort
@@ -381,6 +398,7 @@ int menuUtilisateur(){
 				break;
 			case 3:
 				//lancer recherche chemin
+			if (menuRechercheParchemin() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
 				break;
 			case 4:
 				//LancerRecherche Selection
@@ -434,6 +452,35 @@ int menuRechercheParNom(){
 	long choixMenu;
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
 		afficheRechercheNom();
+		choixMenu=lireLong();
+		printf("\n");
+		switch(choixMenu)
+		{
+			case 1:
+				printf("Vous avez lancer la recherche par Nom");
+
+				break;
+			case 2:
+				event = -1; //retour menu utilisateur
+				break;
+			case 0:
+				event = 0; //quitte le logiciel
+				break;
+			default:
+				printf("SAISIE INCORRECTE\n");
+				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				break;
+		}
+	printf("\n");
+	}
+	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+}
+
+int menuRechercheParchemin(){
+	int event = 1 ;
+	long choixMenu;
+	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
+		afficheRechercheChemin();
 		choixMenu=lireLong();
 		printf("\n");
 		switch(choixMenu)

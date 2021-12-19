@@ -102,6 +102,10 @@ int recupUnAttributConfig(char* nomAttributCible){
 	return valeur;
 }
 
+/*int recupNomDuConfig(char* NomCible){
+	char nomAttribut[30];
+}*/
+
 // -----------------  FONCTIONS SET -----------------------
 
 int changerTauxSimmilaritude(PTR_CONFIG config, int nb){

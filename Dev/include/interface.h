@@ -26,6 +26,8 @@ int menuRechercheParMot();
 
 int menuRechercheParNom();
 
+int menuRechercheParchemin();
+
 int menuUtilisateur();
 
 int menuAdminVerif();
