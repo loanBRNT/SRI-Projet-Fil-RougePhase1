@@ -486,7 +486,7 @@ int menuRechercheParchemin(){
 		switch(choixMenu)
 		{
 			case 1:
-				printf("Vous avez lancer la recherche par Nom");
+				printf("Vous avez lancer la recherche par chemin");
 				break;
 			case 2:
 				event = -1; //retour menu utilisateur
