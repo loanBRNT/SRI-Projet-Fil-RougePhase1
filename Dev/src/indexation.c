@@ -1,7 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "indexation.h"
+#include "../include/indexation.h"
+#include "../include/descripteurAudio.h"
+#include "../include/img.h"
+/* 
+ ----------------------- Signature -------------------------
+|                                                           |
+|       Auteur : GAUDILLAT Eliott                           |
+|       Date de creation : 10/12/21                         |
+|       Date de derniere MAJ : 19/12/21                     |
+|                                                           |
+ ----------------------------------------------------------- 
+ */
+
 
 int VerificationTraitee(char* nom_fic){
 	// V1 => si fichier perso meme nom que un fichier de la base de données alors renvoie deja traitee
@@ -73,47 +85,11 @@ void Indexation(){
 	printf("execution de %s\n", commande); 
 	fflush(stdout);
 	system(commande);
-
-
-	/*------------------------------------------------------*/
-	/* RECUPERATION DU CONTENU DU REPERTOIRE  CHEMIN_AUDIO  */
-	/*------------------------------------------------------*/
-
-	strcpy(commande, "ls -l ");
-	strcat(commande, CHEMIN_AUDIO);
-	strcat(commande, "| grep bin$ >> fic_temp"); 
-	printf("execution de %s\n", commande); 
-	fflush(stdout);
-	system(commande);
-	/*------------------------------------------------------*/
-	/* RECUPERATION DU CONTENU DU REPERTOIRE CHEMIN_IMAGE_NB*/
-	/*------------------------------------------------------*/
-
-	strcpy(commande, "ls -l ");
-	strcat(commande, CHEMIN_IMAGE_NB);
-	strcat(commande, "| grep txt$ >> fic_temp"); 
-	printf("execution de %s\n", commande);
-	fflush(stdout); 
-	system(commande);
-
-	/*-------------------------------------------------------*/
-	/* RECUPERATION DU CONTENU DU REPERTOIRE CHEMIN_IMAGE_RGB*/
-	/*-------------------------------------------------------*/
-
-	strcpy(commande, "ls -l ");
-	strcat(commande, CHEMIN_IMAGE_RGB);
-	strcat(commande, "| grep txt$ >> fic_temp"); 
-	printf("execution de %s\n", commande);
-	fflush(stdout); 
-	system(commande);
-
 	/*---------------------------------------------------------------------*/
 	/* AFFICHAGE DU CONTENU DU FICHIER CREE LORS DE LA PRECEDENTE COMMANDE */
 	/*---------------------------------------------------------------------*/
 	system("cat fic_temp");
 	printf("---------------------------------\n");
-
-	/* ouverture du fichier temporaire fic_temp*/
 
 	ptr_fic = fopen("fic_temp", "r");
 
@@ -132,7 +108,7 @@ void Indexation(){
  	    	else{
      			if (strstr(nom_fic, ".xml")){
      				// attention la seuelement nom du fichier et pas son chemin
-    				//fonction indexation texte forme indexationAudio(char cheminFile, char* ID);
+    				//fonction indexation texte  ;
     				printf("indexation d'un fichier texte\n");
     				strcpy(commande, "echo ");
     				strcat(commande, ID);
@@ -140,16 +116,117 @@ void Indexation(){
 					strcat(commande, " >> ../Database/Descripteur/dT.txt"); 
 					system(commande);
     			}
-    			else if(strstr(nom_fic, ".bin")){
-    				//fonction indexation audio;
-    				printf("indexation d'un fichier audio\n");
+    			else{
+    			fprintf(stderr, "ERREUR :  PB avec type du fichier\n");
+    			}    		
+ 	    	}
+		 	// nom de fichier suivant //
+			fscanf( ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);
+    		}
+    	fclose(ptr_fic);
+    }
+	else
+	{
+   		fprintf(stderr, "ERREUR :  PB avec liste_rep\n");
+	}
+
+	/*------------------------------------------------------*/
+	/* RECUPERATION DU CONTENU DU REPERTOIRE  CHEMIN_AUDIO  */
+	/*------------------------------------------------------*/
+
+	strcpy(commande, "ls -l ");
+	strcat(commande, CHEMIN_AUDIO);
+	strcat(commande, "| grep bin$ > fic_temp"); 
+	printf("execution de %s\n", commande); 
+	fflush(stdout);
+	system(commande);
+
+	/*---------------------------------------------------------------------*/
+	/* AFFICHAGE DU CONTENU DU FICHIER CREE LORS DE LA PRECEDENTE COMMANDE */
+	/*---------------------------------------------------------------------*/
+	system("cat fic_temp");
+	printf("---------------------------------\n");
+	ptr_fic = fopen("fic_temp", "r");
+	if( ptr_fic != NULL){   
+
+	    //POUR CHAQUE LIGNE CONTENUE DANS LE FICHIER, ON RECUPERE LE NOM DU FICHIER //
+ 	    // FORMAT DE LA LIGNE :  -rw-r--r--   1 ferrane  minfg       4834 Sep 23  2008 28-Danse___Robyn_Orlin_et.xml //
+
+	    fscanf( ptr_fic, "%*s %*s");    //  SAUTER LA PREMIERE LIGNE CONSTITUEE DE 2 CHAINES total xxxx //
+    
+	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
+ 	    while ( !feof(ptr_fic) ){
+ 	    	if(VerificationTraitee(nom_fic)){
+ 	    		fprintf(stderr, "fichier deja indexee\n");
+ 	    	}
+ 	    	else{
+    			if(strstr(nom_fic, ".bin")){
+    				DescrpiteurAudio DA =IndexationFichierAudio(nom_fic,100,1024);
+    				Affiche_DescripteurAudio(DescrpiteurAudio DA);
     				strcpy(commande, "echo ");
     				strcat(commande, ID);
 					strcat(commande, nom_fic);
 					strcat(commande, " >> ../Database/Descripteur/dA.txt");
 					system(commande); 
     			}
-    			else if(strstr(nom_fic, ".txt")){
+    			else{
+    			fprintf(stderr, "ERREUR :  PB avec type du fichier\n");
+    			}    		
+ 	    	}
+		 	// nom de fichier suivant //
+			fscanf( ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);
+    		}
+    	fclose(ptr_fic);
+    }
+	else
+	{
+   		fprintf(stderr, "ERREUR :  PB avec liste_rep\n");
+	}
+
+	/*------------------------------------------------------*/
+	/* RECUPERATION DU CONTENU DU REPERTOIRE CHEMIN_IMAGE_NB*/
+	/*------------------------------------------------------*/
+
+	strcpy(commande, "ls -l ");
+	strcat(commande, CHEMIN_IMAGE_NB);
+	strcat(commande, "| grep txt$ > fic_temp"); 
+	printf("execution de %s\n", commande);
+	fflush(stdout); 
+	system(commande);
+
+	/*-------------------------------------------------------*/
+	/* RECUPERATION DU CONTENU DU REPERTOIRE CHEMIN_IMAGE_RGB*/
+	/*-------------------------------------------------------*/
+
+	strcpy(commande, "ls -l ");
+	strcat(commande, CHEMIN_IMAGE_RGB);
+	strcat(commande, "| grep txt$ >> fic_temp"); 
+	printf("execution de %s\n", commande);
+	fflush(stdout); 
+	system(commande);
+
+
+	/*---------------------------------------------------------------------*/
+	/* AFFICHAGE DU CONTENU DU FICHIER CREE LORS DE LA PRECEDENTE COMMANDE */
+	/*---------------------------------------------------------------------*/
+	system("cat fic_temp");
+	printf("---------------------------------\n");
+	ptr_fic = fopen("fic_temp", "r");
+
+	if( ptr_fic != NULL){   
+
+	    //POUR CHAQUE LIGNE CONTENUE DANS LE FICHIER, ON RECUPERE LE NOM DU FICHIER //
+ 	    // FORMAT DE LA LIGNE :  -rw-r--r--   1 ferrane  minfg       4834 Sep 23  2008 28-Danse___Robyn_Orlin_et.xml //
+
+	    fscanf( ptr_fic, "%*s %*s");    //  SAUTER LA PREMIERE LIGNE CONSTITUEE DE 2 CHAINES total xxxx //
+    
+	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
+ 	    while ( !feof(ptr_fic) ){
+ 	    	if(VerificationTraitee(nom_fic)){
+ 	    		fprintf(stderr, "fichier deja indexee\n");
+ 	    	}
+ 	    	else{
+    			if(strstr(nom_fic, ".txt")){
     				//fonction indexation image;
     				printf("indexation d'un fichier image\n");
     				strcpy(commande, "echo ");
@@ -171,6 +248,8 @@ void Indexation(){
 	{
    		fprintf(stderr, "ERREUR :  PB avec liste_rep\n");
 	}
+
+
 	// enregistrer descritpeur dans le fichier correspondant
 	// supp fic-temp
 	// a tester avec fich-temp trier(sort) pour voir si chaque fichier et bien traiter selon son type

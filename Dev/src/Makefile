@@ -8,4 +8,5 @@ img.o: img.c img.h
 	gcc -o img.o -c img.c -Wall
 
 
-
+img.o: img.c img.h
+	gcc -o img.o -c img.c -Wall

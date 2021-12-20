@@ -1,4 +1,7 @@
-#include "img.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "../include/img.h"
 
 Descripteur initDescripteur(int nb_composantes, int n){
     Descripteur descri;
