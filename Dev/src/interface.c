@@ -51,7 +51,7 @@ void afficheMenuPrincipal(){
 	printf("#                                         #\n");
 	printf("#            2:UTILISATEUR                #\n");
 	printf("#                                         #\n");
-	printf("#            0:QUITTER                    #\n");
+	printf("#            3:QUITTER                    #\n");
 	printf("#                                         #\n");
 	printf("#       !! choisissez le Mode !!          #\n");
 	printf("#                                         #\n");
@@ -72,7 +72,7 @@ void afficheMenuAdmin(){
 	printf("#                                         #\n");
 	printf("#         3: RETOUR MENU PRINCIPAL        #\n");
 	printf("#                                         #\n");
-	printf("#         0: QUITTER                      #\n");
+	printf("#         4: QUITTER                      #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -101,7 +101,7 @@ void afficheMenuPointConfig(){
 	printf("#                                         #\n");
 	printf("#        7: RETOUR MENU ADMIN             #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        8: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -141,7 +141,7 @@ void afficheMenuUtilisateur(){
 	printf("#                                         #\n");
 	printf("#        5: RETOUR MENU PRINCIPAL         #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        6: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
@@ -159,7 +159,7 @@ void afficheRechercheMotCle(){
 	printf("#                                         #\n");
 	printf("#        2: RETOUR MENU ADMIN             #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        3: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -196,7 +196,7 @@ void afficheRechercheChemin(){
 	printf("#                                         #\n");
 	printf("#        3: RETOUR MENU PRINCIPAL         #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        4: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -204,17 +204,104 @@ void afficheRechercheChemin(){
 	printf("\n");
 }
 
-void affichageSaisieTauxSim(){
+void affichageSaisieTauxSim(PTR_CONFIG config){
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#     MODIFIER LE TAUX DE SIMILARITE      #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#        VALEUR ACTUELLE : %d             #\n",recupTauxSimmilaritudeDuConfig());
+	printf("#        VALEUR ACTUELLE : %d             #\n",getTauxSimmilaritudeDuConfig(config));
 	printf("#                                         #\n");
 	printf("#        DOIT ETRE COMPRIS ENTRE          #\n");
 	printf("#                1 ET 100                 #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+void affichageSaisieNbMaxMot(PTR_CONFIG config){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#   MODIFIER LE NB MAX DE MOT PAR TEXTE   #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",getNbMotsParTexteDuConfig(config));
+	printf("#                                         #\n");
+	printf("#            DOIT ETRE POSITIF            #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+void affichageSaisieSeuilOccurence(PTR_CONFIG config){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#      MODIFIER LE SEUIL D'OCCURENCE      #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",getSeuilOccurenceDuConfig(config));
+	printf("#                                         #\n");
+	printf("#            DOIT ETRE POSITIF            #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+void affichageSaisieNbIntervalle(PTR_CONFIG config){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#       MODIFIER LE NB D'INTERVALLE       #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",getNbIntervalleDuConfig(config));
+	printf("#                                         #\n");
+	printf("#            DOIT ETRE POSITIF            #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+void affichageSaisieNbPoints(PTR_CONFIG config){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#   MODIFIER LE NB DE POINTS PAR FENETRE  #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",getNbPointsDuConfig(config));
+	printf("#                                         #\n");
+	printf("#       DOIT ETRE UNE PUISSANCE DE 2      #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+void affichageSaisieNbBits(PTR_CONFIG config){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#           MODIFIER LE NB DE BITS        #\n");
+	printf("#             DE QUANTIFICATION           #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",getNbBitsDuConfig(config));
+	printf("#                                         #\n");
+	printf("#        DOIT ETRE COMPRIS ENTRE          #\n");
+	printf("#                1 ET 8                   #\n");
 	printf("#                                         #\n");
 	printf("#        << Saisissez un entier >>        #\n");
 	printf("#                                         #\n");
@@ -231,7 +318,7 @@ void affichageSaisieTauxSim(){
 int menuAdminVerif(){
 	int cpt = 1;
 	int choix = 1;
-	while(cpt != (-1)) {
+	while(cpt == 1) {
 		printf("La verif du mot de passe se lance\n\n");
 		//on informe l'utilisateur qui rentre sur un menu prive
         // on verifie la valeur de retour de verifierPwdAdmin pour savoir si l'utilisateur a saisi le bon mot de passe
@@ -265,17 +352,13 @@ int menuAdminVerif(){
 			}
 		}
 
-            /*
-            Il faut coder la vérification du mot de passe à partir de mdp/admin.txt
-            */
+
         else if (choix == 3){
         	afficheErreurMenu();
         	cpt =-1;
         }
         else {
-            printf("pas troupe sort de la boucle");
-            cpt = -1; //on sort
-            menuAdmin();
+            cpt = menuAdmin();
             }
     }
     return cpt;
@@ -300,7 +383,7 @@ int menuAdmin(){
 			case 3:
 				event = -1;
 				break;
-			case 0:
+			case 4:
 				event = 0;
 				break;
 			default:
@@ -327,27 +410,27 @@ int menuPointConfig(){
 		switch(choixMenu)
 		{
 			case 1:
-				
+				menuModifierTauxSim(ptr_sur_config);
 				break;
 			case 2:
-				
+				menuModifierNbMaxMot(ptr_sur_config);
 				break;
 			case 3:
-				
+				menuModifierSeuilOccurence(ptr_sur_config);
 				break;
 			case 4:
-				
+				menuModifierNbIntervalle(ptr_sur_config);
 				break;
 			case 5:
-				
+				menuModifierNbPoints(ptr_sur_config);
 				break;
 			case 6:
-				
+				menuModifierNbBits(ptr_sur_config);
 				break;
 			case 7:
 				event = -1; //retour menu d'avant
 				break;
-			case 0:
+			case 8:
 				event = 0; //quitte le logiciel
 				break;
 			default:
@@ -365,16 +448,83 @@ int menuPointConfig(){
 }
 
 int menuModifierTauxSim(PTR_CONFIG config){
-	affichageSaisieTauxSim();
+	affichageSaisieTauxSim(config);
 	int choix = 0; //Pour lire l'entree
+	scanf("%d",&choix);
 	if (changerTauxSimmilaritude(config, choix) == 0){
-		printf("Veuillez choisir un taux de similarité entre 0 et 100");
+		printf("Veuillez choisir un taux de similarité entre 1 et 100\n");
 	} else {
-		printf("ca c'est bien passe");
+		printf("La modification a bien ete sauvegarde\n");
 	}
-	
-	return -1;
+	fflush(stdin);
+	return 0;
 }
+
+int menuModifierNbMaxMot(PTR_CONFIG config){
+	affichageSaisieNbMaxMot(config);
+	int choix = 0; //Pour lire l'entree
+	scanf("%d",&choix);
+	if (changerNbMotParTexte(config, choix) == 0){
+		printf("Veuillez choisir un nombre max de mots positif\n");
+	} else {
+		printf("La modification a bien ete sauvegarde\n");
+	}
+	fflush(stdin);
+	return 0;
+}
+
+int menuModifierSeuilOccurence(PTR_CONFIG config){
+	affichageSaisieSeuilOccurence(config);
+	int choix = 0; //Pour lire l'entree
+	scanf("%d",&choix);
+	if (changerSeuilOccurence(config, choix) == 0){
+		printf("Veuillez choisir un seuil positif\n");
+	} else {
+		printf("La modification a bien ete sauvegarde\n");
+	}
+	fflush(stdin);
+	return 0;
+}
+
+int menuModifierNbIntervalle(PTR_CONFIG config){
+	affichageSaisieNbIntervalle(config);
+	int choix = 0; //Pour lire l'entree
+	scanf("%d",&choix);
+	if (changerNbIntervalle(config, choix) == 0){
+		printf("Veuillez choisir un nombre positif\n");
+	} else {
+		printf("La modification a bien ete sauvegarde\n");
+	}
+	fflush(stdin);
+	return 0;
+}
+
+int menuModifierNbPoints(PTR_CONFIG config){
+	affichageSaisieNbPoints(config);
+	int choix = 0; //Pour lire l'entree
+	scanf("%d",&choix);
+	if (changerNbPoints(config, choix) == 0){
+		printf("Veuillez choisir une puissance de 2\n");
+	} else {
+		printf("La modification a bien ete sauvegarde\n");
+	}
+	fflush(stdin);
+	return 0;
+}
+
+int menuModifierNbBits(PTR_CONFIG config){
+	affichageSaisieNbBits(config);
+	int choix = 0; //Pour lire l'entree
+	scanf("%d",&choix);
+	if (changerNbBits(config, choix) == 0){
+		printf("Veuillez choisir un nombre entre 1 et 8\n");
+	} else {
+		printf("La modification a bien ete sauvegarde\n");
+	}
+	fflush(stdin);
+	return 0;
+}
+
 
 //#################################################################################################################################
 //######### MENUS DE LA PARTIE UTILISATEUR ########################################################################################
@@ -406,7 +556,7 @@ int menuUtilisateur(){
 			case 5:
 				event = -1; //retour menu d'avant
 				break;
-			case 0:
+			case 6:
 				event = 0; //quitte le logiciel
 				break;
 			default:
@@ -429,12 +579,12 @@ int menuRechercheParMot(){
 		switch(choixMenu)
 		{
 			case 1:
-				printf("Vous avez lancer la recherche par Mot");
+				printf("Vous avez lancer la recherche par Mot\n");
 				break;
 			case 2:
 				event = -1; //retour menu utilisateur
 				break;
-			case 0:
+			case 3:
 				event = 0; //quitte le logiciel
 				break;
 			default:
@@ -457,13 +607,13 @@ int menuRechercheParNom(){
 		switch(choixMenu)
 		{
 			case 1:
-				printf("Vous avez lancer la recherche par Nom");
+				printf("Vous avez lancer la recherche par Nom\n");
 
 				break;
 			case 2:
 				event = -1; //retour menu utilisateur
 				break;
-			case 0:
+			case 3:
 				event = 0; //quitte le logiciel
 				break;
 			default:
@@ -486,12 +636,16 @@ int menuRechercheParchemin(){
 		switch(choixMenu)
 		{
 			case 1:
+<<<<<<< HEAD
 				printf("Vous avez lancer la recherche par chemin");
+=======
+				printf("Vous avez lancer la recherche par Chemin\n");
+>>>>>>> f1de174854b72283319306f318611823c1db4398
 				break;
 			case 2:
 				event = -1; //retour menu utilisateur
 				break;
-			case 0:
+			case 3:
 				event = 0; //quitte le logiciel
 				break;
 			default:
