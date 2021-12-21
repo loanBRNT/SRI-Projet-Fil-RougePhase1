@@ -14,7 +14,7 @@ void afficheErreurMenu();
 void afficheMenuPrincipal();
 void afficheMenuPointConfig();
 
-void affichageSaisieTauxSim(PTR_CONFIG config);
+void affichageSaisieTauxSim();
 void affichageSaisieNbMaxMot(PTR_CONFIG config);
 void affichageSaisieSeuilOccurence(PTR_CONFIG config);
 void affichageSaisieNbIntervalle(PTR_CONFIG config);

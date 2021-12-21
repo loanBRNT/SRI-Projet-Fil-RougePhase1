@@ -169,14 +169,16 @@ void afficheRechercheMotCle(){
 
 
 void afficheRechercheNom(){
+	char[] nom =recupNomDuConfig();
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#            RECHERCHE PAR NOM            #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#        RENTREZ LE NOM DU FICHIER : %d     #\n",recupNomDuConfig());
-	printf("#        APPUIE SUR 2 pour retour         #\n");
+	printf("#      1: RENTREZ LE NOM DU FICHIER :%s   #\n",nom);
+	printf("#                                         #\n");
+	printf("#      2: APPUIE SUR 2 pour retour        #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
@@ -366,12 +368,12 @@ int menuPointConfig(){
 
 int menuModifierTauxSim(PTR_CONFIG config){
 	affichageSaisieTauxSim();
-	int choix = 0; //Pour lire l'entree
+	/*int choix = 0; //Pour lire l'entree
 	if (changerTauxSimmilaritude(config, choix) == 0){
 		printf("Veuillez choisir un taux de similarité entre 0 et 100");
 	} else {
 		printf("ca c'est bien passe");
-	}
+	}*/
 	
 	return -1;
 }
