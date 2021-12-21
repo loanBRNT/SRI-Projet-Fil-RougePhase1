@@ -102,9 +102,15 @@ int recupUnAttributConfig(char* nomAttributCible){
 	return valeur;
 }
 
-/*int recupNomDuConfig(char* NomCible){
-	char nomAttribut[30];
-}*/
+int recupNomDuConfig(){
+	char nom[20] = {0};
+		
+	afficheRechercheMotCle();
+	printf("\n");
+	printf("Vous avez lancer la recherche par Mot\n");
+	scanf("%s", nom);
+	printf("Vous avez chercher le fichier s'appellant %s \n", nom);
+}
 
 // -----------------  FONCTIONS SET -----------------------
 
