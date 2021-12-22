@@ -34,4 +34,6 @@ void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE*
 
 Descripteur indexer_image(char* adresse, int n);
 
+void Sauvegarder_DescripteurTexte(Descripteur,FILE*);
+
 #endif

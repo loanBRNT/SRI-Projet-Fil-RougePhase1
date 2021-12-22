@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include<math.h>
 #include "../include/img.h"
 
 Descripteur initDescripteur(int nb_composantes, int n){
     Descripteur descri;
-    descri.t_max = pow(2,(n*nb_composantes));
+    descri.t_max =pow(2,(n*nb_composantes));
     descri.histogramme = NULL;
     descri.histogramme = malloc(descri.t_max*sizeof(int));
     if(descri.histogramme == NULL) {
@@ -150,3 +151,13 @@ Descripteur indexer_image(char* nom, int n){
 
     return descripteur;
 }
+
+
+void Sauvegarder_DescripteurTexte(Descripteur Di,FILE* f){
+        fprintf(f,"%d\n",Di.ID);
+        fprintf(f,"%d\n",Di.t_max);
+    for(int i=0;i<Di.t_max;i++){
+        fprintf(f,"%d\n",Di.histogramme[i]);
+    }
+    fprintf(f,"\n");
+};

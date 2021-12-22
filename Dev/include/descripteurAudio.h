@@ -13,24 +13,35 @@
 
 
 // ------------------- Declaration structure --------------------------------
+
 typedef struct s_histo{
 	int * histo_fenetre;
 	int taille;
 	struct s_histo * fenetre_suivante;
 } * Histogramme;
 
-typedef struct s_descrpiteurAudio{
+typedef struct s_DescripteurAudio{
 	char* identifiant;
 	Histogramme histo;	
-} * DescrpiteurAudio;
+} * DescripteurAudio;
 
 // ------------------- FONCTION Initialisation --------------------------------
+
 Histogramme init_histo( int );
-DescrpiteurAudio init_descripteurAudio(char*);
+DescripteurAudio init_descripteurAudio(char*);
+
 // ------------------- FONCTION Affichage --------------------------------
-void Affiche_DescripteurAudio(DescrpiteurAudio);
+
+void Affiche_DescripteurAudio(DescripteurAudio);
 void Affiche_histogramme(Histogramme);
+
+// -----------------  FONCTIONS Sauvegarde -----------------------
+
+void Sauvegarde_histogramme(Histogramme,FILE*);
+void Sauvegarder_DescripteurAudio(DescripteurAudio,FILE*);
+
 // ------------------- FONCTION PRINCIPALE --------------------------------
-DescrpiteurAudio IndexationFichierAudio(const char*,int ,int);
+
+DescripteurAudio IndexationFichierAudio(const char*,int ,int);
 
 #endif 

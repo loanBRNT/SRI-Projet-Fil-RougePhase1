@@ -22,8 +22,8 @@ Histogramme init_histo(int m){
     return h;
 }
 
-DescrpiteurAudio init_descripteurAudio(char* id){
-    DescrpiteurAudio DA=(DescrpiteurAudio)malloc(sizeof(struct s_descrpiteurAudio));
+DescripteurAudio init_descripteurAudio(char* id){
+    DescripteurAudio DA=(DescripteurAudio)malloc(sizeof(struct s_DescripteurAudio));
     DA->identifiant=id;
     DA->histo=NULL;  
     return DA;
@@ -36,7 +36,8 @@ void Affiche_histogramme(Histogramme h){
             }
             printf("\n");  
 }
-void Affiche_DescripteurAudio(DescrpiteurAudio DA){
+
+void Affiche_DescripteurAudio(DescripteurAudio DA){
     printf("identifiant unique: %s\n",DA->identifiant);
     Histogramme histo_courant=DA->histo;
     while(histo_courant!=NULL){
@@ -46,8 +47,27 @@ void Affiche_DescripteurAudio(DescrpiteurAudio DA){
 }
 
 
+// -----------------  FONCTIONS Sauvegarde -----------------------
+void Sauvegarde_histogramme(Histogramme h,FILE* f){
+    for(int i=0;i<h->taille;i++){
+                fprintf(f,"%d ",h->histo_fenetre[i]);            
+            }
+            fprintf(f,"\n");  
+}
+
+void Sauvegarder_DescripteurAudio(DescripteurAudio DA, FILE* f){
+    fprintf(f,"%s\n",DA->identifiant);
+    Histogramme histo_courant=DA->histo;
+    while(histo_courant!=NULL){
+        Sauvegarde_histogramme(histo_courant,f);
+        histo_courant=histo_courant->fenetre_suivante;
+    }
+    fprintf(f,"\n");
+}
+
+
 // -----------------  FONCTION Indexation -----------------------
-DescrpiteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille_echantillon){
+DescripteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille_echantillon){
     FILE* fic ;
     double tailleFic;
     int nombreFenetre;
@@ -55,7 +75,7 @@ DescrpiteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
     float taille_intervalle = (float)2/(float)m;
     //fonction pour trouver un ID valable
     char id[5]="A001";
-    DescrpiteurAudio DA= init_descripteurAudio(id);
+    DescripteurAudio DA= init_descripteurAudio(id);
     Histogramme histo_courant=init_histo(m);
     DA->histo=histo_courant;
     fic = fopen( nomfichier,"rb") ;
