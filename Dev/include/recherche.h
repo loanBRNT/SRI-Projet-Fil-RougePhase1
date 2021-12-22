@@ -1,6 +1,10 @@
 #ifndef RECHERCHE_H
 #define RECHERCHE_H 
 
+typedef float DESCRIPTEUR_AUDIO;
+typedef float DESCRIPTEUR_IMAGE;
+typedef float DESCRIPTEUR_TEXTE;
+
 typedef DESCRIPTEUR_AUDIO* PILE_DESCRIPTEUR_AUDIO;
 typedef DESCRIPTEUR_IMAGE* PILE_DESCRIPTEUR_IMAGE;
 typedef DESCRIPTEUR_TEXTE* PILE_DESCRIPTEUR_TEXTE;
@@ -30,7 +34,6 @@ PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE descripteu
 //Effectue une recherche via un descripteur de fichier Audio
 PILE_DESCRIPTEUR_AUDIO rechercheAudioParDescripteur(DESCRIPTEUR_AUDIO descripteur_audio_cible);
 
-
 //----------------------- FONCTION APPELLE DEPUIS L'INTERFACE ----------------------
 
 //Lance une recherche via l'adresse d'un fichier
@@ -43,5 +46,7 @@ char* lanceRechercheViaNom(char* nom_fichier_cible);
 char* lanceRechercheViaSelection(char* id_fichier);
 
 //----------------------------------------------------------------------------------
+
+int getTypeDuFichier(char* nom); //Renvoie 1 pour un Texte, 2 pour Image, 3 pour son, 0 pour une erreur de lecture.
 
 #endif

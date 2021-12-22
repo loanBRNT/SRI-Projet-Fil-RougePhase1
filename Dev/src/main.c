@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/recherche.h"
 
-
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
-	printf("Tout commence ici....\n");
+	lanceRechercheViaNom(*(argv+1));
 	return 0;
 }
