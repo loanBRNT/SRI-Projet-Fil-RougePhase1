@@ -7,6 +7,7 @@
 #include "../include/indexation.h"
 #include "../include/descripteurAudio.h"
 #include "../include/pile_Audio.h"
+#include "../include/pile_Img.h"
 
 int main(int argc, char const *argv[])
 {

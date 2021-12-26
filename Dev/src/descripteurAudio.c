@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/img.h"
 #include "../include/descripteurAudio.h"
 
 /* 
@@ -22,9 +23,11 @@ Histogramme init_histo(int m){
     return h;
 }
 
-DescripteurAudio init_descripteurAudio(char* id){
+DescripteurAudio init_descripteurAudio(){
     DescripteurAudio DA=(DescripteurAudio)malloc(sizeof(struct s_DescripteurAudio));
-    DA->identifiant=id;
+    //DA->identifiant=generationIdUnique(3);
+    DA->identifiant=1;
+    DA->taille=0;
     DA->histo=NULL;  
     return DA;
 }
@@ -38,7 +41,8 @@ void Affiche_histogramme(Histogramme h){
 }
 
 void Affiche_DescripteurAudio(DescripteurAudio DA){
-    printf("identifiant unique: %s\n",DA->identifiant);
+    printf("identifiant unique: %d\n",DA->identifiant);
+    printf("nombre fenetre d analyses: %d\n",DA->taille);
     Histogramme histo_courant=DA->histo;
     while(histo_courant!=NULL){
         Affiche_histogramme(histo_courant);
@@ -56,7 +60,8 @@ void Sauvegarde_histogramme(Histogramme h,FILE* f){
 }
 
 void Sauvegarder_DescripteurAudio(DescripteurAudio DA, FILE* f){
-    fprintf(f,"%s\n",DA->identifiant);
+    fprintf(f,"%d\n",DA->identifiant);
+    fprintf(f,"%d\n",DA->taille);
     Histogramme histo_courant=DA->histo;
     while(histo_courant!=NULL){
         Sauvegarde_histogramme(histo_courant,f);
@@ -73,9 +78,7 @@ DescripteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
     int nombreFenetre;
     double point;
     float taille_intervalle = (float)2/(float)m;
-    //fonction pour trouver un ID valable
-    char id[5]="A001";
-    DescripteurAudio DA= init_descripteurAudio(id);
+    DescripteurAudio DA= init_descripteurAudio();
     Histogramme histo_courant=init_histo(m);
     DA->histo=histo_courant;
     fic = fopen( nomfichier,"rb") ;
@@ -88,6 +91,7 @@ DescripteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
     tailleFic=ftell(fic); // d recupere la taille du fichier binaire en octet
     fseek(fic,0,SEEK_SET);
     nombreFenetre=tailleFic/(8*taille_echantillon);
+    DA->taille=nombreFenetre;
     for(int j=0;j<nombreFenetre;j++){
         for(int i=0;i<taille_echantillon;i++){ 
             fread(&point,sizeof(double), 1, fic);
@@ -105,6 +109,7 @@ DescripteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
     }
     // Fermeture du fichier : //
     fclose( fic ) ;
+    //DA->identifiant=generationIdUnique(3);  devrais etre dans l'initialisation mais bug de generation id
     return DA;
 
 

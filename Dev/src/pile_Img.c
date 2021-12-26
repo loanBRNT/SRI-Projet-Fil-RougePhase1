@@ -31,7 +31,7 @@ PILE_Img emPILE_Img(PILE_Img p, Descripteur e){
 
 PILE_Img dePILE_Img(PILE_Img p,FILE* f){
 	CelluleI*c=p;
-	Sauvegarder_DescripteurTexte(p->Di,f);
+	Sauvegarder_DescripteurImage(p->Di,f);
 	p=p->next;
 	free(c);
 	return p;

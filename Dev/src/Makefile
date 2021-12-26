@@ -1,7 +1,7 @@
 
 
-test: main.o indexation.o admin.o descripteurAudio.o pile_Audio.o img.o pile_Img.o
-	gcc -g -o test.out main.o indexation.o admin.o descripteurAudio.o pile_Audio.o img.o pile_Img.o -lm
+test: main.o indexation.o admin.o descripteurAudio.o pile_Audio.o img.o pile_Img.o 
+	gcc -g -o test.out main.o indexation.o admin.o descripteurAudio.o pile_Audio.o img.o pile_Img.o  -lm
 	./test.out
 
 indexation.o: indexation.c ../include/indexation.h

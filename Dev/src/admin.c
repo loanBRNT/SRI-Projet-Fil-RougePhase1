@@ -180,7 +180,7 @@ int recupNbMotsParTexteDuConfig(){
 	return recupUnAttributConfig("nbMaxMotParTexte");
 }
 
-int recupSeuilOccurenceDuConfig(){
+int recupSeuilOccurenceMotDuConfig(){
 	return recupUnAttributConfig("seuilOccurenceMot");
 }
 

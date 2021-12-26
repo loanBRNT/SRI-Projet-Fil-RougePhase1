@@ -21,14 +21,15 @@ typedef struct s_histo{
 } * Histogramme;
 
 typedef struct s_DescripteurAudio{
-	char* identifiant;
+	int identifiant;
+	int taille;
 	Histogramme histo;	
 } * DescripteurAudio;
 
 // ------------------- FONCTION Initialisation --------------------------------
 
 Histogramme init_histo( int );
-DescripteurAudio init_descripteurAudio(char*);
+DescripteurAudio init_descripteurAudio();
 
 // ------------------- FONCTION Affichage --------------------------------
 

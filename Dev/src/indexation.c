@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include<math.h>
+
 #include "../include/indexation.h"
 #include "../include/descripteurAudio.h"
 #include "../include/img.h"
 #include "../include/pile_Audio.h"
 #include "../include/pile_Img.h"
+#include "../include/admin.h"
 /* 
  ----------------------- Signature -------------------------
 |                                                           |
@@ -26,13 +28,13 @@ int VerificationTraitee(char* nom_fic){
 	char valeur[5];
 	int traite;
 	if (strstr(nom_fic, ".xml")){
-    	strcpy( CHEMIN_FICHIER_INDEXEE,"../Database/Descripteur/FicIndexT.txt");
+    	strcpy( CHEMIN_FICHIER_INDEXEE,"../Database/Descripteur/liste_base_texte.txt");
     }
     else if(strstr(nom_fic, ".bin")){
-		strcpy( CHEMIN_FICHIER_INDEXEE,"../Database/Descripteur/FicIndexA.txt");
+		strcpy( CHEMIN_FICHIER_INDEXEE,"../Database/Descripteur/liste_base_audio.txt");
     }
     else if(strstr(nom_fic, ".txt")){
-    	strcpy( CHEMIN_FICHIER_INDEXEE,"../Database/Descripteur/FicIndexI.txt");
+    	strcpy( CHEMIN_FICHIER_INDEXEE,"../Database/Descripteur/liste_base_image.txt");
     }
     else{
     	fprintf(stderr, "ERREUR :  PB avec type du fichier\n");
@@ -68,11 +70,7 @@ int VerificationTraitee(char* nom_fic){
 
 
 
-	//manque indexation texte
-	// supp fic-temp
-	// recuperer les valeurs du .config
-	// rajouter id devant nom dans le fichier ficIndex
-	// avec des fichiers qui arrivent lors d'une seconde indexation
+//Integrer indexation texte
 
 void Indexation(){
 
@@ -83,10 +81,19 @@ void Indexation(){
 	char CHEMIN_IMAGE_RGB [100] =  "../Database/Image/RGB/";
 	char commande[1000] ;
 	char nom_fic[100];
-	char CHEMIN_INDEXATION [100];	
+	char CHEMIN_INDEXATION [100];
+	char* id = malloc(10*sizeof(char));	
 	FILE * ptr_fic; 
 	PILE_Audio pA =init_PILE_Audio();
 	PILE_Img pI=init_PILE_Img();
+
+	// recuperation des valeurs du .config
+	//int recupTauxSimmilaritudeDuConfig();
+	//int recupNbMotsParTexteDuConfig();
+	//int recupSeuilOccurenceDuConfig();
+	int intervalleAudio=recupNbIntervalleDuConfig();
+	int nbrPointAudio =recupNbPointsDuConfig();
+	int bitQ=recupNbBitsDuConfig();
 
 /*
 
@@ -188,11 +195,14 @@ void Indexation(){
     			if(strstr(nom_fic, ".bin")){
     				strcpy(CHEMIN_INDEXATION,"../Database/Audio/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
-    				DescripteurAudio DA =IndexationFichierAudio(CHEMIN_INDEXATION,100,1024);
+    				DescripteurAudio DA =IndexationFichierAudio(CHEMIN_INDEXATION,intervalleAudio,nbrPointAudio);
     				pA=emPILE_Audio(pA,DA);
+    				sprintf(id,"%d", DA->identifiant);
     				strcpy(commande, "echo ");
+    				strcat(commande,id);
+    				strcat(commande," " );
 					strcat(commande, nom_fic);
-					strcat(commande, " >> ../Database/Descripteur/FicIndexA.txt");
+					strcat(commande, " >> ../Database/Descripteur/liste_base_audio.txt");
 					system(commande); 
     			}
     			else{
@@ -247,11 +257,14 @@ void Indexation(){
     			if(strstr(nom_fic, ".txt")){
     				strcpy(CHEMIN_INDEXATION,"../Database/Image/NB/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
-    				Descripteur DI=indexer_image(CHEMIN_INDEXATION, 2);
+    				Descripteur DI=indexer_image(CHEMIN_INDEXATION, bitQ);
     				pI=emPILE_Img(pI,DI);
+    				sprintf(id,"%d", DI.ID);
     				strcpy(commande, "echo ");
+    				strcat(commande, id );
+    				strcat(commande," " );
 					strcat(commande, nom_fic);
-					strcat(commande, " >> ../Database/Descripteur/FicIndexI.txt");
+					strcat(commande, " >> ../Database/Descripteur/liste_base_image.txt");
 					system(commande); 
     			}
     			else{
@@ -302,11 +315,14 @@ void Indexation(){
     			if(strstr(nom_fic, ".txt")){
     				strcpy(CHEMIN_INDEXATION,"../Database/Image/RGB/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
-    				Descripteur DI=indexer_image(CHEMIN_INDEXATION, 2);
+    				Descripteur DI=indexer_image(CHEMIN_INDEXATION, bitQ);
     				pI=emPILE_Img(pI,DI);
+    				sprintf(id,"%d", DI.ID);
     				strcpy(commande, "echo ");
+    				strcat(commande, id );
+    				strcat(commande," " );
 					strcat(commande, nom_fic);
-					strcat(commande, " >> ../Database/Descripteur/FicIndexI.txt");
+					strcat(commande, " >> ../Database/Descripteur/liste_base_image.txt");
 					system(commande); 
     			}
     			else{
@@ -333,22 +349,19 @@ void Indexation(){
 	//---------------------------------------------------------------------//
 
 	FILE * f;
-    f=fopen("../Database/Descripteur/dA.txt","w");
+    f=fopen("../Database/Descripteur/dA.txt","a+");
 	while(!PILE_Audio_estVide(pA)){
 		pA=dePILE_Audio(pA,f);
 	}
 	fclose(f);
 
 
-	f=fopen("../Database/Descripteur/dI.txt","w");
+	f=fopen("../Database/Descripteur/dI.txt","a+");
 	while(!PILE_Img_estVide(pI)){
 		pI=dePILE_Img(pI,f);
 	}
 	fclose(f);
-
-	// supp fic-temp
-	// recuperer les valeurs du .config
-	// rajouter id devant nom dans le fichier ficIndex
-	// avec des fichiers qui arrivent lors d'une seconde indexation
+	strcpy(commande, "rm fic_temp fic_temp2 ");
+	system(commande); 
 
 };

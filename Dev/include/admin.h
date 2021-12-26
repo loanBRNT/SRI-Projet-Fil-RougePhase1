@@ -66,7 +66,7 @@ int recupSeuilOccurenceMotDuConfig();
 
 int recupNbIntervalleDuConfig();
 
-int recupNbFenetreDuConfig();
+int recupNbPointsDuConfig();
 
 int recupNbBitsDuConfig();
 
