@@ -2,6 +2,7 @@
 
 Descripteur initDescripteur(int nb_composantes, int n){
     Descripteur descri;
+    descri.ID = 0000 ;
     descri.t_max = pow(2,(n*nb_composantes));
     descri.histogramme = NULL;
     descri.histogramme = malloc(descri.t_max*sizeof(int));
@@ -113,34 +114,85 @@ void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE*
     }
 }
 
+int generationIdUnique(int choix){
+    char* CHEMIN_LISTE;
+    char buffer[15];
+    int random,res;
+    char* commande;
+    switch (choix){
+        //TEXTE
+        case 1 :
+            CHEMIN_LISTE = "../Database/Descripteur/liste_base_texte.txt";
+            break;
+        //IMAGE
+        case 2 :
+            CHEMIN_LISTE = "../Database/Descripteur/liste_base_image.txt";
+            break;
+        //AUDIO
+        case 3 :
+            CHEMIN_LISTE = "../Database/Descripteur/liste_base_audio.txt";
+            break;
+        default :
+            printf("Erreur sur la valeur du paramètre pour la génération de l'ID unique");
+    }
+    srand(time(NULL));
+    do{
+        commande = malloc(1000*sizeof(char));
+        random = rand()%(30000-20000)+20000;
+        strcat(commande, "grep -c ^");
+        sprintf(buffer, "%d", random);
+        strcat(commande, buffer);
+        strcat(commande, " ");
+        strcat(commande, CHEMIN_LISTE);
+        system(commande);
+        FILE * f = popen(commande, "r");
+        fscanf(f,"%d",&res);
+        pclose(f);
+        free(commande);
+    } while(res==1);
+    return random;
+}
+
 Descripteur indexer_image(char* nom, int n){
 
     // Declaration varibales
     int longueur , hauteur, d;
     Descripteur descripteur;
     FILE* fichier = NULL;
+    FILE* liste = NULL;
+    char* CHEMIN_LISTE = "../Database/Descripteur/liste_base_image.txt";
 
-    // Ouverture de l'image
+    // Ouverture de l'imagew
     fichier = fopen(nom,"r");
-
     if (fichier != NULL) {
 
         // Récupération des données image
         fscanf(fichier,"%d %d %d", &longueur, &hauteur, &d);
+
         // Initialisation en fonction du fichier
         descripteur = initDescripteur(d,n);
-        descripteur.ID = 2;
 
-        switch(d){
-            case 1 : // Quantification NB
-                quantificationNB(&descripteur,longueur,hauteur,fichier,n);
-                break;
-            case 3 : // Quantification RGB
-                quantificationRGB(longueur,hauteur,&descripteur,fichier,n);
-                break;
-         default : printf("Format de l'image pas supporté\n");
+        // Ouverture de la liste descripteur
+        liste = fopen(CHEMIN_LISTE,"a+"); // A mettre en mode r/w
+
+        if(liste != NULL){
+
+            descripteur.ID = generationIdUnique(2);
+
+            switch(d){
+                case 1 : // Quantification NB
+                    quantificationNB(&descripteur,longueur,hauteur,fichier,n);
+                    break;
+                case 3 : // Quantification RGB
+                    quantificationRGB(longueur,hauteur,&descripteur,fichier,n);
+                    break;
+                default : printf("Format de l'image pas supporté\n");
+            }
+            fclose(fichier);
         }
-        fclose(fichier);
+        else
+            printf("Echec de l'ouverture de la liste des descripteurs");
+        fclose(liste);
     }
     else
         printf("Echec de l'ouverture de l'image à indexer");
