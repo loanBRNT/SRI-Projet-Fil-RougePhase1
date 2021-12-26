@@ -102,8 +102,8 @@ int recupUnAttributConfig(char* nomAttributCible){
 	return valeur;
 }
 
-char[] recupNomDuConfig(){
-	char nom[20] = {0};
+char* recupNomDuConfig(){
+    char* nom = malloc(sizeof(char) * 20);
 		
 	printf("\n");
 	printf("Vous avez lancer la recherche par nom\n");

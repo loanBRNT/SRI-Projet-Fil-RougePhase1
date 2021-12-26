@@ -169,7 +169,7 @@ void afficheRechercheMotCle(){
 
 
 void afficheRechercheNom(){
-	char[] nom =recupNomDuConfig();
+	char* nom = recupNomDuConfig();
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#            RECHERCHE PAR NOM            #\n");
@@ -182,6 +182,7 @@ void afficheRechercheNom(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
+    free(nom);
 }
 
 
@@ -458,8 +459,11 @@ int menuRechercheParNom(){
 		printf("\n");
 		switch(choixMenu)
 		{
-			case 1:
-				recupNomDuConfig();
+			case 1: ;
+				char* nom = recupNomDuConfig();
+                // print
+                printf("%s", nom);
+                free(nom);
 				break;
 			case 2:
 				event = -1; //retour menu utilisateur
