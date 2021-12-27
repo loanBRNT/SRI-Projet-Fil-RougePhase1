@@ -40,6 +40,7 @@ void Affiche_histogramme(Histogramme);
 
 void Sauvegarde_histogramme(Histogramme,FILE*);
 void Sauvegarder_DescripteurAudio(DescripteurAudio,FILE*);
+DescripteurAudio LireDescripteurAudio( FILE*,int,int ,int );
 
 // ------------------- FONCTION PRINCIPALE --------------------------------
 

@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/admin.h"
 #include "../include/img.h"
 #include "../include/descripteurAudio.h"
+
 
 /* 
  ----------------------- Signature -------------------------
@@ -25,7 +27,6 @@ Histogramme init_histo(int m){
 
 DescripteurAudio init_descripteurAudio(){
     DescripteurAudio DA=(DescripteurAudio)malloc(sizeof(struct s_DescripteurAudio));
-    //DA->identifiant=generationIdUnique(3);
     DA->identifiant=1;
     DA->taille=0;
     DA->histo=NULL;  
@@ -71,6 +72,8 @@ void Sauvegarder_DescripteurAudio(DescripteurAudio DA, FILE* f){
 }
 
 
+
+
 // -----------------  FONCTION Indexation -----------------------
 DescripteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille_echantillon){
     FILE* fic ;
@@ -109,9 +112,34 @@ DescripteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
     }
     // Fermeture du fichier : //
     fclose( fic ) ;
-    //DA->identifiant=generationIdUnique(3);  devrais etre dans l'initialisation mais bug de generation id
+    DA->identifiant=generationIdUnique(3);  
     return DA;
 
 
+}
+
+
+
+DescripteurAudio LireDescripteurAudio( FILE* f,int nbrIntervalle,int nbrFen,int id){
+    char *lu =(char *) malloc(10*sizeof(char));
+    int valeur;
+    DescripteurAudio DA=init_descripteurAudio();
+    Histogramme histo_courant=init_histo(nbrIntervalle);
+    DA->histo=histo_courant;
+    DA->identifiant=id;
+    DA->taille=nbrFen;
+         for(int j=0;j<nbrFen;j++){
+            for(int i=0;i<nbrIntervalle;i++){
+                fscanf(f,"%s",lu);
+                 valeur=atoi(lu);
+                histo_courant->histo_fenetre[i]=valeur;
+              }
+              if(j<(DA->taille)-1){
+                Histogramme nextHisto=init_histo(nbrIntervalle);
+                 histo_courant->fenetre_suivante=nextHisto;
+                histo_courant=nextHisto;
+            }
+        }
+    return DA;
 }
 
