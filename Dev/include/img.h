@@ -39,4 +39,8 @@ int generationIdUnique(int choix);
 
 void Sauvegarder_DescripteurImage(Descripteur,FILE*);
 
+Descripteur LireDescripteurImg(FILE*, int , int );
+
+void Affiche_DescripteurImg(Descripteur);
+
 #endif

@@ -20,5 +20,10 @@ PILE_Img emPILE_Img(PILE_Img , Descripteur);
 
 PILE_Img dePILE_Img(PILE_Img,FILE*);
 
+PILE_Img dePILE_Img_Sans_Sauvegarde(PILE_Img );
+
+PILE_Img Charger_Pile_DescripteurImg(PILE_Img );
+
+
 
 #endif 

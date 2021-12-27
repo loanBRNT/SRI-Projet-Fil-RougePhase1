@@ -139,7 +139,7 @@ int generationIdUnique(int choix){
         default :
             printf("Erreur sur la valeur du paramètre pour la génération de l'ID unique");
     }
-    srand(time(NULL));
+    //srand(time(NULL));
     do{
         commande = malloc(1000*sizeof(char));
         random = rand()%(30000-20000)+20000;
@@ -156,6 +156,16 @@ int generationIdUnique(int choix){
     } while(res==1);
     return random;
 }
+
+void Affiche_DescripteurImg(Descripteur Di){
+    printf("%d\n",Di.ID);
+    printf("%d\n",Di.t_max);
+    for(int i=0;i<Di.t_max;i++){
+        printf("%d\n",Di.histogramme[i]);
+    }
+    printf("\n");
+
+};
 
 Descripteur indexer_image(char* nom, int n){
 
@@ -212,4 +222,25 @@ void Sauvegarder_DescripteurImage(Descripteur Di,FILE* f){
         fprintf(f,"%d\n",Di.histogramme[i]);
     }
     fprintf(f,"\n");
+};
+
+
+Descripteur LireDescripteurImg(FILE* f, int taille, int id){
+    char *lu =(char *) malloc(10*sizeof(char));
+    int valeur;
+    int nb_composantes =log2(taille);
+    printf("%d",nb_composantes);
+    //Descripteur DI=initDescripteur(nb_composantes, bitQ);
+    Descripteur DI;
+    DI.t_max =taille;
+    DI.histogramme = NULL;
+    DI.histogramme = malloc(DI.t_max*sizeof(int));
+    DI.ID=id;
+            for(int i=0;i<taille;i++){
+                fscanf(f,"%s",lu);
+                valeur=atoi(lu);
+                DI.histogramme[i]=valeur;
+            }
+    return DI;
+
 };

@@ -17,10 +17,10 @@ int main(int argc, char const *argv[])
 	//srand(time(NULL));
 
 	Indexation();
-   PILE_Audio PA=init_PILE_Audio();
-   PA=Charger_Pile_DescripteurAudio( PA);
-  	affiche_PILE_Audio(PA);
-   dePILE_Audio_Sans_Sauvegarde(PA);
+   PILE_Img PI=init_PILE_Img();
+   PI=Charger_Pile_DescripteurImg( PI);
+  	affiche_PILE_Img(PI);
+   dePILE_Img_Sans_Sauvegarde(PI);
 
 
 
