@@ -176,9 +176,7 @@ void afficheRechercheNom(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#      1: RENTREZ LE NOM DU FICHIER :%s   #\n",nom);
-	printf("#                                         #\n");
-	printf("#      2: APPUIE SUR 2 pour retour        #\n");
+	printf("#      1: Vous avez chercher le fichier:%s   #\n",nom);
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
