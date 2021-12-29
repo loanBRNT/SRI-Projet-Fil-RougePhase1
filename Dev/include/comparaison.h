@@ -27,7 +27,7 @@ int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO Audio1, DESCRIPTEUR_AUDIO Audio2)
 
 
 
-
+int calculSimValeur(int v1, int v2);
 
 
 
