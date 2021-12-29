@@ -1,8 +1,10 @@
 #ifndef RECHERCHE_H
 #define RECHERCHE_H 
 
-typedef float DESCRIPTEUR_AUDIO;
-typedef float DESCRIPTEUR_IMAGE;
+#include "../include/img.h"
+
+typedef struct s_DescripteurAudio DESCRIPTEUR_AUDIO;
+typedef Descripteur DESCRIPTEUR_IMAGE;
 typedef float DESCRIPTEUR_TEXTE;
 
 typedef DESCRIPTEUR_AUDIO* PILE_DESCRIPTEUR_AUDIO;
@@ -50,5 +52,9 @@ char* lanceRechercheViaSelection(char* id_fichier);
 int getTypeDuFichier(char* nom); //Renvoie 1 pour un Texte, 2 pour Image, 3 pour son, 0 pour une erreur de lecture.
 
 void changerExtension(char* nom_fic, int rangP); //Change l'extension pour que les fonctions d'indexation puissent fonctionner
+
+DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier);
+
+int recupIdDuFic(char* nom_fic, int type);
 
 #endif

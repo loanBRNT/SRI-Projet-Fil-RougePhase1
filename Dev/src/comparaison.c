@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/img.h"
+#include "../include/recherche.h"
 #include "../include/comparaison.h"
-/*#include "../include/"
-
-Mettre les bon includes
-*/
 
 /* 
  ----------------------- Signature -------------------------
