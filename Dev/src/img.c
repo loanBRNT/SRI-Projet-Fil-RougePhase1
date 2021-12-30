@@ -229,7 +229,7 @@ Descripteur LireDescripteurImg(FILE* f, int taille, int id){
     char *lu =(char *) malloc(10*sizeof(char));
     int valeur;
     int nb_composantes = log2(taille);
-    printf("%d",nb_composantes);
+    
     //Descripteur DI=initDescripteur(nb_composantes, bitQ);
     Descripteur DI;
     DI.t_max =taille;

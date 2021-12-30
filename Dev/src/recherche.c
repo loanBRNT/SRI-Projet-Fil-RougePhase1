@@ -5,6 +5,7 @@
 #include "../include/img.h"
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"
+#include "../include/pile_Audio.h"
 #include "../include/admin.h"
 #include "../include/recherche.h"
 #include "../include/comparaison.h"
@@ -91,11 +92,26 @@ int recupIdDuFic(char* nom_fic, int type){
 }
 
 DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier){
+
     PILE_Img pile = Charger_Pile_DescripteurImg(init_PILE_Img());
+    if (pile == NULL){
+        DESCRIPTEUR_IMAGE* d = (DESCRIPTEUR_IMAGE*) malloc(sizeof(DESCRIPTEUR_IMAGE));
+        d->ID = 0;
+        return *d;
+    }
+
     int idFic = recupIdDuFic(nom_fichier, 2);
-    printf("%d\n",idFic);
-    DESCRIPTEUR_IMAGE* d = (DESCRIPTEUR_IMAGE*) malloc(sizeof(DESCRIPTEUR_IMAGE));
-    return *d;
+
+    CelluleI* c = pile;
+    while (c->Di.ID != idFic){
+        c = c->next;
+        if (c == NULL){
+            break;
+        }
+    }
+    DESCRIPTEUR_IMAGE d = c->Di;
+    dePILE_Img_Sans_Sauvegarde(pile);
+    return d;
 }
 
 
@@ -116,20 +132,31 @@ char* lanceRechercheViaNom(char* nom_fichier_cible){
                 printf("On lance l'indexation de %s\n",CHEMIN_INDEXATION);
                 //DESCRIPTEUR_IMAGE descFic = indexer_image("CHEMIN_INDEXATION",recupNbBitsDuConfig()); //changer le premier param pr trouver le fichier
             } else {
-                //DESCRIPTEUR_IMAGE descFic = NULL;
+                printf("ON RECUP LE DESCRIP\n");
+                DESCRIPTEUR_IMAGE descFic = getDescripteurImageViaPile(nom_fichier_cible);
             }
             break;
         case 4:
             printf("Le fichier est un fichier Image Noir & Blanc\n");
+
+            DESCRIPTEUR_IMAGE descFic;
+
             if (!VerificationTraitee(nom_fichier_cible)){
                 strcpy(CHEMIN_INDEXATION,"../Database/Image/NB/");
                 strcat(CHEMIN_INDEXATION,nom_fichier_cible);
                 printf("On lance l'indexation de %s\n",CHEMIN_INDEXATION);
-                //DESCRIPTEUR_IMAGE descFic = indexer_image(".CHEMIN_INDEXATION",recupNbBitsDuConfig()); 
+                descFic = indexer_image(CHEMIN_INDEXATION,recupNbBitsDuConfig()); 
             } else {
-                printf("ON A RECUP LE DESCRIP\n");
-                DESCRIPTEUR_IMAGE descFic = getDescripteurImageViaPile(nom_fichier_cible);
+                printf("ON RECUP LE DESCRIP\n");
+                descFic = getDescripteurImageViaPile(nom_fichier_cible);
+                if (descFic.ID == 0){
+                    return ("ERREUR : LA RECUPERATION DU DESCRIPTEUR A ECHOUE");
+                } 
             }
+
+
+             PILE_DESCRIPTEUR_IMAGE pileSim = rechercheImageParDescripteur(&descFic);
+
             break;
         case 3:
             printf("Le fichier est un fichier Audio\n");
@@ -140,6 +167,39 @@ char* lanceRechercheViaNom(char* nom_fichier_cible){
     }
     return "";
 }
+
+
+
+// ------------------------------------------------------------------------------------------------------------------------
+
+PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descFic){
+    PILE_DESCRIPTEUR_IMAGE pile = Charger_Pile_DescripteurImg(init_PILE_Img());
+    PILE_DESCRIPTEUR_IMAGE pileSim = init_PILE_Img();
+    int tauwSim = recupTauxSimmilaritudeDuConfig(), tauxAct;
+
+    if (pile == NULL){
+        printf("ERREUR : ECHEC CHARGEMENT DE LA PILE DES IMAGES\n");
+        return pileSim;
+    }
+
+    CelluleI* ptr_Cel = pile;
+    while (ptr_Cel != NULL){
+        if (ptr_Cel->Di.ID != ptr_descFic->ID){
+            tauxAct = comparaisonFichiersImage(ptr_descFic,&(ptr_Cel->Di));
+            printf("%d similaire a %d% \n",ptr_Cel->Di.ID,tauxAct);
+            if (tauxAct >= tauwSim){
+                pileSim = emPILE_Img(pileSim , ptr_Cel->Di);
+            }
+        }
+        ptr_Cel = ptr_Cel->next;
+    }
+    dePILE_Img_Sans_Sauvegarde(pile);
+    return pileSim;
+}
+
+
+
+
 
 
 

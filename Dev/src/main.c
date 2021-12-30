@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-	lanceRechercheViaNom(*(argv+1));
+	char* mess = lanceRechercheViaNom(*(argv+1));
+	printf("\n==========\n%s",mess);
 	return 0;
 }

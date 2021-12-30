@@ -49,9 +49,9 @@ PILE_Img Charger_Pile_DescripteurImg(PILE_Img PI){
     char *lu =(char *) malloc(10*sizeof(char));
     int taille;
     int id;
-    f=fopen("../Database/Descripteur/dI.txt","r");
+    f=fopen("./Database/Descripteur/dI.txt","r"); //modif
     if(f==NULL){
-         printf("Impossible d'ouvrir le fichier contenant les descripteurs Audio");
+         printf("Impossible d'ouvrir le fichier contenant les descripteurs Image"); //modif
     }
     else{
         while(!feof(f)){

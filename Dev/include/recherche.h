@@ -7,8 +7,8 @@ typedef struct s_DescripteurAudio DESCRIPTEUR_AUDIO;
 typedef Descripteur DESCRIPTEUR_IMAGE;
 typedef float DESCRIPTEUR_TEXTE;
 
-typedef DESCRIPTEUR_AUDIO* PILE_DESCRIPTEUR_AUDIO;
-typedef DESCRIPTEUR_IMAGE* PILE_DESCRIPTEUR_IMAGE;
+typedef PILE_Audio PILE_DESCRIPTEUR_AUDIO;
+typedef PILE_Img PILE_DESCRIPTEUR_IMAGE;
 typedef DESCRIPTEUR_TEXTE* PILE_DESCRIPTEUR_TEXTE;
 
 /*
@@ -31,7 +31,7 @@ PILE_DESCRIPTEUR_TEXTE rechercheTexteParMotCle(char* mot_cle);
 PILE_DESCRIPTEUR_TEXTE rechercheTexteparDescripteur(DESCRIPTEUR_TEXTE descripteur_texte_cible);
 
 //Effectue une recherche via un descripteur de fichier image
-PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE descripteur_image_cible);
+PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* descripteur_image_cible);
 
 //Effectue une recherche via un descripteur de fichier Audio
 PILE_DESCRIPTEUR_AUDIO rechercheAudioParDescripteur(DESCRIPTEUR_AUDIO descripteur_audio_cible);
