@@ -29,7 +29,7 @@ int calculSimValeur(int v1, int v2){
     }
 
     if (max == 0){
-        ecart = 0;
+        ecart = 25;
     } else {
         ecart = ((max - min)*100) / max;
     }

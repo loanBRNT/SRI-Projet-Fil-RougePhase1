@@ -16,12 +16,6 @@ Permet d'ouvrir un fichier selon son type
 */
 int ouvrirFichier(FILE* fichier);
 
-PILE_DESCRIPTEUR_AUDIO recupPileDescripteurAudio();
-
-PILE_DESCRIPTEUR_TEXTE recupPileDescripteurTexte();
-
-PILE_DESCRIPTEUR_IMAGE recupPileDescripteurImage();
-
 //---------------------- FONCTION DE RECHERCHE SPECIALISE -------------------------
 
 //Effectue une recherche via un mot cle
@@ -39,13 +33,13 @@ PILE_DESCRIPTEUR_AUDIO rechercheAudioParDescripteur(DESCRIPTEUR_AUDIO descripteu
 //----------------------- FONCTION APPELLE DEPUIS L'INTERFACE ----------------------
 
 //Lance une recherche via l'adresse d'un fichier
-char* lanceRechercheViaAdresse(char* adresse_fichier_cible);
+int lanceRechercheViaAdresse(char* adresse_fichier_cible, char* chaine_resultat);
 
 //Lance une recherche via le nom d'un fichier
-char* lanceRechercheViaNom(char* nom_fichier_cible);
+int lanceRechercheViaNom(char* nom_fichier_cible, char* chaine_resultat);
 
 //Lance une recherche via le fichier (selectione depuis une liste deroulante)
-char* lanceRechercheViaSelection(char* id_fichier);
+int lanceRechercheViaSelection(char* id_fichier, char* chaine_resultat);
 
 //----------------------------------------------------------------------------------
 
@@ -56,5 +50,9 @@ void changerExtension(char* nom_fic, int rangP); //Change l'extension pour que l
 DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier);
 
 int recupIdDuFic(char* nom_fic, int type);
+
+void recupNomDUFic(int id, int type, char* chaine);
+
+int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine);
 
 #endif
