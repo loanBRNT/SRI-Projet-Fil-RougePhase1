@@ -131,6 +131,8 @@ void recupNomDUFic(int id, int type,char* nom){
 
     ptr_fic = fopen("fic_temp2", "r");
 
+    fscanf(ptr_fic,"%s",nom);
+
     changerExtension(strrchr(nom,'.'),extension);
 
     fclose(ptr_fic);
@@ -208,6 +210,7 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
 
         descFic = getDescripteurImageViaPile(nom_fichier_cible);
 
+
         if (descFic.ID == 0){
             strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L4ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
             return 2;
@@ -266,6 +269,7 @@ int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_I
     strcpy(chaine,"Voici les resultats suite a votre recherche : [");
     strcat(chaine, chaine_nom);
     strcat(chaine,"]\n");
+
 
     while (ptr_cell != NULL){
         recupNomDUFic(ptr_cell->Di.ID,type,chaine_nom);

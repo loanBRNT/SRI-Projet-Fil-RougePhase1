@@ -126,15 +126,15 @@ int generationIdUnique(int choix){
     switch (choix){
         //TEXTE
         case 1 :
-            CHEMIN_LISTE = "../Database/Descripteur/liste_base_texte.txt";
+            CHEMIN_LISTE = "./Database/Descripteur/liste_base_texte.txt";
             break;
         //IMAGE
         case 2 :
-            CHEMIN_LISTE = "../Database/Descripteur/liste_base_image.txt";
+            CHEMIN_LISTE = "./Database/Descripteur/liste_base_image.txt";
             break;
         //AUDIO
         case 3 :
-            CHEMIN_LISTE = "../Database/Descripteur/liste_base_audio.txt";
+            CHEMIN_LISTE = "./Database/Descripteur/liste_base_audio.txt";
             break;
         default :
             printf("Erreur sur la valeur du paramètre pour la génération de l'ID unique");
