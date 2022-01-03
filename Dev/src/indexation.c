@@ -75,10 +75,10 @@ int VerificationTraitee(char* nom_fic){
 void Indexation(){
 
 	// mettre un chemin vers un rpertoire qui ne contient que des fichiers//
-	char CHEMIN_TEXTE [100] =  "../Database/Texte/";
-	char CHEMIN_AUDIO [100] =  "../Database/Audio/";
-	char CHEMIN_IMAGE_NB [100] =  "../Database/Image/NB/";
-	char CHEMIN_IMAGE_RGB [100] =  "../Database/Image/RGB/";
+	char CHEMIN_TEXTE [100] =  "./Database/Texte/";
+	char CHEMIN_AUDIO [100] =  "./Database/Audio/";
+	char CHEMIN_IMAGE_NB [100] =  "./Database/Image/NB/";
+	char CHEMIN_IMAGE_RGB [100] =  "./Database/Image/RGB/";
 	char commande[1000] ;
 	char nom_fic[100];
 	char CHEMIN_INDEXATION [100];
@@ -193,7 +193,7 @@ void Indexation(){
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".bin")){
-    				strcpy(CHEMIN_INDEXATION,"../Database/Audio/");	
+    				strcpy(CHEMIN_INDEXATION,"./Database/Audio/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
     				DescripteurAudio DA =IndexationFichierAudio(CHEMIN_INDEXATION,intervalleAudio,nbrPointAudio);
     				pA=emPILE_Audio(pA,DA);
@@ -202,7 +202,7 @@ void Indexation(){
     				strcat(commande,id);
     				strcat(commande," " );
 					strcat(commande, nom_fic);
-					strcat(commande, " >> ../Database/Descripteur/liste_base_audio.txt");
+					strcat(commande, " >> ./Database/Descripteur/liste_base_audio.txt");
 					system(commande); 
     			}
     			else{
@@ -255,7 +255,7 @@ void Indexation(){
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".txt")){
-    				strcpy(CHEMIN_INDEXATION,"../Database/Image/NB/");	
+    				strcpy(CHEMIN_INDEXATION,"./Database/Image/NB/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
     				Descripteur DI=indexer_image(CHEMIN_INDEXATION, bitQ);
     				pI=emPILE_Img(pI,DI);
@@ -264,7 +264,7 @@ void Indexation(){
     				strcat(commande, id );
     				strcat(commande," " );
 					strcat(commande, nom_fic);
-					strcat(commande, " >> ../Database/Descripteur/liste_base_image.txt");
+					strcat(commande, " >> ./Database/Descripteur/liste_base_image.txt");
 					system(commande); 
     			}
     			else{
@@ -313,7 +313,7 @@ void Indexation(){
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".txt")){
-    				strcpy(CHEMIN_INDEXATION,"../Database/Image/RGB/");	
+    				strcpy(CHEMIN_INDEXATION,"./Database/Image/RGB/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
     				Descripteur DI=indexer_image(CHEMIN_INDEXATION, bitQ);
     				pI=emPILE_Img(pI,DI);
@@ -322,7 +322,7 @@ void Indexation(){
     				strcat(commande, id );
     				strcat(commande," " );
 					strcat(commande, nom_fic);
-					strcat(commande, " >> ../Database/Descripteur/liste_base_image.txt");
+					strcat(commande, " >> ./Database/Descripteur/liste_base_image.txt");
 					system(commande); 
     			}
     			else{
@@ -349,14 +349,14 @@ void Indexation(){
 	//---------------------------------------------------------------------//
 
 	FILE * f;
-    f=fopen("../Database/Descripteur/dA.txt","a+");
+    f=fopen("./Database/Descripteur/dA.txt","a+");
 	while(!PILE_Audio_estVide(pA)){
 		pA=dePILE_Audio(pA,f);
 	}
 	fclose(f);
 
 
-	f=fopen("../Database/Descripteur/dI.txt","a+");
+	f=fopen("./Database/Descripteur/dI.txt","a+");
 	while(!PILE_Img_estVide(pI)){
 		pI=dePILE_Img(pI,f);
 	}

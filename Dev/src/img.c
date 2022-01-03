@@ -174,7 +174,7 @@ Descripteur indexer_image(char* nom, int n){
     Descripteur descripteur;
     FILE* fichier = NULL;
     FILE* liste = NULL;
-    char* CHEMIN_LISTE = "../Database/Descripteur/liste_base_image.txt";
+    char* CHEMIN_LISTE = "./Database/Descripteur/liste_base_image.txt";
 
 
     // Ouverture de l'image
@@ -200,7 +200,9 @@ Descripteur indexer_image(char* nom, int n){
                 case 3 : // Quantification RGB
                     quantificationRGB(longueur,hauteur,&descripteur,fichier,n);
                     break;
-                default : printf("Format de l'image pas supporté\n");
+                default : 
+                    printf("Format de l'image pas supporté\n");
+                    break;
             }
             fclose(fichier);
         }

@@ -41,11 +41,16 @@ int lanceRechercheViaNom(char* nom_fichier_cible, char* chaine_resultat);
 //Lance une recherche via le fichier (selectione depuis une liste deroulante)
 int lanceRechercheViaSelection(char* id_fichier, char* chaine_resultat);
 
+//Lance une recherche via le fichier (selectione depuis une liste deroulante)
+int lanceRechercheViaMotCle(char* mot, char* chaine_resultat);
+
 //----------------------------------------------------------------------------------
+
+int getTypeDuFichierEtChangeLextension(char* nom); //Renvoie 1 pour un Texte, 2 pour Image, 3 pour son, 0 pour une erreur de lecture.
 
 int getTypeDuFichier(char* nom); //Renvoie 1 pour un Texte, 2 pour Image, 3 pour son, 0 pour une erreur de lecture.
 
-void changerExtension(char* nom_fic, int rangP); //Change l'extension pour que les fonctions d'indexation puissent fonctionner
+void changerExtension(char* actuelleExt, char* nouvelleExt); //Change l'extension pour que les fonctions d'indexation puissent fonctionner
 
 DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier);
 
@@ -53,6 +58,6 @@ int recupIdDuFic(char* nom_fic, int type);
 
 void recupNomDUFic(int id, int type, char* chaine);
 
-int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine);
+int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine, int type);
 
 #endif
