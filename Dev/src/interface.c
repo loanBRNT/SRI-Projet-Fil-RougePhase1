@@ -169,18 +169,18 @@ void afficheRechercheMotCle(){
 
 
 void afficheRechercheNom(){
-	char* nom = recupNomDuConfig();
+	char* result = recupNomRecherche();
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#            RECHERCHE PAR NOM            #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#      1: Vous avez chercher le fichier:%s   #\n",nom);
+	printf("#      1: Vous avez chercher le fichier:%s   #\n",result);
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
-    free(nom);
+    free(result);
 }
 
 
@@ -458,7 +458,7 @@ int menuRechercheParNom(){
 		switch(choixMenu)
 		{
 			case 1: ;
-				char* nom = recupNomDuConfig();
+				char* nom = recupNomRecherche();
                 // print
                 printf("%s", nom);
                 free(nom);
