@@ -103,7 +103,7 @@ int recupUnAttributConfig(char* nomAttributCible){
 }
 
 char* recupNomRecherche(){
-	char result[500];
+	//char result[500];
     char* nom = malloc(sizeof(char) * 20);
 		
 
@@ -111,9 +111,9 @@ char* recupNomRecherche(){
 	printf("Vous avez lancer la recherche par nom\n");
 	scanf("%s", nom);
 	printf("Vous avez chercher le fichier s'appellant %s \n", nom);
-	lanceRechercheViaNom(nom, result);
+	//lanceRechercheViaNom(nom, result);
 	
-	return result;
+	return nom;
 }
 
 // -----------------  FONCTIONS SET -----------------------

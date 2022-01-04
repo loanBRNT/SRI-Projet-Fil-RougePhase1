@@ -169,18 +169,18 @@ void afficheRechercheMotCle(){
 
 
 void afficheRechercheNom(){
-	char* result = recupNomRecherche();
+	char* nom = recupNomRecherche();
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#            RECHERCHE PAR NOM            #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#      1: Vous avez chercher le fichier:%s   #\n",result);
+	printf("#      1: Vous avez chercher le fichier:%s   #\n",nom);
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
-    free(result);
+    free(nom);
 }
 
 
@@ -231,6 +231,7 @@ void affichageSaisieTauxSim(){
 
 int menuAdminVerif(){
 	int cpt = 1;
+	int valeur=1;
 	int choix = 1;
 	while(cpt != (-1)) {
 		printf("La verif du mot de passe se lance\n\n");
@@ -249,6 +250,7 @@ int menuAdminVerif(){
 				printf("\n");
 				choix = choix+1;
             	cpt=1; //on rerentre ds la boucle pour verif mdp
+            	valeur=cpt;
 			}
 			else if (choix == 1){
 				printf("###########################################\n");
@@ -259,10 +261,12 @@ int menuAdminVerif(){
 				printf("\n");
 				choix = choix+1;
             	cpt=1; //on rerentre ds la boucle pour verif mdp
+            	valeur=cpt;
 			}
 			else{
 				choix = choix+1;
             	cpt=1; //on rerentre ds la boucle pour verif mdp
+            	valeur=cpt;
 			}
 		}
 
@@ -272,14 +276,14 @@ int menuAdminVerif(){
         else if (choix == 3){
         	afficheErreurMenu();
         	cpt =-1;
+        	valeur=cpt;
         }
         else {
-            printf("pas troupe sort de la boucle");
-            cpt = -1; //on sort
-            menuAdmin();
+            cpt=-1;
+            valeur=menuAdmin();
             }
     }
-    return cpt;
+    return valeur;
 }
 
 int menuAdmin(){
@@ -328,7 +332,7 @@ int menuPointConfig(){
 		switch(choixMenu)
 		{
 			case 1:
-				
+				event=menuModifierTauxSim(ptr_sur_config);
 				break;
 			case 2:
 				
@@ -353,7 +357,7 @@ int menuPointConfig(){
 				break;
 			default:
 				afficheErreurMenu();
-				break;
+				break;  
 		}
 	printf("\n");
 	}
@@ -367,14 +371,19 @@ int menuPointConfig(){
 
 int menuModifierTauxSim(PTR_CONFIG config){
 	affichageSaisieTauxSim();
-	/*int choix = 0; //Pour lire l'entree
-	if (changerTauxSimmilaritude(config, choix) == 0){
-		printf("Veuillez choisir un taux de similarité entre 0 et 100");
-	} else {
-		printf("ca c'est bien passe");
-	}*/
+	int event=0;
+	int choix = 0; //Pour lire l'entree
 	
-	return -1;
+	while(event==0){
+		scanf("%d",&choix);
+		fflush(stdin);
+		event=changerTauxSimmilaritude(config, choix);
+		if(event==0)
+			printf("Veuillez choisir un taux de similarité entre 0 et 100 \n");
+	} 
+	printf("ca c'est bien passe");
+	
+	return 1;
 }
 
 //#################################################################################################################################

@@ -29,7 +29,7 @@ int main(int argc, char const *argv[])
 			case 2:
 				if (menuUtilisateur() == 0) event = -1;
 				break;
-			case 3:
+			case 0:
 				printf("On quitte\n");
 				event = -1;
 				break;
@@ -41,4 +41,6 @@ int main(int argc, char const *argv[])
 		}
 	printf("\n");
 	}
+
+	return 0;
 }
