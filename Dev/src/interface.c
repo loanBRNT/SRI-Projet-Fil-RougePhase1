@@ -37,6 +37,12 @@ void afficheAccueil(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
+	printf("\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#    Appuyer sur ENTRER pour commencer    #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
 }
 
 //########## FONCTIONS D AFFICHAGE DES MENUS ##############
@@ -51,7 +57,7 @@ void afficheMenuPrincipal(){
 	printf("#                                         #\n");
 	printf("#            2:UTILISATEUR                #\n");
 	printf("#                                         #\n");
-	printf("#            0:QUITTER                    #\n");
+	printf("#            3:QUITTER                    #\n");
 	printf("#                                         #\n");
 	printf("#       !! choisissez le Mode !!          #\n");
 	printf("#                                         #\n");
@@ -72,7 +78,7 @@ void afficheMenuAdmin(){
 	printf("#                                         #\n");
 	printf("#         3: RETOUR MENU PRINCIPAL        #\n");
 	printf("#                                         #\n");
-	printf("#         0: QUITTER                      #\n");
+	printf("#         4: QUITTER                      #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -115,7 +121,7 @@ void afficheErreurMenu(){
 	printf("#    SAISIE INCORECT VEUILLEZ RÉESSAYER   #\n");
 	printf("#                                         #\n");
 	printf("#                                         #\n");
-	printf("#       VEUILLEZ APPUYER SUR ESPACE       #\n");
+	printf("#       VEUILLEZ APPUYER SUR ENTRER       #\n");
 	printf("#            POUR CONTINUER...            #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
@@ -141,7 +147,7 @@ void afficheMenuUtilisateur(){
 	printf("#                                         #\n");
 	printf("#        5: RETOUR MENU PRINCIPAL         #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        6: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
@@ -275,6 +281,8 @@ int menuAdminVerif(){
             */
         else if (choix == 3){
         	afficheErreurMenu();
+        	getchar();
+			fflush(stdin);
         	cpt =-1;
         	valeur=cpt;
         }
@@ -305,7 +313,7 @@ int menuAdmin(){
 			case 3:
 				event = -1;
 				break;
-			case 0:
+			case 4:
 				event = 0;
 				break;
 			default:
@@ -416,12 +424,13 @@ int menuUtilisateur(){
 			case 5:
 				event = -1; //retour menu d'avant
 				break;
-			case 0:
+			case 6:
 				event = 0; //quitte le logiciel
 				break;
 			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				afficheErreurMenu();
+				getchar();
+				fflush(stdin);
 				break;
 		}
 	printf("\n");
