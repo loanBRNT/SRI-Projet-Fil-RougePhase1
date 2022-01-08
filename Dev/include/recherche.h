@@ -11,11 +11,6 @@ typedef PILE_Audio PILE_DESCRIPTEUR_AUDIO;
 typedef PILE_Img PILE_DESCRIPTEUR_IMAGE;
 typedef DESCRIPTEUR_TEXTE* PILE_DESCRIPTEUR_TEXTE;
 
-/*
-Permet d'ouvrir un fichier selon son type
-*/
-int ouvrirFichier(FILE* fichier);
-
 //---------------------- FONCTION DE RECHERCHE SPECIALISE -------------------------
 
 //Effectue une recherche via un mot cle
@@ -54,10 +49,14 @@ void changerExtension(char* actuelleExt, char* nouvelleExt); //Change l'extensio
 
 DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier);
 
+DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier);
+
 int recupIdDuFic(char* nom_fic, int type);
 
 void recupNomDUFic(int id, int type, char* chaine);
 
 int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine, int type);
+
+int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat);
 
 #endif

@@ -51,7 +51,7 @@ PILE_Audio Charger_Pile_DescripteurAudio(PILE_Audio PA){
     char *lu =(char *) malloc(10*sizeof(char));
     int nbrfen;
     int id;
-    f=fopen("../Database/Descripteur/dA.txt","r");
+    f=fopen("./Database/Descripteur/dA.txt","r");
     if(f==NULL){
          printf("Impossible d'ouvrir le fichier contenant les descripteurs Audio");
     }

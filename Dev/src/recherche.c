@@ -35,13 +35,14 @@ int getTypeDuFichierEtChangeLextension(char* nom_fichier_cible){
         type = 1;
     } else if (!strcmp(ptr_debutExtension,".jpg")){
         type = 2;
+        changerExtension(ptr_debutExtension,".txt");
     } else if (!strcmp(ptr_debutExtension,".wav")){
         type = 3;
+        changerExtension(ptr_debutExtension,".bin");
     } else if (!strcmp(ptr_debutExtension,".bmp")){
         type = 4;
+        changerExtension(ptr_debutExtension,".txt");
     }
-
-    changerExtension(ptr_debutExtension,".txt");
 
     return type;
 }
@@ -146,20 +147,24 @@ int lanceRechercheViaAdresse(char* adresse_fichier_cible, char* chaine_resultat)
     char commande[300];
     char cheminBase[100];
     char sauvExtension[5];
+    int type = 0;
 
     char* ptr_debutExtension = strrchr(adresse_fichier_cible,'.');
     char* ptr_debutNom = strrchr(adresse_fichier_cible, '/');
 
     if (!strcmp(ptr_debutExtension,".xml")){
+        type = 1;
         strcpy(cheminBase, "./Database/Texte");
-        changerExtension(sauvExtension,".xml");
     } else if (!strcmp(ptr_debutExtension,".jpg")){
+        type = 2;
         strcpy(cheminBase, "./Database/Image/RGB");
         changerExtension(sauvExtension,".jpg");
-    } else if (!strcmp(ptr_debutExtension,".bin")){
+    } else if (!strcmp(ptr_debutExtension,".wav")){
+        type = 3;
         strcpy(cheminBase, "./Database/Audio");
-        changerExtension(sauvExtension,".bin");
+        changerExtension(sauvExtension,".wav");
     } else if (!strcmp(ptr_debutExtension,".bmp")){
+        type = 2;
         strcpy(cheminBase, "./Database/Image/NB");
         changerExtension(sauvExtension,".bmp");
     } else {
@@ -174,18 +179,23 @@ int lanceRechercheViaAdresse(char* adresse_fichier_cible, char* chaine_resultat)
 
     fflush(stdout);
     system(commande);
- 
-    changerExtension(ptr_debutExtension,".txt");
+
+    if (type != 1){
+
+        if (type == 2) changerExtension(ptr_debutExtension,".txt");
+        else changerExtension(ptr_debutExtension,".bin");
+
+        strcpy(commande, "mv ");
+        strcat(commande, adresse_fichier_cible);
+        strcat(commande, " ");
+        strcat(commande, cheminBase);
+
+        fflush(stdout);
+        system(commande); 
+
+        changerExtension(ptr_debutExtension, sauvExtension);
+    }
     
-    strcpy(commande, "mv ");
-    strcat(commande, adresse_fichier_cible);
-    strcat(commande, " ");
-    strcat(commande, cheminBase);
-
-    fflush(stdout);
-    system(commande);
-
-    changerExtension(ptr_debutExtension, sauvExtension);
 
     lanceRechercheViaNom(ptr_debutNom+1,chaine_resultat);
 
@@ -212,7 +222,7 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
 
 
         if (descFic.ID == 0){
-            strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L4ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
+            strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
             return 2;
         }
 
@@ -223,6 +233,22 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
         }
     } else if (t == 3 ){
         printf("Le fichier est un fichier Audio\n");
+
+        DESCRIPTEUR_AUDIO descFic;
+
+        if (!VerificationTraitee(nom_fichier_cible)){
+            Indexation();
+        }
+
+        descFic = getDescripteurAudioViaPile(nom_fichier_cible);
+
+        if (descFic.identifiant == 0){
+            strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
+            return 2;
+        }
+
+        rechercheJingle(&descFic, chaine_resultat);
+
     } else {
         strcpy(chaine_resultat, "Erreur de lecture du fichier :\nType non reconnu\n");
         return 1;
@@ -248,7 +274,7 @@ PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descF
     while (ptr_Cel != NULL){
         if (ptr_Cel->Di.ID != ptr_descFic->ID){
             tauxAct = comparaisonFichiersImage(ptr_descFic,&(ptr_Cel->Di));
-            //printf("%d sim à %d%\n",ptr_Cel->Di.ID,tauxAct);
+            printf("%d sim à %d%\n",ptr_Cel->Di.ID,tauxAct);
             if (tauxAct >= tauwSim){
                 pileSim = emPILE_Img(pileSim , ptr_Cel->Di);
             }
@@ -313,4 +339,65 @@ DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier){
     d = c->Di;
     dePILE_Img_Sans_Sauvegarde(pile);
     return d;
+}
+
+DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier){
+
+    PILE_Audio pile = Charger_Pile_DescripteurAudio(init_PILE_Audio());
+    if (pile == NULL){
+        DESCRIPTEUR_AUDIO* d = (DESCRIPTEUR_AUDIO*) malloc(sizeof(DESCRIPTEUR_AUDIO));
+        d->identifiant = 0;
+        return *d;
+    }
+
+    int idFic = recupIdDuFic(nom_fichier, 3);
+
+    Cellule* c = pile;
+    DESCRIPTEUR_AUDIO d;
+
+    while (c->Da->identifiant != idFic){
+        c = c->next;
+        if (c == NULL){
+            break;
+        }
+    }
+    if (c == NULL){
+        DESCRIPTEUR_AUDIO* d = (DESCRIPTEUR_AUDIO*) malloc(sizeof(DESCRIPTEUR_AUDIO));
+        d->identifiant = 0;
+        return *d;
+    }
+
+    d = *(c->Da);
+    dePILE_Audio_Sans_Sauvegarde(pile);
+    return d;
+}
+
+
+int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
+    char chaine_nom[50];
+
+    recupNomDUFic(descFic->identifiant,3,chaine_nom);
+
+    strcpy(chaine_resultat,"Voici les resultats suite a votre recherche : [");
+    strcat(chaine_resultat, chaine_nom);
+    strcat(chaine_resultat,"]\n");
+    PILE_DESCRIPTEUR_AUDIO pile = Charger_Pile_DescripteurAudio(init_PILE_Audio());
+    if (pile == NULL){
+        strcpy(chaine_resultat, "ERREUR : chargement de la PILE impossible");
+        return 1;
+    }
+    Cellule* ptr_cell = pile;
+    while (ptr_cell != NULL){
+        if (ptr_cell->Da->identifiant != descFic->identifiant) {
+            recupNomDUFic(ptr_cell->Da->identifiant,3,chaine_nom);
+            strcat(chaine_resultat, chaine_nom);
+            strcat(chaine_resultat, " : ");
+            printf("|%s|\n",chaine_nom);
+            comparaisonFichiersAudio(descFic,ptr_cell->Da,chaine_resultat);
+            strcat(chaine_resultat,"\n");
+        }
+        ptr_cell = ptr_cell->next;
+    } 
+    dePILE_Audio_Sans_Sauvegarde(pile);
+    return 0;
 }

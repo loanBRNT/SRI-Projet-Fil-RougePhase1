@@ -16,17 +16,16 @@ int comparaisonFichiersTexte(DESCRIPTEUR_TEXTE* texte1, DESCRIPTEUR_TEXTE* texte
 int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* Image1, DESCRIPTEUR_IMAGE* Image2);
 
 
-int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* Audio1, DESCRIPTEUR_AUDIO* Audio2);
+int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* Audio1, DESCRIPTEUR_AUDIO* Audio2,char* chaine_result);
+
+
+int calculSimHisto(Histogramme histoJingle, Histogramme histoCorpus);
 
 
 
+int verifierSim(Histogramme histoJingle, Histogramme histoCorpus, int repet);
 
-
-
-
-
-
-
+float calculSeconde(int ligneActuelle);
 
 int calculSimValeur(int v1, int v2);
 
