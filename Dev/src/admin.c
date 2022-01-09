@@ -190,11 +190,11 @@ int recupTauxSimmilaritudeDuConfig(){
 	return recupUnAttributConfig("tauxSim");
 }
 
-int recupNbMotsParTexteDuConfig(){
+int recupNbMotParTexteDuConfig(){
 	return recupUnAttributConfig("nbMaxMotParTexte");
 }
 
-int recupSeuilOccurenceDuConfig(){
+int recupSeuilOccurenceMotDuConfig(){
 	return recupUnAttributConfig("seuilOccurenceMot");
 }
 

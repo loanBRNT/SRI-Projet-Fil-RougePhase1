@@ -51,7 +51,7 @@ void afficheMenuPrincipal(){
 	printf("#                                         #\n");
 	printf("#            2:UTILISATEUR                #\n");
 	printf("#                                         #\n");
-	printf("#            0:QUITTER                    #\n");
+	printf("#            3:QUITTER                    #\n");
 	printf("#                                         #\n");
 	printf("#       !! choisissez le Mode !!          #\n");
 	printf("#                                         #\n");
@@ -72,7 +72,7 @@ void afficheMenuAdmin(){
 	printf("#                                         #\n");
 	printf("#         3: RETOUR MENU PRINCIPAL        #\n");
 	printf("#                                         #\n");
-	printf("#         0: QUITTER                      #\n");
+	printf("#         4: QUITTER                      #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -99,9 +99,11 @@ void afficheMenuPointConfig(){
 	printf("#                                         #\n");
 	printf("#        6: NB BITS DE QUANTIFICATION     #\n");
 	printf("#                                         #\n");
-	printf("#        7: RETOUR MENU ADMIN             #\n");
+	printf("#        7: AFFICHER VALEUR .CONFIG       #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        8: RETOUR MENU ADMIN             #\n");
+	printf("#                                         #\n");
+	printf("#        9: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -113,10 +115,6 @@ void afficheErreurMenu(){
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#    SAISIE INCORECT VEUILLEZ RÉESSAYER   #\n");
-	printf("#                                         #\n");
-	printf("#                                         #\n");
-	printf("#       VEUILLEZ APPUYER SUR ESPACE       #\n");
-	printf("#            POUR CONTINUER...            #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
@@ -141,7 +139,7 @@ void afficheMenuUtilisateur(){
 	printf("#                                         #\n");
 	printf("#        5: RETOUR MENU PRINCIPAL         #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        6: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
@@ -159,7 +157,7 @@ void afficheRechercheMotCle(){
 	printf("#                                         #\n");
 	printf("#        2: RETOUR MENU ADMIN             #\n");
 	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
+	printf("#        3: QUITTER                       #\n");
 	printf("#                                         #\n");
 	printf("#        << choisissez un menu >>         #\n");
 	printf("#                                         #\n");
@@ -221,6 +219,119 @@ void affichageSaisieTauxSim(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
+}
+
+void affichageSaisieNbMot(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#     MODIFIER LE NB DE MOTS PAR TEXTE    #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",recupNbMotParTexteDuConfig());
+	printf("#                                         #\n");
+	printf("#        DOIT ETRE SUPERIEUR A            #\n");
+	printf("#                 0                       #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+void affichageSaisieOccurenceMot(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#     MODIFIER SEUIL OCCURENCE MOTS       #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",recupSeuilOccurenceMotDuConfig());
+	printf("#                                         #\n");
+	printf("#        DOIT ETRE SUPERIEUR A            #\n");
+	printf("#                 0                       #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+void affichageSaisieNbIntervalle(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        MODIFIER NB INTERVALLE           #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",recupNbIntervalleDuConfig());
+	printf("#                                         #\n");
+	printf("#        DOIT ETRE SUPERIEUR A            #\n");
+	printf("#                 0                       #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+void affichageSaisieNbPoint(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        MODIFIER NB POINTS               #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",recupNbPointsDuConfig());
+	printf("#                                         #\n");
+	printf("#                                         #\n");
+	printf("#     DOIT ETRE UNE PUISSANCE DE 2        #\n");
+	printf("#                                         #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+void affichageSaisieNbBits(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#  MODIFIER LE NB BITS DE QUANTIFICATION  #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        VALEUR ACTUELLE : %d             #\n",recupNbBitsDuConfig());
+	printf("#                                         #\n");
+	printf("#        DOIT ETRE COMPRIS ENTRE          #\n");
+	printf("#                1 ET 8                   #\n");
+	printf("#                                         #\n");
+	printf("#        << Saisissez un entier >>        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("\n");
+}
+
+
+void afficheValeurConfig(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#         PANNEAU DE CONFIGURATION        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#        TAUX DE SIMILARITE: %d           #\n",recupTauxSimmilaritudeDuConfig());
+	printf("#                                         #\n");
+	printf("#        NB MOTS PAR TEXTE: %d            #\n",recupNbMotParTexteDuConfig());
+	printf("#                                         #\n");
+	printf("#        SEUIL OCCURENCE MOTS: %d         #\n",recupSeuilOccurenceMotDuConfig());
+	printf("#                                         #\n");
+	printf("#        NB INTERVALLE: %d                #\n",recupNbIntervalleDuConfig());
+	printf("#                                         #\n");
+	printf("#        NB POINTS PAR FENETRE: %d        #\n",recupNbPointsDuConfig());
+	printf("#                                         #\n");
+	printf("#        NB BITS DE QUANTIFICATION: %d    #\n",recupNbBitsDuConfig());
+	printf("#                                         #\n");
+	printf("###########################################\n");
+
 }
 
 //#################################################################################################################################
@@ -305,13 +416,11 @@ int menuAdmin(){
 			case 3:
 				event = -1;
 				break;
-			case 0:
+			case 4:
 				event = 0;
 				break;
 			default:
 				afficheErreurMenu();
-				getchar();
-				fflush(stdin);
 				break;
 		}
 	printf("\n");
@@ -328,6 +437,7 @@ int menuPointConfig(){
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
 		afficheMenuPointConfig();
 		choixMenu=lireLong();
+		fflush(stdin);
 		printf("\n");
 		switch(choixMenu)
 		{
@@ -335,30 +445,34 @@ int menuPointConfig(){
 				event=menuModifierTauxSim(ptr_sur_config);
 				break;
 			case 2:
-				
+				event=menuModifierNbMaxMot(ptr_sur_config );
 				break;
 			case 3:
-				
+				event= menuModifierSeuilOccurence(ptr_sur_config);
 				break;
 			case 4:
-				
+				event=menuModifierNbIntervalle(ptr_sur_config);
 				break;
 			case 5:
-				
+				event=menuModifierNbPoints(ptr_sur_config);
 				break;
 			case 6:
-				
+				event=menuModifierNbBits(ptr_sur_config);
 				break;
 			case 7:
+				afficheValeurConfig();
+				break;
+			case 8:
 				event = -1; //retour menu d'avant
 				break;
-			case 0:
+			case 9:
 				event = 0; //quitte le logiciel
 				break;
 			default:
 				afficheErreurMenu();
 				break;  
 		}
+	fflush(stdin);
 	printf("\n");
 	}
 
@@ -382,6 +496,93 @@ int menuModifierTauxSim(PTR_CONFIG config){
 			printf("Veuillez choisir un taux de similarité entre 0 et 100 \n");
 	} 
 	printf("ca c'est bien passe");
+	
+	return 1;
+}
+
+int menuModifierNbMaxMot(PTR_CONFIG config ){
+	affichageSaisieNbMot();
+	int event=0;
+	int choix = 0; //Pour lire l'entree
+	
+	while(event==0){
+		scanf("%d",&choix);
+		fflush(stdin);
+		event=changerNbMotParTexte(config, choix);
+		if(event==0)
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+	} 
+	printf("ca c'est bien passe\n");
+	
+	return 1;
+}
+
+int menuModifierSeuilOccurence(PTR_CONFIG  config){	
+	affichageSaisieOccurenceMot();
+	int event=0;
+	int choix = 0; //Pour lire l'entree
+	
+	while(event==0){
+		scanf("%d",&choix);
+		fflush(stdin);
+		event=changerSeuilOccurence(config, choix);
+		if(event==0)
+			printf("Veuillez choisir un seuil superieur a 0 \n");
+	} 
+	printf("ca c'est bien passe \n");
+	
+	return 1;
+}
+
+
+
+int menuModifierNbIntervalle(PTR_CONFIG config ){
+	affichageSaisieNbIntervalle();
+	int event=0;
+	int choix = 0; //Pour lire l'entree
+	
+	while(event==0){
+		scanf("%d",&choix);
+		fflush(stdin);
+		event=changerNbIntervalle(config,choix);
+		if(event==0)
+			printf("Veuillez choisir un seuil superieur a 0 \n");
+	} 
+	printf("ca c'est bien passe \n");
+	
+	return 1;
+}
+
+int menuModifierNbPoints(PTR_CONFIG config){
+	affichageSaisieNbPoint();
+	int event=0;
+	int choix = 0; //Pour lire l'entree
+	
+	while(event==0){
+		scanf("%d",&choix);
+		fflush(stdin);
+		event=changerNbPoints(config, choix);
+		if(event==0)
+			printf("Veuillez choisir un nombre qui est une puissance de 2 \n");
+	} 
+	printf("ca c'est bien passe \n");
+	
+	return 1;
+}
+
+int menuModifierNbBits(PTR_CONFIG config){
+	affichageSaisieNbBits();
+	int event=0;
+	int choix = 0; //Pour lire l'entree
+	
+	while(event==0){
+		scanf("%d",&choix);
+		fflush(stdin);
+		event=changerNbBits(config,choix);
+		if(event==0)
+			printf("Veuillez choisir un chiffre entre 1 et 8 \n");
+	} 
+	printf("ca c'est bien passe \n");
 	
 	return 1;
 }
@@ -416,12 +617,11 @@ int menuUtilisateur(){
 			case 5:
 				event = -1; //retour menu d'avant
 				break;
-			case 0:
+			case 6:
 				event = 0; //quitte le logiciel
 				break;
 			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				afficheErreurMenu();
 				break;
 		}
 	printf("\n");
@@ -444,12 +644,11 @@ int menuRechercheParMot(){
 			case 2:
 				event = -1; //retour menu utilisateur
 				break;
-			case 0:
+			case 3:
 				event = 0; //quitte le logiciel
 				break;
 			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				afficheErreurMenu();
 				break;
 		}
 	printf("\n");
@@ -475,12 +674,11 @@ int menuRechercheParNom(){
 			case 2:
 				event = -1; //retour menu utilisateur
 				break;
-			case 0:
+			case 3:
 				event = 0; //quitte le logiciel
 				break;
 			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				afficheErreurMenu();
 				break;
 		}
 	printf("\n");
@@ -503,12 +701,11 @@ int menuRechercheParchemin(){
 			case 2:
 				event = -1; //retour menu utilisateur
 				break;
-			case 0:
+			case 3:
 				event = 0; //quitte le logiciel
 				break;
 			default:
-				printf("SAISIE INCORRECTE\n");
-				//afficheErreurMenu(); CETTE FONCTION N'EXISTE PAS
+				afficheErreurMenu();
 				break;
 		}
 	printf("\n");

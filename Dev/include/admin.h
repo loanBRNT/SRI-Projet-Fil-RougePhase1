@@ -63,11 +63,11 @@ int recupTauxSimmilaritudeDuConfig();
 
 int recupNbMotParTexteDuConfig();
 
-int recupSeuilOccurenceDuConfig();
+int recupSeuilOccurenceMotDuConfig();
 
 int recupNbIntervalleDuConfig();
 
-int recupNbFenetreDuConfig();
+int recupNbPointsDuConfig();
 
 int recupNbBitsDuConfig();
 

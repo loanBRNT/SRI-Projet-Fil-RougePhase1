@@ -15,27 +15,27 @@ void afficheMenuPrincipal();
 void afficheMenuPointConfig();
 
 void affichageSaisieTauxSim();
-void affichageSaisieNbMaxMot(PTR_CONFIG config);
-void affichageSaisieSeuilOccurence(PTR_CONFIG config);
-void affichageSaisieNbIntervalle(PTR_CONFIG config);
-void affichageSaisieNbPoints(PTR_CONFIG config);
-void affichageSaisieNbBits(PTR_CONFIG config);
+void affichageSaisieNbMot();
+void affichageSaisieOccurenceMot();
+void affichageSaisieNbIntervalle();
+void affichageSaisieNbPoint();
+void affichageSaisieNbBits();
+void afficheValeurConfig();
 
 // ----------------- LES FONCTIONS POUR MODIFIER LE .CONFIG -------------------
 
-int menuModifierTauxSim(PTR_CONFIG config);
+int menuModifierTauxSim(PTR_CONFIG );
 
-int menuModifierTauxSim(PTR_CONFIG ptr_sur_config);
 
-int menuModifierNbMaxMot(PTR_CONFIG ptr_sur_config);
+int menuModifierNbMaxMot(PTR_CONFIG );
 
-int menuModifierSeuilOccurence(PTR_CONFIG ptr_sur_config);
+int menuModifierSeuilOccurence(PTR_CONFIG );
 
-int menuModifierNbIntervalle(PTR_CONFIG ptr_sur_config);
+int menuModifierNbIntervalle(PTR_CONFIG );
 
-int menuModifierNbPoints(PTR_CONFIG ptr_sur_config);
+int menuModifierNbPoints(PTR_CONFIG );
 
-int menuModifierNbBits(PTR_CONFIG ptr_sur_config);
+int menuModifierNbBits(PTR_CONFIG );
 
 //---------------------- LES FONCTIONS DES MENUS -----------------------
 int menuRechercheParMot();

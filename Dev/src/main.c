@@ -23,24 +23,28 @@ int main(int argc, char const *argv[])
 		printf("\n");
 		switch(choixMenu)
 		{
+
+
+
 			case 1:
 				if (menuAdminVerif()== 0) event = -1;
 				break;
 			case 2:
 				if (menuUtilisateur() == 0) event = -1;
 				break;
-			case 0:
-				printf("On quitte\n");
+			case 3:
 				event = -1;
 				break;
 			default:
 				afficheErreurMenu();
-				getchar();
-				fflush(stdin);
 				break;
 		}
 	printf("\n");
 	}
+	printf("###########################################\n");
+ 	printf("#       fermeture de 'lapplication        #\n");
+ 	printf("###########################################\n");
+
 
 	return 0;
 }
