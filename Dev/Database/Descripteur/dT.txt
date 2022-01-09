@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Pile descripteur Texte03-Des_chercheurs_parviennent_à_régénérer.xml
 03-Mimer_un_signal_nerveux_pour.xml
 05-Au_stade_d_Abidjan,_la_défaite.xml
@@ -82,3 +83,5 @@ Pile descripteur Texte03-Des_chercheurs_parviennent_à_régénérer.xml
 28-_Œdipe_à_Colone_,_la_rage.xml
 29-Forte_réduction_de_la_calotte.xml
 29-Ligue_des_champions___Lyon.xml
+=======
+>>>>>>> comparaison

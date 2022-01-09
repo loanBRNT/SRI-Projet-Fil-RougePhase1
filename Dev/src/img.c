@@ -1,9 +1,13 @@
-#include "img.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include "../include/img.h"
 
 Descripteur initDescripteur(int nb_composantes, int n){
     Descripteur descri;
-    descri.ID = 0000 ;
-    descri.t_max = pow(2,(n*nb_composantes));
+    descri.t_max =pow(2,(n*nb_composantes));
     descri.histogramme = NULL;
     descri.histogramme = malloc(descri.t_max*sizeof(int));
     if(descri.histogramme == NULL) {
@@ -122,20 +126,20 @@ int generationIdUnique(int choix){
     switch (choix){
         //TEXTE
         case 1 :
-            CHEMIN_LISTE = "../Database/Descripteur/liste_base_texte.txt";
+            CHEMIN_LISTE = "./Database/Descripteur/liste_base_texte.txt";
             break;
         //IMAGE
         case 2 :
-            CHEMIN_LISTE = "../Database/Descripteur/liste_base_image.txt";
+            CHEMIN_LISTE = "./Database/Descripteur/liste_base_image.txt";
             break;
         //AUDIO
         case 3 :
-            CHEMIN_LISTE = "../Database/Descripteur/liste_base_audio.txt";
+            CHEMIN_LISTE = "./Database/Descripteur/liste_base_audio.txt";
             break;
         default :
             printf("Erreur sur la valeur du paramètre pour la génération de l'ID unique");
     }
-    srand(time(NULL));
+    //srand(time(NULL));
     do{
         commande = malloc(1000*sizeof(char));
         random = rand()%(30000-20000)+20000;
@@ -153,6 +157,16 @@ int generationIdUnique(int choix){
     return random;
 }
 
+void Affiche_DescripteurImg(Descripteur Di){
+    printf("%d\n",Di.ID);
+    printf("%d\n",Di.t_max);
+    for(int i=0;i<Di.t_max;i++){
+        printf("%d\n",Di.histogramme[i]);
+    }
+    printf("\n");
+
+};
+
 Descripteur indexer_image(char* nom, int n){
 
     // Declaration varibales
@@ -160,20 +174,20 @@ Descripteur indexer_image(char* nom, int n){
     Descripteur descripteur;
     FILE* fichier = NULL;
     FILE* liste = NULL;
-    char* CHEMIN_LISTE = "../Database/Descripteur/liste_base_image.txt";
+    char* CHEMIN_LISTE = "./Database/Descripteur/liste_base_image.txt";
 
-    // Ouverture de l'imagew
+
+    // Ouverture de l'image
     fichier = fopen(nom,"r");
+
     if (fichier != NULL) {
 
         // Récupération des données image
         fscanf(fichier,"%d %d %d", &longueur, &hauteur, &d);
-
         // Initialisation en fonction du fichier
         descripteur = initDescripteur(d,n);
-
-        // Ouverture de la liste descripteur
-        liste = fopen(CHEMIN_LISTE,"a+"); // A mettre en mode r/w
+         // Ouverture de la liste descripteur
+        liste = fopen(CHEMIN_LISTE,"r+"); // A mettre en mode r/w
 
         if(liste != NULL){
 
@@ -186,7 +200,9 @@ Descripteur indexer_image(char* nom, int n){
                 case 3 : // Quantification RGB
                     quantificationRGB(longueur,hauteur,&descripteur,fichier,n);
                     break;
-                default : printf("Format de l'image pas supporté\n");
+                default : 
+                    printf("Format de l'image pas supporté\n");
+                    break;
             }
             fclose(fichier);
         }
@@ -199,3 +215,34 @@ Descripteur indexer_image(char* nom, int n){
 
     return descripteur;
 }
+
+
+void Sauvegarder_DescripteurImage(Descripteur Di,FILE* f){
+    fprintf(f,"%d\n",Di.ID);
+    fprintf(f,"%d\n",Di.t_max);
+    for(int i=0;i<Di.t_max;i++){
+        fprintf(f,"%d\n",Di.histogramme[i]);
+    }
+    fprintf(f,"\n");
+};
+
+
+Descripteur LireDescripteurImg(FILE* f, int taille, int id){
+    char *lu =(char *) malloc(10*sizeof(char));
+    int valeur;
+    int nb_composantes = log2(taille);
+    
+    //Descripteur DI=initDescripteur(nb_composantes, bitQ);
+    Descripteur DI;
+    DI.t_max =taille;
+    DI.histogramme = NULL;
+    DI.histogramme = malloc(DI.t_max*sizeof(int));
+    DI.ID=id;
+            for(int i=0;i<taille;i++){
+                fscanf(f,"%s",lu);
+                valeur=atoi(lu);
+                DI.histogramme[i]=valeur;
+            }
+    return DI;
+
+};

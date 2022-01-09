@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../include/admin.h"
+#include "../include/img.h"
 #include "../include/descripteurAudio.h"
+
 
 /* 
  ----------------------- Signature -------------------------
@@ -22,9 +25,10 @@ Histogramme init_histo(int m){
     return h;
 }
 
-DescrpiteurAudio init_descripteurAudio(char* id){
-    DescrpiteurAudio DA=(DescrpiteurAudio)malloc(sizeof(struct s_descrpiteurAudio));
-    DA->identifiant=id;
+DescripteurAudio init_descripteurAudio(){
+    DescripteurAudio DA=(DescripteurAudio)malloc(sizeof(struct s_DescripteurAudio));
+    DA->identifiant=1;
+    DA->taille=0;
     DA->histo=NULL;  
     return DA;
 }
@@ -36,8 +40,10 @@ void Affiche_histogramme(Histogramme h){
             }
             printf("\n");  
 }
-void Affiche_DescripteurAudio(DescrpiteurAudio DA){
-    printf("identifiant unique: %s\n",DA->identifiant);
+
+void Affiche_DescripteurAudio(DescripteurAudio DA){
+    printf("identifiant unique: %d\n",DA->identifiant);
+    printf("nombre fenetre d analyses: %d\n",DA->taille);
     Histogramme histo_courant=DA->histo;
     while(histo_courant!=NULL){
         Affiche_histogramme(histo_courant);
@@ -46,16 +52,36 @@ void Affiche_DescripteurAudio(DescrpiteurAudio DA){
 }
 
 
+// -----------------  FONCTIONS Sauvegarde -----------------------
+void Sauvegarde_histogramme(Histogramme h,FILE* f){
+    for(int i=0;i<h->taille;i++){
+                fprintf(f,"%d ",h->histo_fenetre[i]);            
+            }
+            fprintf(f,"\n");  
+}
+
+void Sauvegarder_DescripteurAudio(DescripteurAudio DA, FILE* f){
+    fprintf(f,"%d\n",DA->identifiant);
+    fprintf(f,"%d\n",DA->taille);
+    Histogramme histo_courant=DA->histo;
+    while(histo_courant!=NULL){
+        Sauvegarde_histogramme(histo_courant,f);
+        histo_courant=histo_courant->fenetre_suivante;
+    }
+    fprintf(f,"\n");
+}
+
+
+
+
 // -----------------  FONCTION Indexation -----------------------
-DescrpiteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille_echantillon){
+DescripteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille_echantillon){
     FILE* fic ;
     double tailleFic;
     int nombreFenetre;
     double point;
     float taille_intervalle = (float)2/(float)m;
-    //fonction pour trouver un ID valable
-    char id[5]="A001";
-    DescrpiteurAudio DA= init_descripteurAudio(id);
+    DescripteurAudio DA= init_descripteurAudio();
     Histogramme histo_courant=init_histo(m);
     DA->histo=histo_courant;
     fic = fopen( nomfichier,"rb") ;
@@ -68,6 +94,7 @@ DescrpiteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
     tailleFic=ftell(fic); // d recupere la taille du fichier binaire en octet
     fseek(fic,0,SEEK_SET);
     nombreFenetre=tailleFic/(8*taille_echantillon);
+    DA->taille=nombreFenetre;
     for(int j=0;j<nombreFenetre;j++){
         for(int i=0;i<taille_echantillon;i++){ 
             fread(&point,sizeof(double), 1, fic);
@@ -85,8 +112,34 @@ DescrpiteurAudio IndexationFichierAudio( const char* nomfichier,int m,int taille
     }
     // Fermeture du fichier : //
     fclose( fic ) ;
+    DA->identifiant=generationIdUnique(3);  
     return DA;
 
 
+}
+
+
+
+DescripteurAudio LireDescripteurAudio( FILE* f,int nbrIntervalle,int nbrFen,int id){
+    char *lu =(char *) malloc(10*sizeof(char));
+    int valeur;
+    DescripteurAudio DA=init_descripteurAudio();
+    Histogramme histo_courant=init_histo(nbrIntervalle);
+    DA->histo=histo_courant;
+    DA->identifiant=id;
+    DA->taille=nbrFen;
+         for(int j=0;j<nbrFen;j++){
+            for(int i=0;i<nbrIntervalle;i++){
+                fscanf(f,"%s",lu);
+                 valeur=atoi(lu);
+                histo_courant->histo_fenetre[i]=valeur;
+              }
+              if(j<(DA->taille)-1){
+                Histogramme nextHisto=init_histo(nbrIntervalle);
+                 histo_courant->fenetre_suivante=nextHisto;
+                histo_courant=nextHisto;
+            }
+        }
+    return DA;
 }
 

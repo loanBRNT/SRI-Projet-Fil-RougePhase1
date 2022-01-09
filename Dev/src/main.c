@@ -1,20 +1,25 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/admin.h"
 #include "../include/pwd.h"
 #include "../include/interface.h"
+#include "../include/indexation.h"
+#include "../include/img.h"
+#include "../include/pile_Img.h"
+#include "../include/descripteurAudio.h"
+#include "../include/pile_Audio.h"
+#include "../include/recherche.h"
+#include "../include/comparaison.h"
 
-
-
+/*
 int main(int argc, char const *argv[])
 {
 
-	/* lance l'affichage du menu principal
-	  puis demande le numero du menu souhaite et lance la fonction de gestion du menu selectionne 
-	  si le numero n'est pas bon on redemande un numero de menu
-	  le choix numero 0 modifie la valeur de la variable event afin de sortir de la boucle et pouvoir arreter le programme
-	*/
+	// lance l'affichage du menu principal
+	//  puis demande le numero du menu souhaite et lance la fonction de gestion du menu selectionne 
+	//  si le numero n'est pas bon on redemande un numero de menu
+	//  le choix numero 0 modifie la valeur de la variable event afin de sortir de la boucle et pouvoir arreter le programme
+	
 	afficheAccueil();
 	int event = 1 ;
 	long choixMenu;
@@ -48,5 +53,16 @@ int main(int argc, char const *argv[])
 
 
 	return 0;
+}
+*/
 
+int main(int argc, char *argv[])
+{
+	char chaine[10000];
+	lanceRechercheViaNom(*(argv+1),chaine);
+	//char adresse[100];
+	//strcpy(adresse, "./Requete/51.bmp");
+	//lanceRechercheViaAdresse(adresse,chaine);
+	printf("\n==========\n%s",chaine);
+	return 0;
 }

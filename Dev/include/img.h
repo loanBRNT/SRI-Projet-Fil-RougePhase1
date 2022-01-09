@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 
 static const int conversion_masques[8]= {0x80 ,0xC0, 0xE0, 0xF0, 0xF8, 0xFC, 0xFE, 0xFF};
 
@@ -33,5 +34,13 @@ void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichie
 void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier, int n);
 
 Descripteur indexer_image(char* adresse, int n);
+
+int generationIdUnique(int choix);
+
+void Sauvegarder_DescripteurImage(Descripteur,FILE*);
+
+Descripteur LireDescripteurImg(FILE*, int , int );
+
+void Affiche_DescripteurImg(Descripteur);
 
 #endif

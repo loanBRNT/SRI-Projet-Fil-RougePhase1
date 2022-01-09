@@ -39,9 +39,9 @@ PTR_CONFIG ouvrirPanneauDeConfiguration(){
 	int valeur;
 	PTR_CONFIG config = (PTR_CONFIG) malloc(sizeof(struct s_config));
 
-	FILE * ptr_fic = fopen(".config","r");
+	FILE * ptr_fic = fopen("./.config","r");
 	if (ptr_fic == NULL){
-		fprintf(stderr, "ERREUR : probleme d'acces a .config");
+		fprintf(stderr, "ERREUR : probleme d'acces a .config\n");
 		return NULL;
 	}
 	
@@ -67,9 +67,9 @@ void fermerPanneauDeConfiguration(PTR_CONFIG config){
 }
 
 void sauvegarderConfig(PTR_CONFIG config){
-	FILE * ptr_fic = fopen(".config","w");
+	FILE * ptr_fic = fopen("./.config","w");
 	if (ptr_fic == NULL){
-		fprintf(stderr, "ERREUR : probleme d'acces a .config");
+		fprintf(stderr, "ERREUR : probleme d'acces a .config\n");
 	} else {
 		fprintf(ptr_fic, "tauxSim %d\nnbMaxMotParTexte %d\nseuilOccurenceMot %d\nnombreIntervalleAudio %d\nnombrePointsAudio %d\nnombreBitsQuantification %d",
 		config->tauxSim, config->nbMotParTxt, config->seuilOccMot, config->nbIntervalle, config->nbPoints, config->nbBits);
@@ -82,9 +82,9 @@ int recupUnAttributConfig(char* nomAttributCible){
 	int valeur;
 	int continuerBoucle = 1;
 
-	FILE * ptr_fic = fopen(".config","r");
+	FILE * ptr_fic = fopen("./.config","r");
 	if (ptr_fic == NULL){
-		fprintf(stderr, "ERREUR : probleme d'acces a .config");
+		fprintf(stderr, "ERREUR : probleme d'acces a .config\n");
 		return -1;
 	}
 
@@ -102,17 +102,17 @@ int recupUnAttributConfig(char* nomAttributCible){
 	return valeur;
 }
 
+
 char* recupNomRecherche(){
 	//char result[500];
     char* nom = malloc(sizeof(char) * 20);
 		
-
 	printf("\n");
 	printf("Vous avez lancer la recherche par nom\n");
 	scanf("%s", nom);
 	printf("Vous avez chercher le fichier s'appellant %s \n", nom);
+
 	//lanceRechercheViaNom(nom, result);
-	
 	return nom;
 }
 
