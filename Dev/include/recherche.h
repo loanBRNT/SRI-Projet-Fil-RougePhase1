@@ -25,6 +25,18 @@ PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* descripte
 //Effectue une recherche via un descripteur de fichier Audio
 PILE_DESCRIPTEUR_AUDIO rechercheAudioParDescripteur(DESCRIPTEUR_AUDIO descripteur_audio_cible);
 
+//Recupere le descripteur associe au fichier Image passe en param
+DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier);
+
+//Recupere le descripteur associe au fichier Audio passe en param
+DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier);
+
+//Ecrit dans chaine_resultat les secondes ou apparait le jingle du descfic dans les autres fichiers de la base
+int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat);
+
+//Ecrit dans chaine le contenue de la pile passe en param et du descripteur du fichier selon leur type (2,4)
+int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine, int type);
+
 //----------------------- FONCTION APPELLE DEPUIS L'INTERFACE ----------------------
 
 //Lance une recherche via l'adresse d'un fichier
@@ -39,24 +51,16 @@ int lanceRechercheViaSelection(char* id_fichier, char* chaine_resultat);
 //Lance une recherche via le fichier (selectione depuis une liste deroulante)
 int lanceRechercheViaMotCle(char* mot, char* chaine_resultat);
 
-//----------------------------------------------------------------------------------
+//----------------------------- FONCTIONS SECONDAIRES  ------------------------------
 
-int getTypeDuFichierEtChangeLextension(char* nom); //Renvoie 1 pour un Texte, 2 pour Image, 3 pour son, 0 pour une erreur de lecture.
+int getTypeDuFichierEtChangeLextension(char* nom); //Renvoie 1 pour un Texte, 2 pour Image RGB, 3 pour son, 4 pour Image NB & 0 pour une erreur de lecture. ET Change l'extension selon le type
 
-int getTypeDuFichier(char* nom); //Renvoie 1 pour un Texte, 2 pour Image, 3 pour son, 0 pour une erreur de lecture.
+int getTypeDuFichier(char* nom); //Renvoie 1 pour un Texte, 2 pour Image RGB, 3 pour son, 4 pour Image NB & 0 pour une erreur de lecture.
 
-void changerExtension(char* actuelleExt, char* nouvelleExt); //Change l'extension pour que les fonctions d'indexation puissent fonctionner
+void changerExtension(char* actuelleExt, char* nouvelleExt); //Remplace l'extension du fichier passe en parametre par celle passe en 2nd param
 
-DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier);
+int recupIdDuFic(char* nom_fic, int type); //Renvoie l'ID du fichier passé en param selon son type (1,2,3,4)
 
-DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier);
-
-int recupIdDuFic(char* nom_fic, int type);
-
-void recupNomDUFic(int id, int type, char* chaine);
-
-int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine, int type);
-
-int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat);
+void recupNomDUFic(int id, int type, char* chaine); //Ecrit dans chaine le nom du fichier correspondant à l'ID passe en param selon son type (1,2,3,4)
 
 #endif

@@ -2,8 +2,9 @@
 #define COMPARAISON_H 
 
 
-// ----------------------------- FONCTION SPECIALISE ---------------------------
+// ========================= FONCTION DE RECHERCHE ========================
 
+// ------------------------------------------------------------------------
 /*
 Les fonctions renvoient ici un entier compris entre 0 et 100
 0 : TOTALEMENT DIFFERENT
@@ -15,21 +16,25 @@ int comparaisonFichiersTexte(DESCRIPTEUR_TEXTE* texte1, DESCRIPTEUR_TEXTE* texte
 
 int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* Image1, DESCRIPTEUR_IMAGE* Image2);
 
+// ------------------------------------------------------------------------
 
+//Ecrit dans chaine result les apparitions de l'Audio1 dans Audio2
 int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* Audio1, DESCRIPTEUR_AUDIO* Audio2,char* chaine_result);
 
 
+// ============================================================================
+
+//Fonctions de comparaison entre audio
+
 int calculSimHisto(Histogramme histoJingle, Histogramme histoCorpus);
-
-
 
 int verifierSim(Histogramme histoJingle, Histogramme histoCorpus, int repet);
 
-float calculSeconde(int ligneActuelle);
+// ==========================================================================
 
-int calculSimValeur(int v1, int v2);
+int calculSimValeur(int v1, int v2); //calcul la similarite entre deux valeurs
 
-
+float calculSeconde(int ligneActuelle); //calcul la seconde d'apparition du jingle en fonction de sa ligne dans le desc
 
 
 

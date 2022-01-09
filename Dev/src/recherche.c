@@ -20,6 +20,9 @@
 |															|
  ----------------------------------------------------------- 
  */
+
+// =============================================================================================
+
 void changerExtension(char* extensionActuelle, char* nouvelleExtension){
     for (int i = 0 ; i < strlen(nouvelleExtension) ; i++){
         extensionActuelle[i]= *(nouvelleExtension+i);
@@ -140,7 +143,7 @@ void recupNomDUFic(int id, int type,char* nom){
 }
 
 
-// ------------------------------------------------------------------------------------------------------------------------
+// -=========================================================================================================================
 
 //Lance une recherche via l'adresse d'un fichier
 int lanceRechercheViaAdresse(char* adresse_fichier_cible, char* chaine_resultat){
@@ -258,7 +261,7 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
 
 
 
-// ------------------------------------------------------------------------------------------------------------------------
+// ===============================================================================================
 
 PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descFic){
     PILE_DESCRIPTEUR_IMAGE pile = Charger_Pile_DescripteurImg(init_PILE_Img());

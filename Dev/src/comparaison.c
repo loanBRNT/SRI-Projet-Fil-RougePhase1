@@ -20,6 +20,8 @@
  ----------------------------------------------------------- 
  */
 
+// ________________________________________________________________________________________________
+
 //Renvoie le plus petit des taux de similarité des deux valeurs.
 int calculSimValeur(int v1, int v2){
     int ecart;
@@ -36,7 +38,7 @@ int calculSimValeur(int v1, int v2){
     }
     return (100 - ecart);
 }
-
+// ________________________________________________________________________________________________
 
 int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* image1, DESCRIPTEUR_IMAGE* image2){
     int nbValeur, tauxSim=0;
@@ -54,13 +56,7 @@ int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* image1, DESCRIPTEUR_IMAGE* image
     return (tauxSim);
 }
 
-float calculSeconde(int ligneActuelle){
-    int nbPoints = recupNbPointsDuConfig();
-    float nouvelleRefLigne = ( ( (float)nbPoints) * 15.8 ) / 1024;
-    nouvelleRefLigne = (float)ligneActuelle / nouvelleRefLigne;
-    return nouvelleRefLigne;
-}
-
+// ________________________________________________________________________________________________
 
 int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpus, char* chaine_resultat){
     char tab[20];
@@ -128,3 +124,12 @@ int verifierSim(Histogramme histoJingle, Histogramme histoCorpus, int repetition
     taux = taux / repetition;
     return taux;
 }
+
+float calculSeconde(int ligneActuelle){
+    int nbPoints = recupNbPointsDuConfig();
+    float nouvelleRefLigne = ( ( (float)nbPoints) * 15.8 ) / 1024;
+    nouvelleRefLigne = (float)ligneActuelle / nouvelleRefLigne;
+    return nouvelleRefLigne;
+}
+
+// ________________________________________________________________________________________________
