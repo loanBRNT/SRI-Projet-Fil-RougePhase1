@@ -102,6 +102,20 @@ int recupUnAttributConfig(char* nomAttributCible){
 	return valeur;
 }
 
+char* recupNomRecherche(){
+	//char result[500];
+    char* nom = malloc(sizeof(char) * 20);
+		
+
+	printf("\n");
+	printf("Vous avez lancer la recherche par nom\n");
+	scanf("%s", nom);
+	printf("Vous avez chercher le fichier s'appellant %s \n", nom);
+	//lanceRechercheViaNom(nom, result);
+	
+	return nom;
+}
+
 // -----------------  FONCTIONS SET -----------------------
 
 int changerTauxSimmilaritude(PTR_CONFIG config, int nb){
@@ -126,7 +140,7 @@ int changerNbMotParTexte(PTR_CONFIG config, int nb){
 	return 0;
 }
 
-int changerSeuilOccurenceMot(PTR_CONFIG config, int nb){
+int changerSeuilOccurence(PTR_CONFIG config, int nb){
 	if (config != NULL) {
 		if (nb > 0){
 			config->seuilOccMot = nb;
@@ -176,11 +190,11 @@ int recupTauxSimmilaritudeDuConfig(){
 	return recupUnAttributConfig("tauxSim");
 }
 
-int recupNbMotsParTexteDuConfig(){
+int recupNbMotParTexteDuConfig(){
 	return recupUnAttributConfig("nbMaxMotParTexte");
 }
 
-int recupSeuilOccurenceDuConfig(){
+int recupSeuilOccurenceMotDuConfig(){
 	return recupUnAttributConfig("seuilOccurenceMot");
 }
 
@@ -194,4 +208,28 @@ int recupNbPointsDuConfig(){
 
 int recupNbBitsDuConfig(){
 	return recupUnAttributConfig("nombreBitsQuantification");
+}
+
+int getTauxSimmilaritudeDuConfig(PTR_CONFIG c){
+	return c->tauxSim;
+}
+
+int getNbMotsParTexteDuConfig(PTR_CONFIG c){
+	return c->nbMotParTxt;
+}
+
+int getSeuilOccurenceDuConfig(PTR_CONFIG c){
+	return c->seuilOccMot;
+}
+
+int getNbIntervalleDuConfig(PTR_CONFIG c){
+	return c->nbIntervalle;
+}
+
+int getNbPointsDuConfig(PTR_CONFIG c){
+	return c->nbPoints;
+}
+
+int getNbBitsDuConfig(PTR_CONFIG c){
+	return c->nbBits;
 }

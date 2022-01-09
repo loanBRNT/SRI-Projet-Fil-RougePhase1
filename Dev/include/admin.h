@@ -45,11 +45,11 @@ int changerTauxSimmilaritude(PTR_CONFIG config, int nb);
 
 int changerNbMotParTexte(PTR_CONFIG config, int nb);
 
-int changerSeuilOccurenceMot(PTR_CONFIG config, int nb);
+int changerSeuilOccurence(PTR_CONFIG config, int nb);
 
 int changerNbIntervalle(PTR_CONFIG config, int nb);
 
-int changerNbFenetre(PTR_CONFIG config, int nb);
+int changerNbPoints(PTR_CONFIG config, int nb);
 
 int changerNbBits(PTR_CONFIG config, int nb);
 
@@ -57,6 +57,7 @@ int changerNbBits(PTR_CONFIG config, int nb);
 
 
 //--------------------------------- ACCESSEUR ----------------------------------
+char* recupNomRecherche();
 
 int recupTauxSimmilaritudeDuConfig();
 
@@ -66,9 +67,21 @@ int recupSeuilOccurenceMotDuConfig();
 
 int recupNbIntervalleDuConfig();
 
-int recupNbFenetreDuConfig();
+int recupNbPointsDuConfig();
 
 int recupNbBitsDuConfig();
+
+int getTauxSimmilaritudeDuConfig();
+
+int getNbMotsParTexteDuConfig();
+
+int getSeuilOccurenceDuConfig();
+
+int getNbIntervalleDuConfig();
+
+int getNbPointsDuConfig();
+
+int getNbBitsDuConfig();
 
 // ------------------------------------------------------------------------------
 
