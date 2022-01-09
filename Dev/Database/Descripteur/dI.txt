@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Pile descripteur Image
-=======
 28434
 64
 6132
@@ -3517,4 +3514,3 @@ Pile descripteur Image
 3828
 495
 
->>>>>>> comparaison

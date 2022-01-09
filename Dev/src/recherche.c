@@ -235,7 +235,6 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
             generationChaineCaracViaPileIMAGE(pileSim, &descFic,chaine_resultat,t);
         }
     } else if (t == 3 ){
-        printf("Le fichier est un fichier Audio\n");
 
         DESCRIPTEUR_AUDIO descFic;
 
@@ -347,7 +346,6 @@ DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier){
 DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier){
 
     PILE_Audio pile = Charger_Pile_DescripteurAudio(init_PILE_Audio());
-    Cellule* ptr_cell = pile;
     if (pile == NULL){
         DESCRIPTEUR_AUDIO* d = (DESCRIPTEUR_AUDIO*) malloc(sizeof(DESCRIPTEUR_AUDIO));
         d->identifiant = 0;
@@ -381,7 +379,6 @@ int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
     char chaine_nom[50];
 
     recupNomDUFic(descFic->identifiant,3,chaine_nom);
-    printf("=%s=%d=\n",chaine_nom,descFic->identifiant);
     strcpy(chaine_resultat,"Voici les resultats suite a votre recherche : [");
     strcat(chaine_resultat, chaine_nom);
     strcat(chaine_resultat,"]\n");
@@ -392,12 +389,10 @@ int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
     }
     Cellule* ptr_cell = pile;
     while (ptr_cell != NULL){
-        printf("%d\n",ptr_cell->Da->identifiant);
         if (ptr_cell->Da->identifiant != descFic->identifiant) {
             recupNomDUFic(ptr_cell->Da->identifiant,3,chaine_nom);
             strcat(chaine_resultat, chaine_nom);
             strcat(chaine_resultat, " : ");
-            printf("|%s|\n",chaine_nom);
             comparaisonFichiersAudio(descFic,ptr_cell->Da,chaine_resultat);
             strcat(chaine_resultat,"\n");
         }
