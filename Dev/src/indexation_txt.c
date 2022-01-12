@@ -143,40 +143,35 @@ void Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 	while(!feof(ftok)){
 		fscanf(ftok,"%s\n",mot);
 
+		if (motDejaConnu(Dt.tableau,mot,nbterme) == 0) continue;
+
 		while(!feof(fictemp)){
 			fscanf(fictemp,"%s\n",comp);
 			if(strcmp(mot,comp)==0){
 				occurence++;
 			}
-			if(occurence > nbocc && (strlen(mot)>1)){
-				cpt=0;
-				actTerme =(Dt.tableau[cpt]);
-				while(cpt < nbterme){
-					actTerme = (Dt.tableau[cpt]);
-					if((occurence > actTerme.nboccurence) && (strcmp(mot,actTerme.token)!=0)){
-						//intercalerTerme(ptrSurTerme, mot, occurence, cpt, nbterme);
-
-					}
-					if (actTerme.nboccurence == 0) break;
-					cpt++;
-					
+		}
+		if(occurence > nbocc && (strlen(mot)>1)){
+			cpt=0;
+			actTerme =(Dt.tableau[cpt]);
+			while(cpt < nbterme){
+				actTerme = (Dt.tableau[cpt]);
+				if((occurence > actTerme.nboccurence)){
+					intercalerTerme(Dt.tableau, mot, occurence, cpt, nbterme);
+					break;
 				}
-				if(cpt < nbterme){
-					Dt.tableau[cpt] = ajouterTerme(actTerme, mot, occurence);
-					printf("%d %d\n",Dt.tableau[cpt].nboccurence,occurence);
-				}
+				if (actTerme.nboccurence == 0) break;
+				cpt++;
 				
+			}
+			if(cpt < nbterme){
+				Dt.tableau[cpt] = ajouterTerme(actTerme, mot, occurence);
 			}
 			
 		}
-		printf("%s : %d\n",mot,occurence);
 		rewind(fictemp);
 		occurence=0;
 
-	}
-
-	for(int i=0; i<nbterme ; i++){
-		printf("%d : %s / %d \n",i,Dt.tableau[i].token , Dt.tableau[i].nboccurence);
 	}
 
 	fclose(fictemp);
@@ -196,7 +191,7 @@ DescripteurTxt initDescripteurTxt(int nbterme){
 	DT.tableau=(Terme*) malloc(sizeof(Terme) * nbterme);						// taille a recup dans le .config
 	for(int i=0; i<nbterme ; i++){
 		DT.tableau[i].nboccurence = 0;
-		DT.tableau[i].token = "123";
+		strcpy(DT.tableau[i].token, "123");
 	}
 
 	return DT;
@@ -247,35 +242,33 @@ void printLinkTxtDescripteur(DescripteurTxt Dt, char* nom){
 //---------------------------------------------------------------------------------------------------------------------------
 
 Terme ajouterTerme(Terme actTerme, char* mot, int occ){
-	actTerme.token=mot;
+	strcpy(actTerme.token,mot);
 	actTerme.nboccurence=occ;
 	return actTerme;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
-/*
-void intercalerTerme(Terme* ptrSurTerme, char* mot, int occ, int cpt, int nbterme){
-	Terme* ptrCopy=(Terme*)malloc(sizeof(Terme));
-	Terme* ptrParcours=ptrSurTerme;
 
-	ptrCopy->next=ptrSurTerme->next;
-	//ptrCopy->token=ptrSurTerme->token;
-	ptrCopy->nboccurence=ptrSurTerme->nboccurence;
-
-	ptrSurTerme->token=mot;
-	ptrSurTerme->nboccurence=occ;
-	ptrSurTerme->next=ptrCopy;
-
-	while(ptrParcours->next != NULL || cpt<nbterme){
-		ptrParcours=ptrParcours->next;
-		cpt++;
+void intercalerTerme(Terme* tableau, char* mot, int occ, int cpt, int nbterme){
+	for (int i = nbterme-1; i > cpt; i--)
+	{
+		tableau[i] = tableau[i-1];
 	}
 
-	if (cpt == nbterme && ptrParcours != NULL){
-		free(ptrParcours->next);
-		ptrParcours->next=NULL;
-	}
+	tableau[cpt].nboccurence = occ;
+	strcpy(tableau[cpt].token, mot);
 
 }
-*/
+
 //---------------------------------------------------------------------------------------------------------------------------
+
+int motDejaConnu(Terme* tableau, char* mot, int nbterme){
+	int pasConnu = 1;
+	for (int i = 0; i < nbterme; ++i)
+	{
+		if(!strcmp(tableau[i].token,mot)){
+			pasConnu = 0;
+		}
+	}
+	return pasConnu;
+}
