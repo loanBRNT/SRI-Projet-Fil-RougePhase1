@@ -23,35 +23,30 @@
 // ________________________________________________________________________________________________
 
 //Renvoie le plus petit des taux de similarité des deux valeurs.
-int calculSimValeur(int v1, int v2){
+int calculSimValeur(int v1, int v2,int* ptr_taux, int* ptr_diviseur){
     int ecart;
-    int max = v2, min=v1;
+    int max = v2, min = v1;
     if (v1 > v2) {
         max=v1;
         min=v2;
     }
-
-    if (max == 0){
-        ecart = 0;
-    } else {
-        ecart = ((max - min)*100) / max;
-    }
-    return (100 - ecart);
+    *ptr_taux += (max - min);
+    *ptr_diviseur += max;
+    return 0;
 }
 // ________________________________________________________________________________________________
 
 int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* image1, DESCRIPTEUR_IMAGE* image2){
-    int nbValeur, tauxSim=0;
+    float tauxSim=0, float diviseur;
     if (image1->t_max != image2->t_max) return 0;
 
-    nbValeur = image1->t_max;
-    if (nbValeur==0) return -1;
+    if (image1->t_max==0) return -1;
 
-    for (int i = 0 ; i < nbValeur ; i++){
-        tauxSim = tauxSim + calculSimValeur(image1->histogramme[i],image2->histogramme[i]);
+    for (int i = 0 ; i < image1->t_max ; i++){
+        calculSimValeur(image1->histogramme[i],image2->histogramme[i],&tauxSim,&diviseur);
     }
     
-    tauxSim = tauxSim/nbValeur;
+    tauxSim = tauxSim/diviseur;
 
     return (tauxSim);
 }
