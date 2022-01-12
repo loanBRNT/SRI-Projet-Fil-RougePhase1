@@ -31,16 +31,12 @@ void main(int argc, char const *argv[])
 
 {
 	int nbtoktest=0;
-	FILE* ftest=fopen("03-Mimer_un_signal_nerveux_pour.xml","r");										//ouverture fichier en xml (doit deja exister) à remplacer par le char* nom
+	DescripteurTxt DT=initDescripteurTxt(4);
+	cleaning();
+	 
+	nbtoktest=CleanToTok();
+	printf("%d\n",nbtoktest);
+	Counting(DT, 2, 4);
 
-	FILE* fclean=fopen("test_temp.clean","w+");						//creation fichier clean en écriture
-
-	FILE* ftok=fopen("test_toktemp.tok","w+");	
-
-	cleaning(ftest,fclean);
-
-	//nbtoktest=CleanToTok(fclean,ftok);
-
-
-	/* Passer par fctn indexationTxt(char* nom) qui renvoie le descri */
+	/* Passer par fctn indexationTxt(char* nom, int occ, int nb) qui renvoie le descri */
 }
