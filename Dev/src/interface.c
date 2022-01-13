@@ -1,9 +1,18 @@
-#include <stdlib.h>
+
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include<math.h>
+
+#include "../include/indexation.h"
+#include "../include/descripteurAudio.h"
+#include "../include/img.h"
+#include "../include/pile_Audio.h"
+#include "../include/pile_Img.h"
 #include "../include/admin.h"
 #include "../include/pwd.h"
 #include "../include/interface.h"
-
 
 
 //########## FONCTIONS DE GESTION DES MENUS ###############
@@ -410,8 +419,8 @@ int menuAdmin(){
 				if (menuPointConfig() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
 				break;
 			case 2:
-				//LancerIdexation();
-				printf("On lance L'indexation\n");
+				printf("indexation en cours ...");
+				Indexation();
 				break;
 			case 3:
 				event = -1;
@@ -433,6 +442,7 @@ int menuPointConfig(){
 	PTR_CONFIG ptr_sur_config = ouvrirPanneauDeConfiguration();
 
 	int event = 1 ;
+	int maj=0;
 	long choixMenu;
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
 		afficheMenuPointConfig();
@@ -446,18 +456,33 @@ int menuPointConfig(){
 				break;
 			case 2:
 				event=menuModifierNbMaxMot(ptr_sur_config );
+				system("echo ' ' > ./Database/Descripteur/liste_base_texte.txt");
+				system("echo ' ' > ./Database/Descripteur/dT.txt");
+				maj=1;
 				break;
 			case 3:
 				event= menuModifierSeuilOccurence(ptr_sur_config);
+				system("echo ' ' > ./Database/Descripteur/liste_base_texte.txt");
+				system("echo ' ' > ./Database/Descripteur/dT.txt");
+				maj=1;
 				break;
 			case 4:
 				event=menuModifierNbIntervalle(ptr_sur_config);
+				system("echo ' ' > ./Database/Descripteur/liste_base_audio.txt");
+				system("echo ' ' > ./Database/Descripteur/dA.txt");
+				maj=1;
 				break;
 			case 5:
 				event=menuModifierNbPoints(ptr_sur_config);
+				system("echo ' ' > ./Database/Descripteur/liste_base_audio.txt");
+				system("echo ' ' > ./Database/Descripteur/dA.txt");
+				maj=1;
 				break;
 			case 6:
 				event=menuModifierNbBits(ptr_sur_config);
+				system("echo ' ' > ./Database/Descripteur/liste_base_image.txt");
+				system("echo ' ' > ./Database/Descripteur/dI.txt");
+				maj=1;
 				break;
 			case 7:
 				afficheValeurConfig();
@@ -478,7 +503,10 @@ int menuPointConfig(){
 
 	//On libere l'espace memoire
 	fermerPanneauDeConfiguration(ptr_sur_config);
-
+	if(maj==1){
+		printf("indexation avec les nouvelles valeurs en cours ...");
+		Indexation();
+	}
 	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
 
 }

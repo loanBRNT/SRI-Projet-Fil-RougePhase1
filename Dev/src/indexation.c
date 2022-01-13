@@ -45,7 +45,8 @@ int VerificationTraitee(char* nom_fic){
 	strcat(commande, " | grep ");
 	strcat(commande, nom_fic);
 	strcat(commande, " | wc -l >fic_temp2 ");
-	printf("execution de %s\n", commande);
+	//affichage utile pour verifier bonne execution de la commande unix ( non utile pour le client donc mis en commentaire)
+	//printf("execution de %s\n", commande);
 	fflush(stdout);
 	system(commande);
 
@@ -88,7 +89,6 @@ void Indexation(){
 	PILE_Img pI=init_PILE_Img();
 
 	// recuperation des valeurs du .config
-	//int recupTauxSimmilaritudeDuConfig();
 	//int recupNbMotsParTexteDuConfig();
 	//int recupSeuilOccurenceDuConfig();
 	int intervalleAudio=recupNbIntervalleDuConfig();
@@ -129,7 +129,8 @@ void Indexation(){
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
  	    while ( !feof(ptr_fic) ){
  	    	if(VerificationTraitee(nom_fic)){
- 	    		fprintf(stderr, "fichier deja indexee\n");
+ 	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
+ 	    		//printf("fichier deja indexee\n");
  	    	}
  	    	else{
      			if (strstr(nom_fic, ".xml")){
@@ -169,15 +170,16 @@ void Indexation(){
 	strcpy(commande, "ls -l ");
 	strcat(commande, CHEMIN_AUDIO);
 	strcat(commande, "| grep bin$ > fic_temp"); 
-	printf("execution de %s\n", commande); 
+	// affichage pour verifier deroulemement commande unix
+	//printf("execution de %s\n", commande); 
 	fflush(stdout);
 	system(commande);
 
 	//---------------------------------------------------------------------//
 	// AFFICHAGE DU CONTENU DU FICHIER CREE LORS DE LA PRECEDENTE COMMANDE//
 	//---------------------------------------------------------------------//
-	system("cat fic_temp");
-	printf("---------------------------------\n");
+	//system("cat fic_temp");
+	//printf("---------------------------------\n");
 	ptr_fic = fopen("fic_temp", "r");
 	if( ptr_fic != NULL){   
 
@@ -187,9 +189,9 @@ void Indexation(){
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
 	   
  	    while ( !feof(ptr_fic) ){
- 	    	 printf("%s", nom_fic);
  	    	if(VerificationTraitee(nom_fic)){
- 	    		fprintf(stderr, "fichier deja indexee\n");
+ 	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
+ 	    		//printf("fichier deja indexee\n");
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".bin")){
@@ -234,13 +236,14 @@ void Indexation(){
 	strcpy(commande, "ls -l ");
 	strcat(commande, CHEMIN_IMAGE_NB);
 	strcat(commande, "| grep txt$ > fic_temp"); 
-	printf("execution de %s\n", commande);
+	// affichage pour verifier deroulemement commande unix
+	// printf("execution de %s\n", commande);
 	fflush(stdout); 
 	system(commande);
 
 
-	system("cat fic_temp");
-	printf("---------------------------------\n");
+	//system("cat fic_temp");
+	//printf("---------------------------------\n");
 	ptr_fic = fopen("fic_temp", "r");
 
 	if( ptr_fic != NULL){   
@@ -251,7 +254,8 @@ void Indexation(){
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
  	    while ( !feof(ptr_fic) ){
  	    	if(VerificationTraitee(nom_fic)){
- 	    		fprintf(stderr, "fichier deja indexee\n");
+ 	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
+ 	    		//printf("fichier deja indexee\n");
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".txt")){
@@ -289,7 +293,7 @@ void Indexation(){
 	strcpy(commande, "ls -l ");
 	strcat(commande, CHEMIN_IMAGE_RGB);
 	strcat(commande, "| grep txt$ > fic_temp"); 
-	printf("execution de %s\n", commande);
+	//printf("execution de %s\n", commande);
 	fflush(stdout); 
 	system(commande);
 
@@ -297,8 +301,8 @@ void Indexation(){
 	//---------------------------------------------------------------------//
 	// AFFICHAGE DU CONTENU DU FICHIER CREE LORS DE LA PRECEDENTE COMMANDE//
 	//---------------------------------------------------------------------//
-	system("cat fic_temp");
-	printf("---------------------------------\n");
+	//system("cat fic_temp");
+	//printf("---------------------------------\n");
 	ptr_fic = fopen("fic_temp", "r");
 
 	if( ptr_fic != NULL){   
@@ -309,7 +313,8 @@ void Indexation(){
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
  	    while ( !feof(ptr_fic) ){
  	    	if(VerificationTraitee(nom_fic)){
- 	    		fprintf(stderr, "fichier deja indexee\n");
+ 	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
+ 	    		//printf("fichier deja indexee\n");
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".txt")){
