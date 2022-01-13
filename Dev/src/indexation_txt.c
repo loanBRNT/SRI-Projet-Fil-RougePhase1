@@ -7,9 +7,9 @@
 
 //------------------------------------------------------------------------------------------------------------------------
 
-void cleaning(){												//Fonction CLEAN (ajouter le param char*)
+void cleaning(char* nom){												//Fonction CLEAN (ajouter le param char*)
 	FILE* fclean=fopen("test_temp.clean","w+");	
-	FILE* findex=fopen("03-Mimer_un_signal_nerveux_pour.xml","r");		//mettre le char*	
+	FILE* findex=fopen(nom,"r");										//mettre le char*	
 	int carac=0, curseur=0;
 	rewind(findex);
 	if(fclean!=NULL && findex!=NULL){							//verif ouverture/creation fichiers
@@ -203,40 +203,42 @@ DescripteurTxt indexationTxt(char* nom, int nbterme, int nbocc) 		//mettre char*
 
 {
 	int nbtok;
+
 	DescripteurTxt DT;
 	DT=initDescripteurTxt(nbterme);
 
-
-	//FILE* fliste=fopen("table_index_texte.txt","w")					//liste table mots clés et occurance dans textes identifiés par leur ID
-
-
-	cleaning();															//ajouter le char* nom en param
+	cleaning(char* nom);															
 
 	DT.nbtokens=CleanToTok();
 
 	Counting(DT, nbocc, nbterme);
-
-
+	
 	return DT;
 	
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
 
-void printDescripteurTxt(FILE* fdescri){
+void printDescripteurTxt(DescripteurTxt Dt, FILE* fdescri){
 
+	fprintf(fdescri,"%d\n",Dt.ID);
+	fprintf(fdescri,"%d\n",Dt.nbtermes);
+	fprintf(fdescri,"%d\n",Dt.nbtokens);
+
+	for(int i=0; i<Dt.nbtermes ; i++){
+		if (Dt.tableau[i].nboccurence == 0) break;
+		fprintf(fdescri,"%s %d\n",Dt.tableau[i].token , DT.tableau[i].nboccurence);
+	}
+	fprintf(fdescri,"\n");
 
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
 
-void printLinkTxtDescripteur(DescripteurTxt Dt, char* nom){
-	/*FILE* findex=fopen();												//ouvrir/creer le fichier liant nom et ID
+void printLinkTxtDescripteur(DescripteurTxt Dt, char* nom, FILE* fdtxt){
+	
+	fprintf(fdtxt,"%d %s ",Dt.ID,nom);
 
-	fprintf(findex,"%s ",nom);
-	fprintf(findex,"%d\n",DT.ID);
-
-	fclose(findex);*/
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
@@ -271,4 +273,22 @@ int motDejaConnu(Terme* tableau, char* mot, int nbterme){
 		}
 	}
 	return pasConnu;
+}
+
+//---------------------------------------------------------------------------------------------------------------------------
+
+void sauvegardeMotCle(DescripteurTxt Dt){
+	FILE* fkeyword=fopen("table_index_texte.txt","r+");
+	char keyword[30];
+	int occ;
+	
+
+	for(int i=0; i<Dt.nbtermes ; i++){
+		if (Dt.tableau[i].nboccurence == 0) break;
+		keyword=Dt.tableau[i].token;
+		occ=Dt.tableau[i].nboccurence;
+
+	}
+
+	fclose(fkeyword);
 }

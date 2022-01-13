@@ -22,9 +22,9 @@ typedef struct s_descripteurtxt
 
 DescripteurTxt indexationTxt(char* nom, int occ, int nbterme);
 DescripteurTxt initDescripteurTxt();
-void cleaning();
+void cleaning(char* nom);
 int CleanToTok();
-void printDescripteurTxt(FILE* fdescri);
+void printDescripteurTxt(DescripteurTxt DT, FILE* fdescri);
 void Counting(DescripteurTxt Dt, int nbocc, int nbterme);
 Terme ajouterTerme(Terme actTerme, char* mot, int occ);
 void intercalerTerme(Terme* tab, char* mot, int occ, int cpt, int nbterme);
