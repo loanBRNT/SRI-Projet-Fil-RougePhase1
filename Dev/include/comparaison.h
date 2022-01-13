@@ -32,11 +32,9 @@ int verifierSim(Histogramme histoJingle, Histogramme histoCorpus, int repet);
 
 // ==========================================================================
 
-int calculSimValeur(int v1, int v2); //calcul la similarite entre deux valeurs
-
 float calculSeconde(int ligneActuelle); //calcul la seconde d'apparition du jingle en fonction de sa ligne dans le desc
 
-
+void calculSimValeur(double* somme, int fVal1, int fVal2, long* val1, long* val2 );
 
 
 
