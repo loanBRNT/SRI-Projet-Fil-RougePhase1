@@ -32,7 +32,7 @@ void main(int argc, char const *argv[])
 {
 	int nbtoktest=0;
 	DescripteurTxt DT=initDescripteurTxt(8);
-	cleaning();
+	cleaning("03-Mimer_un_signal_nerveux_pour.xml");
 	 
 	nbtoktest=CleanToTok();
 	printf("%d\n",nbtoktest);

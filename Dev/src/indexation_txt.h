@@ -30,8 +30,7 @@ Terme ajouterTerme(Terme actTerme, char* mot, int occ);
 void intercalerTerme(Terme* tab, char* mot, int occ, int cpt, int nbterme);
 
 int motDejaConnu(Terme* tableau, char* mot, int nbterme);
-
-
+void sauvegardeMotCle();
 
 
 
