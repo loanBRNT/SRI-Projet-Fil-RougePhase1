@@ -7,26 +7,6 @@
 #include "indexation_txt.h"
 	
 
-
-	/*
-int counting(FILE* ftok){
-	Terme tab[]=(Terme)malloc(sizeof(Terme)*3);
-	int cpt=1;
-	char* chaine=(char *)malloc(MAX);
-
-	while(!feof(ftok)){
-		fgets(chaine,MAX,ftok);
-		while
-	}
-}
-*/
-
-
-
-
-
-
-
 void main(int argc, char const *argv[])
 
 {
