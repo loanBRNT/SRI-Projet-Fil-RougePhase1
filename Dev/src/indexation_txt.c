@@ -121,7 +121,7 @@ int CleanToTok(){
 
 //---------------------------------------------------------------------------------------------------------------------------
 
-void Counting(DescripteurTxt Dt, int nbocc, int nbterme){
+DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 	
 	char mot[30];
 	char comp[30];
@@ -176,6 +176,7 @@ void Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 
 	fclose(fictemp);
 	fclose(ftok);
+	return Dt;
 }
 
 //---------------------------------------------------------------------------------------------------------------------------
@@ -211,7 +212,7 @@ DescripteurTxt indexationTxt(char* nom, int nbterme, int nbocc) 		//mettre char*
 
 	DT.nbtokens=CleanToTok();
 
-	Counting(DT, nbocc, nbterme);
+	DT = Counting(DT, nbocc, nbterme);
 
 	return DT;
 	
@@ -277,56 +278,67 @@ int motDejaConnu(Terme* tableau, char* mot, int nbterme){
 
 //---------------------------------------------------------------------------------------------------------------------------
 
-void sauvegardeMotCle(){				
+int sauvegardeMotCle(){				
 	char commande[100];
-	char chaine[100000];
+	char chaine[1000];
 	char mot[30];
 	char motcpy[30];
-	strcpy(commande,"cat ../Database/Descripteur/dT.txt > dtcopy.txt");
-	int nbterme,nbtermcpy,nbtok,nbtokcpy,ID,Idcpy;
+	char temp1[30], temp2[30];
+	int nbterme,nbtermecpy,nbtok,nbtokcpy,ID,Idcpy,occ, occcpy;;
 
+	strcpy(commande,"cat ../Database/Descripteur/dT.txt > dtcopy.txt");
 	fflush(stdin);
 	system(commande);
 
 	FILE* fdT=fopen("../Database/Descripteur/dT.txt","r");
 	FILE* fcopy=fopen("dtcopy.txt","r");
-	FILE* fkeyword=fopen("table_index_texte.txt","w");
+	FILE* fkeyword=fopen("table_index_texte.txt","w+");
 
-	int occ, occcpy;
+	if (fdT == NULL || fcopy == NULL || fkeyword == NULL ){
+		printf("ERREUR\n");
+		return 1;
+	}
+
+	//vidage de la chaine
+	strcpy(chaine,"");
+
 	rewind(fdT);
 	while(!feof(fdT)){
-		rewind(fcopy);
 		fscanf(fdT,"%d\n",&ID);
 		fscanf(fdT,"%d\n",&nbterme);
 		fscanf(fdT,"%d\n",&nbtok);
-		for(int i=0; i++; i<nbterme){
 
-			fscanf(fdT,"%s %d ",mot,&occ);
+		for(int i=0; i<nbterme ; i++){
 			rewind(fcopy);
 
+			fscanf(fdT,"%s %d ",mot,&occ);
+
 			if(strstr(chaine,mot)==NULL){
+
 				strcat(chaine,mot);
+				strcat(chaine,"\n");
+
 				while(!feof(fcopy)){
 
-					fscanf(fdT,"%d\n",&Idcpy);
-					fscanf(fdT,"%d\n",&nbtermcpy);
-					fscanf(fdT,"%d\n",&nbtokcpy);
+					fscanf(fcopy,"%d\n",&Idcpy);
+					fscanf(fcopy,"%d\n",&nbtermecpy);
+					fscanf(fcopy,"%d\n",&nbtokcpy);
 
-					for(int i=0; i++; i<nbtermcpy){
+					for(int j=0; j<nbtermecpy; j++){
 
 						fscanf(fcopy,"%s %d ",motcpy,&occcpy);
 
 						if(strcmp(motcpy,mot)==0){
-							char temp1[30], temp2[30];
-							strcat(chaine," ");
 							sprintf(temp1,"%d",Idcpy);
+							sprintf(temp2,"%d",occcpy);
 							strcat(chaine,temp1);
 							strcat(chaine," ");
-							sprintf(temp2,"%d",occcpy);
+							strcat(chaine,temp2);
+							strcat(chaine," ");
 						}
 					}
 				}
-				strcat(chaine,"\n");
+				strcat(chaine,"\n\n");
 			}
 		}
 
@@ -337,4 +349,5 @@ void sauvegardeMotCle(){
 	fclose(fkeyword);
 	fclose(fcopy);
 	fclose(fdT);
+	return 0;
 }

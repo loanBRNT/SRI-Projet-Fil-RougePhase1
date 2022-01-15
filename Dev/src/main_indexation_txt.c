@@ -10,20 +10,16 @@
 void main(int argc, char const *argv[])
 
 {
-	int nbtoktest=0;
-	DescripteurTxt DT=initDescripteurTxt(8);
-	cleaning("03-Mimer_un_signal_nerveux_pour.xml");
-	 
-	nbtoktest=CleanToTok();
-	printf("%d\n",nbtoktest);
-	Counting(DT, 2, 8);
+	/*DescripteurTxt DT= indexationTxt("03-Mimer_un_signal_nerveux_pour.xml",8,2);
 
-	printf("=============================\n");
-	for(int i=0; i<8 ; i++){
-		if (DT.tableau[i].nboccurence == 0) break;
-		printf("%d : %s / %d \n",i,DT.tableau[i].token , DT.tableau[i].nboccurence);
-	}
-	printf("=============================\n");
+	FILE* f = fopen("../Database/Descripteur/dT.txt","w");
+
+	printDescripteurTxt(DT,f);
+
+	fclose(f);
+*/
+
+	sauvegardeMotCle();
 
 	/* Passer par fctn indexationTxt(char* nom, int occ, int nb) qui renvoie le descri */
 }

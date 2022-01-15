@@ -25,12 +25,12 @@ DescripteurTxt initDescripteurTxt();
 void cleaning(char* nom);
 int CleanToTok();
 void printDescripteurTxt(DescripteurTxt DT, FILE* fdescri);
-void Counting(DescripteurTxt Dt, int nbocc, int nbterme);
+DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme);
 Terme ajouterTerme(Terme actTerme, char* mot, int occ);
 void intercalerTerme(Terme* tab, char* mot, int occ, int cpt, int nbterme);
 
 int motDejaConnu(Terme* tableau, char* mot, int nbterme);
-void sauvegardeMotCle();
+int sauvegardeMotCle();
 
 
 
