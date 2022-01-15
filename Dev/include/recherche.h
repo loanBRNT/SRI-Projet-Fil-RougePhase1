@@ -31,6 +31,8 @@ DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier);
 //Recupere le descripteur associe au fichier Audio passe en param
 DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier);
 
+//DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier);
+
 //Ecrit dans chaine_resultat les secondes ou apparait le jingle du descfic dans les autres fichiers de la base
 int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat);
 

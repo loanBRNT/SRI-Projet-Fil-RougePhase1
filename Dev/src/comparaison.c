@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../include/admin.h"
 #include "../include/indexation.h"
+#include "../include/indexation_txt.h"
 #include "../include/img.h"
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"
@@ -22,38 +23,30 @@
 
 // ________________________________________________________________________________________________
 
-//Renvoie le plus petit des taux de similarité des deux valeurs.
-int calculSimValeur(int v1, int v2){
-    int ecart;
-    int max = v2, min=v1;
-    if (v1 > v2) {
-        max=v1;
-        min=v2;
-    }
 
-    if (max == 0){
-        ecart = 0;
-    } else {
-        ecart = ((max - min)*100) / max;
-    }
-    return (100 - ecart);
+void calculSimValeur(double* somme, int fVal1, int fVal2, long* val1, long* val2 ){
+    if (fVal1 > fVal2) *(somme) +=  fVal1 - fVal2;
+    else *(somme) +=  fVal2 - fVal1;
+    *val1 += (long)fVal1;
+    *val2 += (long)fVal2;
 }
+
 // ________________________________________________________________________________________________
 
 int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* image1, DESCRIPTEUR_IMAGE* image2){
-    int nbValeur, tauxSim=0;
+    double taux=0;
+    long val1=0, val2=0;
     if (image1->t_max != image2->t_max) return 0;
 
-    nbValeur = image1->t_max;
-    if (nbValeur==0) return -1;
+    if (image1->t_max==0) return -1;
 
-    for (int i = 0 ; i < nbValeur ; i++){
-        tauxSim = tauxSim + calculSimValeur(image1->histogramme[i],image2->histogramme[i]);
+    for (int i = 0 ; i < image1->t_max ; i++){
+        calculSimValeur( &taux, image1->histogramme[i], image2->histogramme[i], &val1, &val2);
     }
     
-    tauxSim = tauxSim/nbValeur;
+    taux = (taux * -100) / (val1 + val2) + 100;
 
-    return (tauxSim);
+    return ((int)taux);
 }
 
 // ________________________________________________________________________________________________
@@ -95,16 +88,20 @@ int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpu
 }
 
 int calculSimHisto(Histogramme histoJingle, Histogramme histoCorpus){
+    double taux=0;
+    long val1=0, val2=0;
     if (histoJingle == NULL || histoCorpus == NULL){
         printf("ERREUR\n");
         return 0;
     }
-    int taux = 0;
+
     for (int i = 0 ; i < histoJingle->taille ; i++){
-        taux = taux + calculSimValeur(histoJingle->histo_fenetre[i],histoCorpus->histo_fenetre[i]);
+        calculSimValeur( &taux, histoJingle->histo_fenetre[i],histoCorpus->histo_fenetre[i], &val1, &val2);
     }
-    taux = taux / (histoJingle->taille);
-    return taux;
+
+    taux = (taux * -100) / (val1 + val2) + 100;
+    
+    return (int)taux;
 }
 
 int verifierSim(Histogramme histoJingle, Histogramme histoCorpus, int repetition){
