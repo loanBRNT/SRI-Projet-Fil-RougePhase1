@@ -212,7 +212,23 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
     int t = getTypeDuFichierEtChangeLextension(nom_fichier_cible);
 
     if (t == 1){
-         printf("Le fichier est un fichier Texte\n");
+        printf("Le fichier est un fichier Texte\n");
+
+        DESCRIPTEUR_TEXTE descfic;
+
+        if (!VerificationTraitee(nom_fichier_cible)){
+            Indexation();
+        }
+
+        descFic = getDescripteurTexteViaPile(nom_fichier_cible);
+
+        if (descFic.ID == 0){
+            strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
+            return 2;
+        }
+
+
+
     } else if (t == 2 || t == 4){
 
         DESCRIPTEUR_IMAGE descFic;
@@ -375,6 +391,38 @@ DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier){
     return d;
 }
 
+DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier){
+
+    PILE_Txt pile = Charger_Pile_DescripteurTxt(init_PILE_Txt());
+    if (pile == NULL){
+        DESCRIPTEUR_TEXTE* d = (DESCRIPTEUR_TEXTE*) malloc(sizeof(DESCRIPTEUR_TEXTE));
+        d->ID = 0;
+        return *d;
+    }
+
+    int idFic = recupIdDuFic(nom_fichier, 2);
+
+    CelluleT* c = pile;
+    DESCRIPTEUR_TEXTE d;
+
+    while (c->Di.ID != idFic){
+        c = c->next;
+        if (c == NULL){
+            break;
+        }
+    }
+    if (c == NULL){
+        DESCRIPTEUR_TEXTE* d = (DESCRIPTEUR_TEXTE*) malloc(sizeof(DESCRIPTEUR_TEXTE));
+        d->ID = 0;
+        return *d;
+    }
+
+    d = c->Di;
+    dePILE_Txt_Sans_Sauvegarde(pile);
+    return d;
+}
+
+// -----------------------------------------------------------------------------------------
 
 int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
     char chaine_nom[50];
