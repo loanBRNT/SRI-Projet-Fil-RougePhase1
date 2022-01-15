@@ -4,6 +4,7 @@
 #include "../include/pwd.h"
 #include "../include/interface.h"
 #include "../include/indexation.h"
+#include "indexation_txt.h"
 #include "../include/img.h"
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"
@@ -11,7 +12,7 @@
 #include "../include/recherche.h"
 #include "../include/comparaison.h"
 
-
+/*
 int main(int argc, char const *argv[])
 {
 
@@ -53,7 +54,7 @@ int main(int argc, char const *argv[])
 
 
 	return 0;
-}
+}*/
 
 /*
 int main(int argc, char *argv[])
@@ -67,3 +68,17 @@ int main(int argc, char *argv[])
 	return 0;
 }
 */
+
+int main(int argc, char const *argv[])
+{
+	DESCRIPTEUR_TEXTE d = indexationTxt("./Database/Texte/03-Mimer_un_signal_nerveux_pour.xml",8,2);
+
+	FILE* f = fopen("./Database/Descripteur/dT.txt","w+");
+
+	printDescripteurTxt(d,f);
+
+	fclose(f);
+
+	sauvegardeMotCle();
+	return 0;
+}

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "../include/indexation.h"
+#include "../include/indexation_txt.h"
 #include "../include/img.h"
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"

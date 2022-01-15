@@ -5,7 +5,7 @@
 
 typedef struct s_DescripteurAudio DESCRIPTEUR_AUDIO;
 typedef Descripteur DESCRIPTEUR_IMAGE;
-typedef float DESCRIPTEUR_TEXTE;
+typedef DescripteurTxt DESCRIPTEUR_TEXTE;
 
 typedef PILE_Audio PILE_DESCRIPTEUR_AUDIO;
 typedef PILE_Img PILE_DESCRIPTEUR_IMAGE;
