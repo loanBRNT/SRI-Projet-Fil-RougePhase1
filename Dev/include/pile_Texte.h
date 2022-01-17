@@ -3,12 +3,12 @@
 
 
 typedef struct s_celluleT{
-	DescripteurTexte Dt;
+	DescripteurTxt Dt;
 	struct s_celluleT* next;
 } CelluleT;
 
 
-typedef Cellule* PILE_Texte;
+typedef CelluleT* PILE_Texte;
 
 PILE_Texte init_PILE_Texte();
 
@@ -16,7 +16,7 @@ void affiche_PILE_Texte(PILE_Texte );
 
 int PILE_Texte_estVide(PILE_Texte );
 
-PILE_Texte emPILE_Texte(PILE_Texte , DescripteurTexte );
+PILE_Texte emPILE_Texte(PILE_Texte , DescripteurTxt );
 
 PILE_Texte dePILE_Texte(PILE_Texte,FILE*);
 

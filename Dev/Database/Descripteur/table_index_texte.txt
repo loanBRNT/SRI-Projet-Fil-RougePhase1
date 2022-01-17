@@ -1,21 +1,357 @@
-comportement
-896 4 
+.
+29822 27523 29822 22275 3 29648 3 24512 3 28246 3 25183 3 23008 3 24660 3 25732 3 21009 3 22358 3 27279 3 20347 3 29440 3 20438 3 26268 3 26688 3 23583 3 26088 3 22830 3 26770 3 20607 3 27189 3 20728 3 24729 3 25373 3 24345 3 20166 3 20172 3 23821 3 23011 3 27676 3 24465 3 25152 3 27234 3 29451 3 25647 3 22302 3 22101 3 20662 3 24885 3 27839 3 23557 3 24852 3 22751 3 20503 3 20180 3 27506 3 26813 3 25481 3 29289 3 29690 3 25878 3 21816 3 26382 3 24563 3 25201 3 20524 3 20803 3 26143 3 29356 3 21507 3 20442 3 28662 3 23153 3 24932 3 27350 3 24985 3 21064 3 27909 3 20753 3 20033 3 25088 3 23054 3 28320 3 28893 3 23690 3 24699 3 28217 3 20771 3 29603 3 27472 3 23307 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 3 6 
 
-hôte
-896 4 
+arctique
+29822 10 
 
-pousser
-896 3 
+superficie
+29822 8 
 
-suicide
-896 3 
+plus
+29822 8 3 15 3 9 3 7 3 11 3 7 3 8 3 7 3 7 3 7 3 7 
 
-parasite
-896 3 
+Œdipe
+3 14 
 
-nématomorphes
-896 3 
+colone
+3 9 
 
-frédéric
-896 3 
+scène
+3 6 
+
+ososphère
+3 8 
+
+octobre
+3 6 
+
+robyn
+3 6 
+
+sud
+3 6 
+
+avait
+3 7 
+
+était
+3 6 
+
+lui
+3 6 
+
+voyager
+3 11 
+
+solaire
+3 10 
+
+stade
+3 25 
+
+france
+3 16 3 13 3 8 3 8 3 6 3 19 
+
+lille
+3 13 3 6 
+
+louvre
+3 9 3 7 
+
+lens
+3 8 
+
+région
+3 8 
+
+s'
+3 7 3 6 3 6 
+
+c'
+3 6 3 8 3 11 3 7 3 14 
+
+n'
+3 6 3 9 3 11 3 6 3 6 3 6 3 8 
+
+jazz
+3 8 
+
+katché
+3 7 
+
+effet
+3 8 3 9 
+
+points
+3 6 3 9 
+
+ted
+3 10 
+
+américain
+3 9 
+
+football
+3 12 
+
+saison
+3 11 
+
+virus
+3 12 3 11 
+
+contre
+3 9 
+
+vaccin
+3 7 
+
+girodet
+3 13 
+
+architectes
+3 14 
+
+architecture
+3 9 
+
+j'
+3 14 3 7 
+
+sao
+3 7 
+
+paulo
+3 6 
+
+exposition
+3 6 
+
+se
+3 6 3 8 3 8 3 9 3 7 3 8 3 8 
+
+champions
+3 6 
+
+000
+3 6 
+
+deux
+3 6 
+
+deuxième
+3 6 
+
+cellules
+3 30 3 21 
+
+souches
+3 16 3 10 
+
+chez
+3 13 
+
+devi
+3 9 
+
+girija
+3 8 
+
+ville
+3 6 
+
+prévision
+3 9 
+
+sonde
+3 9 
+
+basket
+3 9 
+
+quasar
+3 7 
+
+théâtre
+3 7 3 33 
+
+acoustique
+3 6 
+
+film
+3 14 
+
+robert
+3 13 
+
+wise
+3 13 
+
+co2
+3 21 3 20 
+
+gaz
+3 6 3 6 
+
+pays
+3 8 
+
+grippe
+3 7 
+
+club
+3 8 
+
+avc
+3 16 
+
+troubles
+3 8 
+
+explosion
+3 6 
+
+milliards
+3 6 
+
+kg
+3 7 
+
+équipe
+3 6 
+
+raman
+3 10 
+
+susheela
+3 9 
+
+mills
+3 6 
+
+oberon
+3 6 
+
+marie
+3 11 
+
+sevestre
+3 10 
+
+librairie
+3 10 
+
+federer
+3 10 
+
+agassi
+3 9 
+
+roger
+3 9 
+
+no2
+3 6 
+
+nasa
+3 6 
+
+3d
+3 9 
+
+réalité
+3 6 
+
+carbone
+3 16 
+
+sols
+3 12 
+
+été
+3 11 3 8 3 6 3 6 
+
+comète
+3 9 
+
+fado
+3 27 
+
+fédération
+3 7 
+
+francis
+3 7 
+
+delattre
+3 7 
+
+personnes
+3 11 
+
+vaccination
+3 10 
+
+coupe
+3 8 
+
+maïs
+3 9 
+
+transgènes
+3 6 
+
+athlètes
+3 7 
+
+aux
+3 6 
+
+the
+3 8 
+
+patrimoine
+3 8 
+
+prague
+3 6 
+
+palais
+3 6 
+
+visa
+3 6 
+
+can
+3 8 
+
+sacd
+3 8 
+
+public
+3 15 
+
+mclaren
+3 12 
+
+renault
+3 10 
+
+vih
+3 12 
+
+circoncision
+3 11 
+
+hommes
+3 9 
+
+jean
+3 6 
+
+christophe
+3 6 
+
+chercheurs
+3 6 
 

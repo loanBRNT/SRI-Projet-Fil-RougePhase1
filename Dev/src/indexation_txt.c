@@ -3,6 +3,7 @@
 #include <string.h>
 #include <dirent.h>
 #define MAX 30
+#include "../include/img.h"
 #include "indexation_txt.h"
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -187,6 +188,7 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 
 DescripteurTxt initDescripteurTxt(int nbterme){
 	DescripteurTxt DT;
+	DT.ID=generationIdUnique(1);
 	DT.nbtermes=nbterme;
 	DT.nbtokens=0;
 	DT.tableau=(Terme*) malloc(sizeof(Terme) * nbterme);						// taille a recup dans le .config
@@ -227,9 +229,29 @@ void printDescripteurTxt(DescripteurTxt Dt, FILE* fdescri){
 
 	for(int i=0; i<Dt.nbtermes ; i++){
 		if (Dt.tableau[i].nboccurence == 0) break;
-		fprintf(fdescri,"%s %d ",Dt.tableau[i].token , Dt.tableau[i].nboccurence);
+		fprintf(fdescri,"%s %d \n",Dt.tableau[i].token , Dt.tableau[i].nboccurence);
 	}
-	fprintf(fdescri,"\n\n");
+	fprintf(fdescri,"\n");
+
+}
+
+DescripteurTxt LireDescripteurTexte( FILE*f,int id, int nbtermes, int nbtokens){
+    char *lu =(char *) malloc(30*sizeof(char));
+    int valeur;
+    int i=0;
+    DescripteurTxt DT=initDescripteurTxt(nbtermes);;
+    DT.ID=id;
+    DT.nbtokens=nbtokens;
+    fscanf(f,"%s",lu);
+    while(i<nbtermes){
+    	strcpy(DT.tableau[i].token, lu);
+    	fscanf(f,"%s",lu);
+        valeur=atoi(lu);
+        DT.tableau[i].nboccurence = valeur;
+        fscanf(f,"%s",lu);
+        i++;
+    }
+    return DT;
 
 }
 

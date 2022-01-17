@@ -148,7 +148,7 @@ int generationIdUnique(int choix){
         strcat(commande, buffer);
         strcat(commande, " ");
         strcat(commande, CHEMIN_LISTE);
-        system(commande);
+        //system(commande); // commande execute dans popen donc ici uniquement pour verifier valeur de retour de la commande
         FILE * f = popen(commande, "r");
         fscanf(f,"%d",&res);
         pclose(f);

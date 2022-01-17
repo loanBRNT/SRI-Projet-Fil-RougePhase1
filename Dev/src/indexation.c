@@ -6,8 +6,10 @@
 #include "../include/indexation.h"
 #include "../include/descripteurAudio.h"
 #include "../include/img.h"
+#include "../include/indexation_txt.h"
 #include "../include/pile_Audio.h"
 #include "../include/pile_Img.h"
+#include "../include/pile_Texte.h"
 #include "../include/admin.h"
 /* 
  ----------------------- Signature -------------------------
@@ -87,15 +89,16 @@ void Indexation(){
 	FILE * ptr_fic; 
 	PILE_Audio pA =init_PILE_Audio();
 	PILE_Img pI=init_PILE_Img();
+	PILE_Texte pT=init_PILE_Texte();
 
 	// recuperation des valeurs du .config
-	//int recupNbMotsParTexteDuConfig();
-	//int recupSeuilOccurenceDuConfig();
+	int NbMot=recupNbMotParTexteDuConfig();
+	int OccMot=recupSeuilOccurenceMotDuConfig();
 	int intervalleAudio=recupNbIntervalleDuConfig();
 	int nbrPointAudio =recupNbPointsDuConfig();
 	int bitQ=recupNbBitsDuConfig();
 
-/*
+
 
 
 
@@ -108,14 +111,14 @@ void Indexation(){
 	strcpy(commande, "ls -l ");
 	strcat(commande, CHEMIN_TEXTE);
 	strcat(commande, " > fic_temp"); 
-	printf("execution de %s\n", commande); 
+	//printf("execution de %s\n", commande); 
 	fflush(stdout);
 	system(commande);
 	//---------------------------------------------------------------------//
 	// AFFICHAGE DU CONTENU DU FICHIER CREE LORS DE LA PRECEDENTE COMMANDE//
 	//---------------------------------------------------------------------//
-	system("cat fic_temp");
-	printf("---------------------------------\n");
+	//system("cat fic_temp");
+	//printf("---------------------------------\n");
 
 	ptr_fic = fopen("fic_temp", "r");
 
@@ -134,16 +137,17 @@ void Indexation(){
  	    	}
  	    	else{
      			if (strstr(nom_fic, ".xml")){
-     				strcpy(CHEMIN_INDEXATION,"../Database/Texte/");	
+    				strcpy(CHEMIN_INDEXATION,"./Database/Texte/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
-     				// attention la seuelement nom du fichier et pas son chemin
-    				//fonction indexation texte  ;
-    				printf("indexation d'un fichier texte\n");
+    				DescripteurTxt Dt =indexationTxt(CHEMIN_INDEXATION, OccMot, NbMot);
+    				pT=emPILE_Texte(pT,Dt);
+    				sprintf(id,"%d", Dt.ID);
     				strcpy(commande, "echo ");
-    				strcat(commande, ID);
+    				strcat(commande,id);
+    				strcat(commande," " );
 					strcat(commande, nom_fic);
-					strcat(commande, " >> ../Database/Descripteur/dT.txt"); 
-					system(commande);
+					strcat(commande, " >> ./Database/Descripteur/liste_base_texte.txt");
+					system(commande); 
     			}
     			else{
     			fprintf(stderr, "ERREUR :  PB avec type du fichier\n");
@@ -160,7 +164,7 @@ void Indexation(){
 	}
 
 
-*/
+
 
 
 	//------------------------------------------------------//
@@ -354,18 +358,34 @@ void Indexation(){
 	//---------------------------------------------------------------------//
 
 	FILE * f;
-    f=fopen("./Database/Descripteur/dA.txt","a+");
-	while(!PILE_Audio_estVide(pA)){
-		pA=dePILE_Audio(pA,f);
+	if(!PILE_Audio_estVide(pA)){
+		f=fopen("./Database/Descripteur/dA.txt","a+");
+		while(!PILE_Audio_estVide(pA)){
+			pA=dePILE_Audio(pA,f);
+		}
+		fclose(f);
 	}
-	fclose(f);
 
 
-	f=fopen("./Database/Descripteur/dI.txt","a+");
-	while(!PILE_Img_estVide(pI)){
-		pI=dePILE_Img(pI,f);
+	if(!PILE_Img_estVide(pI)){
+		f=fopen("./Database/Descripteur/dI.txt","a+");
+		while(!PILE_Img_estVide(pI)){
+			pI=dePILE_Img(pI,f);
+		}
+		fclose(f);
 	}
-	fclose(f);
+
+
+	if(!PILE_Texte_estVide(pT)){
+		f=fopen("./Database/Descripteur/dT.txt","a+");
+		while(!PILE_Texte_estVide(pT)){
+			pT=dePILE_Texte(pT,f);
+		}
+		fclose(f);
+		sauvegardeMotCle();
+	}
+
+
 	strcpy(commande, "rm fic_temp fic_temp2 ");
 	system(commande); 
 

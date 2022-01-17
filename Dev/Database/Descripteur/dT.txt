@@ -1,5 +1,594 @@
-896
-8
+29822
+3
+50
+.
+
+27523
+3
+293
+arctique 10 
+superficie 8 
+plus 8 
+.
+
+22275
+3
+475
+Œdipe 14 
+colone 9 
+scène 6 
+.
+
+29648
+3
+389
+ososphère 8 
+octobre 6 
+.
+
+24512
+3
+435
+on 7 
+robyn 6 
+sud 6 
+.
+
+28246
+3
+360
+avait 7 
+était 6 
+lui 6 
+.
+
+25183
+3
+823
+plus 15 
+voyager 11 
+solaire 10 
+.
+
+23008
+3
+185
+.
+
+24660
+3
+730
+stade 25 
+france 16 
+lille 13 
+.
+
+25732
+3
+561
+louvre 9 
+lens 8 
+région 8 
+.
+
+21009
+3
+289
+.
+
+22358
+3
+359
+s' 7 
+c' 6 
+n' 6 
+.
+
+27279
+3
+233
+jazz 8 
+katché 7 
+.
+
+20347
+3
+193
+.
+
+29440
+3
+512
+effet 8 
+.
+
+20438
+3
+285
+points 6 
+.
+
+26268
+3
+667
+france 13 
+ted 10 
+américain 9 
+.
+
+26688
+3
+236
+.
+
+23583
+3
+571
+football 12 
+saison 11 
+plus 9 
+.
+
+26088
+3
+618
+virus 12 
+contre 9 
+vaccin 7 
+.
+
+22830
+3
+757
+girodet 13 
+n' 9 
+louvre 7 
+.
+
+26770
+3
+560
+architectes 14 
+architecture 9 
+on 9 
+.
+
+20607
+3
+734
+j' 14 
+on 12 
+ne 10 
+.
+
+27189
+3
+438
+sao 7 
+paulo 6 
+.
+
+20728
+3
+283
+exposition 6 
+.
+
+24729
+3
+364
+se 6 
+champions 6 
+.
+
+25373
+3
+54
+.
+
+24345
+3
+145
+000 6 
+.
+
+20166
+3
+28
+.
+
+20172
+3
+379
+france 8 
+deux 6 
+deuxième 6 
+.
+
+23821
+3
+676
+cellules 30 
+souches 16 
+chez 13 
+.
+
+23011
+3
+441
+devi 9 
+girija 8 
+ville 6 
+.
+
+27676
+3
+407
+prévision 9 
+france 8 
+.
+
+24465
+3
+333
+se 8 
+c' 8 
+plus 7 
+.
+
+25152
+3
+700
+plus 11 
+sonde 9 
+se 8 
+.
+
+27234
+3
+474
+n' 11 
+ne 11 
+basket 9 
+.
+
+29451
+3
+309
+se 9 
+quasar 7 
+.
+
+25647
+3
+496
+se 7 
+lille 6 
+n' 6 
+.
+
+22302
+3
+312
+théâtre 7 
+acoustique 6 
+.
+
+22101
+3
+573
+film 14 
+robert 13 
+wise 13 
+.
+
+20662
+3
+228
+.
+
+24885
+3
+621
+co2 21 
+gaz 6 
+n' 6 
+.
+
+27839
+3
+622
+co2 20 
+gaz 6 
+n' 6 
+.
+
+23557
+3
+276
+pays 8 
+grippe 7 
+.
+
+24852
+3
+451
+c' 11 
+ol 9 
+club 8 
+.
+
+22751
+3
+646
+avc 16 
+troubles 8 
+plus 7 
+.
+
+20503
+3
+190
+.
+
+20180
+3
+343
+plus 8 
+explosion 6 
+milliards 6 
+.
+
+27506
+3
+428
+plus 7 
+kg 7 
+équipe 6 
+.
+
+26813
+3
+394
+raman 10 
+susheela 9 
+mills 6 
+.
+
+25481
+3
+266
+oberon 6 
+.
+
+29289
+3
+647
+marie 11 
+sevestre 10 
+librairie 10 
+.
+
+29690
+3
+403
+.
+
+25878
+3
+668
+federer 10 
+agassi 9 
+roger 9 
+.
+
+21816
+3
+373
+no2 6 
+.
+
+26382
+3
+456
+nasa 6 
+s' 6 
+.
+
+24563
+3
+505
+3d 9 
+se 8 
+réalité 6 
+.
+
+25201
+3
+271
+.
+
+20524
+3
+64
+.
+
+20803
+3
+313
+c' 7 
+.
+
+26143
+3
+640
+carbone 16 
+sols 12 
+effet 9 
+.
+
+29356
+3
+277
+.
+
+21507
+3
+657
+ont 13 
+été 11 
+comète 9 
+.
+
+20442
+3
+236
+france 6 
+.
+
+28662
+3
+578
+fado 27 
+été 8 
+j' 7 
+.
+
+23153
+3
+333
+fédération 7 
+francis 7 
+delattre 7 
+.
+
+24932
+3
+24
+.
+
+27350
+3
+699
+personnes 11 
+virus 11 
+vaccination 10 
+.
+
+24985
+3
+691
+france 19 
+n' 8 
+coupe 8 
+.
+
+21064
+3
+539
+maïs 9 
+transgènes 6 
+été 6 
+.
+
+27909
+3
+492
+athlètes 7 
+aux 6 
+été 6 
+.
+
+20753
+3
+428
+on 12 
+the 8 
+plus 7 
+.
+
+20033
+3
+458
+patrimoine 8 
+prague 6 
+palais 6 
+.
+
+25088
+3
+221
+visa 6 
+.
+
+23054
+3
+320
+can 8 
+sacd 8 
+.
+
+28320
+3
+861
+théâtre 33 
+public 15 
+c' 14 
+.
+
+28893
+3
+838
+mclaren 12 
+renault 10 
+points 9 
+.
+
+23690
+3
+619
+vih 12 
+circoncision 11 
+hommes 9 
+.
+
+24699
+3
+492
+on 10 
+se 8 
+plus 7 
+.
+
+28217
+3
+449
+jean 6 
+christophe 6 
+s' 6 
+.
+
+20771
+3
+289
+plus 7 
+.
+
+29603
+3
+266
+.
+
+27472
+3
 284
-comportement 4 hôte 4 pousser 3 suicide 3 parasite 3 se 3 nématomorphes 3 frédéric 3 
+.
+
+23307
+3
+341
+cellules 21 
+souches 10 
+chercheurs 6 
+.
 

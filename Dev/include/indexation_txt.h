@@ -21,14 +21,14 @@ typedef struct s_descripteurtxt
 
 
 DescripteurTxt indexationTxt(char* nom, int occ, int nbterme);
-DescripteurTxt initDescripteurTxt();
+DescripteurTxt initDescripteurTxt(int);
 void cleaning(char* nom);
 int CleanToTok();
 void printDescripteurTxt(DescripteurTxt DT, FILE* fdescri);
 DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme);
 Terme ajouterTerme(Terme actTerme, char* mot, int occ);
 void intercalerTerme(Terme* tab, char* mot, int occ, int cpt, int nbterme);
-
+DescripteurTxt LireDescripteurTexte( FILE*f,int id, int nbtermes, int nbtokens);
 int motDejaConnu(Terme* tableau, char* mot, int nbterme);
 int sauvegardeMotCle();
 

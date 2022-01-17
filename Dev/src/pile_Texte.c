@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/admin.h"
-#include "../include/Texte.h"
+#include "../include/indexation_txt.h"
 #include "../include/pile_Texte.h"
 
 PILE_Texte init_PILE_Texte(){
@@ -9,7 +9,7 @@ PILE_Texte init_PILE_Texte(){
 	p=NULL;
 	return p;
 }
-
+/*
 void affiche_PILE_Texte(PILE_Texte p){
 	CelluleI* c = p;
 	while(c!=NULL){
@@ -17,13 +17,14 @@ void affiche_PILE_Texte(PILE_Texte p){
 		c=c->next;
 	}
 }
+*/
 
 int PILE_Texte_estVide(PILE_Texte p){
 	return(p==NULL);
 }
 
-PILE_Texte emPILE_Texte(PILE_Texte p, Descripteur e){
-	CelluleT* cell=(CelluleT*)malloc(sizeof(struct s_celluleI));
+PILE_Texte emPILE_Texte(PILE_Texte p, DescripteurTxt e){
+	CelluleT* cell=(CelluleT*)malloc(sizeof(struct s_celluleT));
 	cell->Dt=e;
 	cell->next=p;
 	p=cell;
@@ -31,23 +32,25 @@ PILE_Texte emPILE_Texte(PILE_Texte p, Descripteur e){
 }
 
 PILE_Texte dePILE_Texte(PILE_Texte p,FILE* f){
-	CelluleI*c=p;
-	Sauvegarder_DescripteurTexte(p->Dt,f); // a implementer dans descpriteurTexte.txt
+	CelluleT*c=p;
+	printDescripteurTxt(p->Dt,f);
 	p=p->next;
 	free(c);
 	return p;
 }
 PILE_Texte dePILE_Texte_Sans_Sauvegarde(PILE_Texte p){
-	CelluleI*c=p;
+	CelluleT*c=p;
 	p=p->next;
 	free(c);
 	return p;
 };
 
+
 PILE_Texte Charger_Pile_DescripteurTexte(PILE_Texte PT){
 	FILE* f;
-    //char *lu =(char *) malloc(10*sizeof(char));
-    //int taille;
+    char *lu =(char *) malloc(30*sizeof(char));
+    int nbtermes;
+    int nbtokens;
     int id;
     f=fopen("./Database/Descripteur/dT.txt","r"); //modif
     if(f==NULL){
@@ -57,18 +60,20 @@ PILE_Texte Charger_Pile_DescripteurTexte(PILE_Texte PT){
         while(!feof(f)){
             fscanf(f,"%s",lu);
             id=atoi(lu);
-
-            //faire la lecture d'un descripteur texte;
-
+            fscanf(f,"%s",lu);
+            nbtermes=atoi(lu);
+            fscanf(f,"%s",lu);
+            nbtokens=atoi(lu);
             if(!feof(f)){
-            	Descripteur DI =LireDescripteurTexte( f,taille,id);
-    				PI=emPILE_Texte(PT,DI); 
+            	DescripteurTxt DT =LireDescripteurTexte( f,id,nbtermes,nbtokens);
+    				PT=emPILE_Texte(PT,DT); 
             }
             
          }
       }
-	return PI;
+	return PT;
 
 };
+
 
 

@@ -1,5 +1,5 @@
-prog.out: bin/recherche.o bin/main.o bin/admin.o bin/comparaison.o bin/indexation.o bin/img.o bin/pile_Img.o bin/pile_Audio.o bin/indexation_txt.o bin/descripteurAudio.o bin/interface.o bin/pwd.o
-	gcc bin/recherche.o bin/main.o bin/admin.o bin/comparaison.o bin/indexation.o bin/img.o bin/pile_Img.o bin/pile_Audio.o bin/indexation_txt.o bin/descripteurAudio.o bin/interface.o bin/pwd.o -o prog.out -lm
+prog.out: bin/recherche.o bin/main.o bin/admin.o bin/comparaison.o bin/indexation.o bin/img.o bin/indexation_txt.o bin/descripteurAudio.o bin/pile_Img.o bin/pile_Audio.o bin/pile_Texte.o bin/interface.o bin/pwd.o
+	gcc bin/recherche.o bin/main.o bin/admin.o bin/comparaison.o bin/indexation.o bin/img.o  bin/indexation_txt.o bin/descripteurAudio.o bin/pile_Img.o bin/pile_Audio.o bin/pile_Texte.o bin/interface.o bin/pwd.o -o prog.out -lm
 
 bin/interface.o: src/interface.c include/interface.h
 	gcc -c src/interface.c -o bin/interface.o -Wall
@@ -22,7 +22,7 @@ bin/indexation.o: src/indexation.c include/indexation.h
 bin/img.o: src/img.c include/img.h
 	gcc -c src/img.c -o bin/img.o
 
-bin/indexation_txt.o: src/indexation_txt.c include/indexation.h
+bin/indexation_txt.o: src/indexation_txt.c include/indexation_txt.h
 	gcc -c src/indexation_txt.c -o bin/indexation_txt.o -Wall
 
 bin/pile_Img.o: src/pile_Img.c include/pile_Img.h
@@ -30,6 +30,9 @@ bin/pile_Img.o: src/pile_Img.c include/pile_Img.h
 
 bin/pile_Audio.o: src/pile_Audio.c include/pile_Audio.h
 	gcc -c src/pile_Audio.c -o bin/pile_Audio.o -Wall
+
+bin/pile_Texte.o: src/pile_Texte.c include/pile_Texte.h
+	gcc -c src/pile_Texte.c -o bin/pile_Texte.o -Wall
 
 bin/descripteurAudio.o: src/descripteurAudio.c include/descripteurAudio.h
 	gcc -c src/descripteurAudio.c -o bin/descripteurAudio.o -Wall

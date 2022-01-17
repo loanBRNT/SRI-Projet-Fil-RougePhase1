@@ -9,10 +9,11 @@
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"
 #include "../include/pile_Audio.h"
+#include "../include/pile_Texte.h"
 #include "../include/recherche.h"
 #include "../include/comparaison.h"
 
-/*
+
 int main(int argc, char const *argv[])
 {
 
@@ -20,7 +21,7 @@ int main(int argc, char const *argv[])
 	//  puis demande le numero du menu souhaite et lance la fonction de gestion du menu selectionne 
 	//  si le numero n'est pas bon on redemande un numero de menu
 	//  le choix numero 0 modifie la valeur de la variable event afin de sortir de la boucle et pouvoir arreter le programme
-	
+	srand(time(NULL));
 	afficheAccueil();
 	int event = 1 ;
 	long choixMenu;
@@ -54,7 +55,7 @@ int main(int argc, char const *argv[])
 
 
 	return 0;
-}*/
+}
 
 /*
 int main(int argc, char *argv[])
@@ -67,18 +68,20 @@ int main(int argc, char *argv[])
 	printf("\n==========\n%s",chaine);
 	return 0;
 }
-*/
 
 int main(int argc, char const *argv[])
 {
-	DESCRIPTEUR_TEXTE d = indexationTxt("./Database/Texte/03-Mimer_un_signal_nerveux_pour.xml",8,2);
-
-	FILE* f = fopen("./Database/Descripteur/dT.txt","w+");
-
-	printDescripteurTxt(d,f);
-
+	FILE * f;
+	PILE_Texte pT=init_PILE_Texte();
+	pT=Charger_Pile_DescripteurTexte(pT);
+	f=fopen("./Database/Descripteur/dTtest.txt","a+");
+	while(!PILE_Texte_estVide(pT)){
+		pT=dePILE_Texte(pT,f);
+	}
 	fclose(f);
 
-	sauvegardeMotCle();
-	return 0;
-}
+
+     
+};
+*/
+
