@@ -4,7 +4,7 @@
 #include "../include/pwd.h"
 #include "../include/interface.h"
 #include "../include/indexation.h"
-#include "indexation_txt.h"
+#include "../include/indexation_txt.h"
 #include "../include/img.h"
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 
 int main(int argc, char const *argv[])
 {
-	DESCRIPTEUR_TEXTE d = indexationTxt("./Database/Texte/03-Mimer_un_signal_nerveux_pour.xml",8,2);
+	DESCRIPTEUR_TEXTE d = indexationTxt("./Database/Texte/03-Mimer_un_signal_nerveux_pour.xml",16,4);
 
 	FILE* f = fopen("./Database/Descripteur/dT.txt","w+");
 

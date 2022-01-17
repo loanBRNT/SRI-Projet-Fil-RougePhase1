@@ -3,7 +3,7 @@
 #include <string.h>
 #include <dirent.h>
 #define MAX 30
-#include "indexation_txt.h"
+#include "../include/indexation_txt.h"
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -157,6 +157,7 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 			while(cpt < nbterme){
 				actTerme = (Dt.tableau[cpt]);
 				if((occurence > actTerme.nboccurence)){
+					Dt.nbtermes = incrementerNbTerme(Dt.nbtermes,nbterme);
 					intercalerTerme(Dt.tableau, mot, occurence, cpt, nbterme);
 					break;
 				}
@@ -165,6 +166,7 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 				
 			}
 			if(cpt < nbterme){
+				//Dt.nbtermes = incrementerNbTerme(Dt.nbtermes,nbterme);
 				Dt.tableau[cpt] = ajouterTerme(actTerme, mot, occurence);
 			}
 			
@@ -181,13 +183,18 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 
 //---------------------------------------------------------------------------------------------------------------------------
 
-
+int incrementerNbTerme(int nb, int nbtermeMAX){
+	if (nb < nbtermeMAX ){
+		nb++;
+	}
+	return nb;
+}
 
 //---------------------------------------------------------------------------------------------------------------------------
 
 DescripteurTxt initDescripteurTxt(int nbterme){
 	DescripteurTxt DT;
-	DT.nbtermes=nbterme;
+	DT.nbtermes=0;
 	DT.nbtokens=0;
 	DT.tableau=(Terme*) malloc(sizeof(Terme) * nbterme);						// taille a recup dans le .config
 	for(int i=0; i<nbterme ; i++){
