@@ -1,601 +1,510 @@
-<<<<<<< HEAD
-29822
-3
+27684
+0
 50
-.
 
-27523
+20599
 3
 293
 arctique 10 
 superficie 8 
 plus 8 
-.
 
-22275
+21699
 3
 475
 Œdipe 14 
 colone 9 
 scène 6 
-.
 
-29648
-3
+20819
+2
 389
 ososphère 8 
 octobre 6 
-.
 
-24512
+21407
 3
 435
 on 7 
 robyn 6 
 sud 6 
-.
 
-28246
+28618
 3
 360
 avait 7 
 était 6 
 lui 6 
-.
 
-25183
+24575
 3
 823
 plus 15 
 voyager 11 
 solaire 10 
-.
 
-23008
-3
+23864
+0
 185
-.
 
-24660
+20337
 3
 730
 stade 25 
 france 16 
 lille 13 
-.
 
-25732
+20400
 3
 561
 louvre 9 
 lens 8 
 région 8 
-.
 
-21009
-3
+28015
+0
 289
-.
 
-22358
+29530
 3
 359
 s' 7 
 c' 6 
 n' 6 
-.
 
-27279
-3
+28730
+2
 233
 jazz 8 
 katché 7 
-.
 
-20347
-3
+23611
+0
 193
-.
 
-29440
-3
+29953
+1
 512
 effet 8 
-.
 
-20438
-3
+23897
+1
 285
 points 6 
-.
 
-26268
+24698
 3
 667
 france 13 
 ted 10 
 américain 9 
-.
 
-26688
-3
+25153
+0
 236
-.
 
-23583
+26041
 3
 571
 football 12 
 saison 11 
 plus 9 
-.
 
-26088
+25997
 3
 618
 virus 12 
 contre 9 
 vaccin 7 
-.
 
-22830
+20380
 3
 757
 girodet 13 
 n' 9 
 louvre 7 
-.
 
-26770
+29585
 3
 560
 architectes 14 
 architecture 9 
 on 9 
-.
 
-20607
+22147
 3
 734
 j' 14 
 on 12 
 ne 10 
-.
 
-27189
-3
+23997
+2
 438
 sao 7 
 paulo 6 
-.
 
-20728
-3
+25400
+1
 283
 exposition 6 
-.
 
-24729
-3
+24419
+2
 364
 se 6 
 champions 6 
-.
 
-25373
-3
+23249
+0
 54
-.
 
-24345
-3
+23686
+1
 145
 000 6 
-.
 
-20166
-3
+22871
+0
 28
-.
 
-20172
+21685
 3
 379
 france 8 
 deux 6 
 deuxième 6 
-.
 
-23821
+23963
 3
 676
 cellules 30 
 souches 16 
 chez 13 
-.
 
-23011
+26865
 3
 441
 devi 9 
 girija 8 
 ville 6 
-.
 
-27676
-3
+22840
+2
 407
 prévision 9 
 france 8 
-.
 
-24465
+26728
 3
 333
 se 8 
 c' 8 
 plus 7 
-.
 
-25152
+26243
 3
 700
 plus 11 
 sonde 9 
 se 8 
-.
 
-27234
+27543
 3
 474
 n' 11 
 ne 11 
 basket 9 
-.
 
-29451
-3
+28281
+2
 309
 se 9 
 quasar 7 
-.
 
-25647
+27823
 3
 496
 se 7 
 lille 6 
 n' 6 
-.
 
-22302
-3
+29496
+2
 312
 théâtre 7 
 acoustique 6 
-.
 
-22101
+24455
 3
 573
 film 14 
 robert 13 
 wise 13 
-.
 
-20662
-3
+21670
+0
 228
-.
 
-24885
+24404
 3
 621
 co2 21 
 gaz 6 
 n' 6 
-.
 
-27839
+29576
 3
 622
 co2 20 
 gaz 6 
 n' 6 
-.
 
-23557
-3
+28481
+2
 276
 pays 8 
 grippe 7 
-.
 
-24852
+22561
 3
 451
 c' 11 
 ol 9 
 club 8 
-.
 
-22751
+24800
 3
 646
 avc 16 
 troubles 8 
 plus 7 
-.
 
-20503
-3
+27856
+0
 190
-.
 
-20180
+28701
 3
 343
 plus 8 
 explosion 6 
 milliards 6 
-.
 
-27506
+28421
 3
 428
 plus 7 
 kg 7 
 équipe 6 
-.
 
-26813
+26456
 3
 394
 raman 10 
 susheela 9 
 mills 6 
-.
 
-25481
-3
+23850
+1
 266
 oberon 6 
-.
 
-29289
+20031
 3
 647
 marie 11 
 sevestre 10 
 librairie 10 
-.
 
-29690
-3
+27833
+0
 403
-.
 
-25878
+21375
 3
 668
 federer 10 
 agassi 9 
 roger 9 
-.
 
-21816
-3
+20748
+1
 373
 no2 6 
-.
 
-26382
-3
+25361
+2
 456
 nasa 6 
 s' 6 
-.
 
-24563
+21548
 3
 505
 3d 9 
 se 8 
 réalité 6 
-.
 
-25201
-3
+21563
+0
 271
-.
 
-20524
-3
+23371
+0
 64
-.
 
-20803
-3
+29654
+1
 313
 c' 7 
-.
 
-26143
+22493
 3
 640
 carbone 16 
 sols 12 
 effet 9 
-.
 
-29356
-3
+20882
+0
 277
-.
 
-21507
+20621
 3
 657
 ont 13 
 été 11 
 comète 9 
-.
 
-20442
-3
+25297
+1
 236
 france 6 
-.
 
-28662
+28447
 3
 578
 fado 27 
 été 8 
 j' 7 
-.
 
-23153
+22068
 3
 333
 fédération 7 
 francis 7 
 delattre 7 
-.
 
-24932
-3
+28046
+0
 24
-.
 
-27350
+27474
 3
 699
 personnes 11 
 virus 11 
 vaccination 10 
-.
 
-24985
+26152
 3
 691
 france 19 
 n' 8 
 coupe 8 
-.
 
-21064
+28740
 3
 539
 maïs 9 
 transgènes 6 
 été 6 
-.
 
-27909
+24878
 3
 492
 athlètes 7 
 aux 6 
 été 6 
-.
 
-20753
+26837
 3
 428
 on 12 
 the 8 
 plus 7 
-.
 
-20033
+21843
 3
 458
 patrimoine 8 
 prague 6 
 palais 6 
-.
 
-25088
-3
+28424
+1
 221
 visa 6 
-.
 
-23054
-3
+20625
+2
 320
 can 8 
 sacd 8 
-.
 
-28320
+27507
 3
 861
 théâtre 33 
 public 15 
 c' 14 
-.
 
-28893
+20026
 3
 838
 mclaren 12 
 renault 10 
 points 9 
-.
 
-23690
+25048
 3
 619
 vih 12 
 circoncision 11 
 hommes 9 
-.
 
-24699
+24851
 3
 492
 on 10 
 se 8 
 plus 7 
-.
 
-28217
+28390
 3
 449
 jean 6 
 christophe 6 
 s' 6 
-.
 
-20771
-3
+22271
+1
 289
 plus 7 
-.
 
-29603
-3
+26122
+0
 266
-.
 
-27472
-3
+29283
+0
 284
-.
 
-23307
+22471
 3
 341
 cellules 21 
 souches 10 
 chercheurs 6 
-.
-=======
-896
-0
-284
-
->>>>>>> 9e29f968250fee60ed44dea8e5677de5aa30f25d
 

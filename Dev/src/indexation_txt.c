@@ -3,12 +3,9 @@
 #include <string.h>
 #include <dirent.h>
 #define MAX 30
-<<<<<<< HEAD
 #include "../include/img.h"
-#include "indexation_txt.h"
-=======
 #include "../include/indexation_txt.h"
->>>>>>> 9e29f968250fee60ed44dea8e5677de5aa30f25d
+#include "../include/indexation_txt.h"
 
 //------------------------------------------------------------------------------------------------------------------------
 
@@ -199,12 +196,8 @@ int incrementerNbTerme(int nb, int nbtermeMAX){
 
 DescripteurTxt initDescripteurTxt(int nbterme){
 	DescripteurTxt DT;
-<<<<<<< HEAD
 	DT.ID=generationIdUnique(1);
-	DT.nbtermes=nbterme;
-=======
 	DT.nbtermes=0;
->>>>>>> 9e29f968250fee60ed44dea8e5677de5aa30f25d
 	DT.nbtokens=0;
 	DT.tableau=(Terme*) malloc(sizeof(Terme) * nbterme);						// taille a recup dans le .config
 	for(int i=0; i<nbterme ; i++){
@@ -255,6 +248,7 @@ DescripteurTxt LireDescripteurTexte( FILE*f,int id, int nbtermes, int nbtokens){
     int valeur;
     int i=0;
     DescripteurTxt DT=initDescripteurTxt(nbtermes);;
+    DT.nbtermes=nbtermes;
     DT.ID=id;
     DT.nbtokens=nbtokens;
     fscanf(f,"%s",lu);
