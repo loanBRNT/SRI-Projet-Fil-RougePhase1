@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 29822
 3
 50
@@ -591,4 +592,10 @@ cellules 21
 souches 10 
 chercheurs 6 
 .
+=======
+896
+0
+284
+
+>>>>>>> 9e29f968250fee60ed44dea8e5677de5aa30f25d
 
