@@ -329,8 +329,6 @@ int sauvegardeMotCle(){
 		return 1;
 	}
 
-	//vidage de la chaine
-	strcpy(chaine,"");
 
 	rewind(fdT);
 	while(!feof(fdT)){
@@ -339,6 +337,9 @@ int sauvegardeMotCle(){
 		fscanf(fdT,"%d\n",&nbtok);
 
 		for(int i=0; i<nbterme ; i++){
+			//vidage de la chaine
+			strcpy(chaine,"");
+
 			rewind(fcopy);
 
 			fscanf(fdT,"%s %d ",mot,&occ);
@@ -369,12 +370,11 @@ int sauvegardeMotCle(){
 					}
 				}
 				strcat(chaine,"\n\n");
+				fprintf(fkeyword,"%s",chaine);
 			}
 		}
 
 	}
-
-	fprintf(fkeyword,"%s",chaine);
 	
 	fclose(fkeyword);
 	fclose(fcopy);

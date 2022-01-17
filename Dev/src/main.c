@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 
 int main(int argc, char const *argv[])
 {
-<<<<<<< HEAD
+
 	FILE * f;
 	PILE_Texte pT=init_PILE_Texte();
 	pT=Charger_Pile_DescripteurTexte(pT);
@@ -80,11 +80,6 @@ int main(int argc, char const *argv[])
 		pT=dePILE_Texte(pT,f);
 	}
 	fclose(f);
-=======
-	DESCRIPTEUR_TEXTE d = indexationTxt("./Database/Texte/03-Mimer_un_signal_nerveux_pour.xml",16,4);
-
-	FILE* f = fopen("./Database/Descripteur/dT.txt","w+");
->>>>>>> 9e29f968250fee60ed44dea8e5677de5aa30f25d
 
 
      
