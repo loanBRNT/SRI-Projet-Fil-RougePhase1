@@ -37,12 +37,7 @@ float calculSeconde(int ligneActuelle); //calcul la seconde d'apparition du jing
 void calculSimValeur(double* somme, int fVal1, int fVal2, long* val1, long* val2 );
 
 
-
-
-
-
-
-
+// ==========================================================================
 
 
 #endif

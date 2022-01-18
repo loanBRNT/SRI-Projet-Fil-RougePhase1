@@ -246,19 +246,16 @@ void printDescripteurTxt(DescripteurTxt Dt, FILE* fdescri){
 DescripteurTxt LireDescripteurTexte( FILE*f,int id, int nbtermes, int nbtokens){
     char *lu =(char *) malloc(30*sizeof(char));
     int valeur;
-    int i=0;
     DescripteurTxt DT=initDescripteurTxt(nbtermes);;
     DT.nbtermes=nbtermes;
     DT.ID=id;
     DT.nbtokens=nbtokens;
-    fscanf(f,"%s",lu);
-    while(i<nbtermes){
+    for (int i=0 ; i<nbtermes ; i++){
+    	fscanf(f,"%s",lu);
     	strcpy(DT.tableau[i].token, lu);
     	fscanf(f,"%s",lu);
         valeur=atoi(lu);
         DT.tableau[i].nboccurence = valeur;
-        fscanf(f,"%s",lu);
-        i++;
     }
     return DT;
 

@@ -4,6 +4,7 @@
 #include "../include/admin.h"
 #include "../include/indexation.h"
 #include "../include/indexation_txt.h"
+#include "../include/pile_Texte.h"
 #include "../include/img.h"
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"
@@ -53,7 +54,7 @@ int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* image1, DESCRIPTEUR_IMAGE* image
 
 int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpus, char* chaine_resultat){
     char tab[20];
-    int taux = 0;
+    int taux = 0, tauxSim = recupTauxSimmilaritudeDuConfig();
     float s;
     if (jingle == NULL || corpus == NULL) return 0;
     if (jingle->taille > corpus->taille) return 0;
@@ -65,9 +66,9 @@ int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpu
 
         taux = calculSimHisto(ptr_JingleHisto,ptr_CorpusHisto);
 
-        if (taux >= 80){
+        if (taux >= tauxSim){
             taux = verifierSim(ptr_JingleHisto,ptr_CorpusHisto,jingle->taille);
-            if (taux >= 80){
+            if (taux >= tauxSim){
                 s = calculSeconde(i);
                 sprintf(tab,"%f",s);
                 strcat(chaine_resultat,tab);
@@ -130,3 +131,23 @@ float calculSeconde(int ligneActuelle){
 }
 
 // ________________________________________________________________________________________________
+
+int comparaisonFichiersTexte(DESCRIPTEUR_TEXTE* texte1, DESCRIPTEUR_TEXTE* texte2){
+    int taux = 0;
+
+    if (texte1->nbtermes == 0 || texte2->nbtermes == 0) return 0;
+
+    for (int i = 0; i < texte1->nbtermes; ++i)
+    {
+        for (int j = 0; j < texte2->nbtermes; ++j)
+        {
+            if(!strcmp(texte1->tableau[i].token,texte2->tableau[j].token)){
+                taux++;
+            }
+        }
+    }
+    printf("|%d|",taux);
+    return (taux*100/ texte1->nbtermes);
+}
+
+//continuer la relfexion sur le texte

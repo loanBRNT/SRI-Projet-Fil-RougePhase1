@@ -68,7 +68,6 @@ PILE_Texte Charger_Pile_DescripteurTexte(PILE_Texte PT){
             	DescripteurTxt DT =LireDescripteurTexte( f,id,nbtermes,nbtokens);
     				PT=emPILE_Texte(PT,DT); 
             }
-            
          }
       }
 	return PT;

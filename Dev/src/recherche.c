@@ -4,6 +4,7 @@
 
 #include "../include/indexation.h"
 #include "../include/indexation_txt.h"
+#include "../include/pile_Texte.h"
 #include "../include/img.h"
 #include "../include/pile_Img.h"
 #include "../include/descripteurAudio.h"
@@ -33,8 +34,8 @@ void changerExtension(char* extensionActuelle, char* nouvelleExtension){
 //Permet de savoir de quel type est le fichier dont le nom est passe en parametre
 int getTypeDuFichierEtChangeLextension(char* nom_fichier_cible){
     char* ptr_debutExtension = strrchr(nom_fichier_cible,'.');
+    if (ptr_debutExtension == NULL) return 0;
     int type = 0;
-
     if (!strcmp(ptr_debutExtension,".xml")){
         type = 1;
     } else if (!strcmp(ptr_debutExtension,".jpg")){
@@ -53,6 +54,7 @@ int getTypeDuFichierEtChangeLextension(char* nom_fichier_cible){
 
 int getTypeDuFichier(char* nom_fichier_cible){
     char* ptr_debutExtension = strrchr(nom_fichier_cible,'.');    
+    if (ptr_debutExtension == NULL) return 0;
 
     if (!strcmp(ptr_debutExtension,".xml")){
         return 1;
@@ -215,7 +217,7 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
     if (t == 1){
         printf("Le fichier est un fichier Texte\n");
 
-        /*DESCRIPTEUR_TEXTE descfic;
+        DESCRIPTEUR_TEXTE descFic;
 
         if (!VerificationTraitee(nom_fichier_cible)){
             Indexation();
@@ -227,8 +229,12 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
             strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
             return 2;
         }
-    */
+    
+        PILE_DESCRIPTEUR_TEXTE pileSim = rechercheTexteParDescripteur(&descFic);
 
+        if (pileSim != NULL){
+            generationChaineCaracViaPileTexte(pileSim, &descFic,chaine_resultat);
+        }
 
     } else if (t == 2 || t == 4){
 
@@ -275,7 +281,65 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
     return 0;
 }
 
+int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
+    char commande[100], num[5];
+    int numLigne=0;
 
+    strcpy(commande, "grep ^");
+    strcat(commande, mot);  
+    strcat(commande,"$ ./Database/Descripteur/table_index_texte.txt -n >fic_temp");
+    
+    system(commande);
+
+    FILE* fTit = fopen("./fic_temp","r");
+    if (fTit == NULL){
+        strcpy(chaine_resultat,"Votre recherche n'a pas aboutit");
+        return 0;
+    }
+    
+    fscanf(fTit,"%d",&numLigne);
+
+    fclose(fTit);
+
+    numLigne++;
+
+    sprintf(num,"%d",numLigne);
+
+
+    strcpy(commande, "cat ./Database/Descripteur/table_index_texte.txt | head -");
+    strcat(commande, num);
+    strcat(commande, " | tail -1 > fic");
+
+    system(commande);
+
+    FILE* f = fopen("./fic","r");
+    if (f == NULL){
+        strcpy(chaine_resultat,"Votre recherche n'a pas aboutit");
+        return 0;
+    }
+
+    int id;
+    char nom[40];
+
+    strcpy(chaine_resultat,"Voici les resultats pour votre recherche [");
+    strcat(chaine_resultat, mot);
+    strcat(chaine_resultat, "]:\n");
+
+    while (!feof(f)){
+        fscanf(f,"%d %s ",&id,num);
+        recupNomDUFic(id,1,nom);
+        strcat(chaine_resultat, "-");
+        strcat(chaine_resultat,nom);
+        strcat(chaine_resultat, " : Apparait ");
+        strcat(chaine_resultat,num);
+        strcat(chaine_resultat, " fois\n");
+    }
+
+    return 0;
+
+}
+
+//DEMANDER A ELIOTT POUR LE DEPILER
 
 // ===============================================================================================
 
@@ -293,7 +357,7 @@ PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descF
     while (ptr_Cel != NULL){
         if (ptr_Cel->Di.ID != ptr_descFic->ID){
             tauxAct = comparaisonFichiersImage(ptr_descFic,&(ptr_Cel->Di));
-            printf("%d sim à %d%\n",ptr_Cel->Di.ID,tauxAct);
+            printf("%d sim à %d%\n",ptr_Cel->Di.ID,tauxAct); //pour les TEST
             if (tauxAct >= tauwSim){
                 pileSim = emPILE_Img(pileSim , ptr_Cel->Di);
             }
@@ -301,6 +365,33 @@ PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descF
         ptr_Cel = ptr_Cel->next;
     }
     dePILE_Img_Sans_Sauvegarde(pile);
+    return pileSim;
+}
+
+PILE_DESCRIPTEUR_TEXTE rechercheTexteParDescripteur(DESCRIPTEUR_TEXTE* ptr_descFic){
+    PILE_DESCRIPTEUR_TEXTE pile = Charger_Pile_DescripteurTexte(init_PILE_Texte());
+    PILE_DESCRIPTEUR_TEXTE pileSim = init_PILE_Texte();
+    int tauwSim = recupTauxSimmilaritudeDuConfig(), tauxAct;
+
+    if (pile == NULL){
+        printf("ERREUR : ECHEC CHARGEMENT DE LA PILE DES IMAGES\n");
+        return pileSim;
+    }
+
+    
+    CelluleT* ptr_Cel = pile;
+    while (ptr_Cel != NULL){
+        if (ptr_Cel->Dt.ID != ptr_descFic->ID){
+            tauxAct = comparaisonFichiersTexte(ptr_descFic,&(ptr_Cel->Dt));
+            printf("%d : %d\n",ptr_Cel->Dt.ID,tauxAct); // pr les tests
+            if (tauxAct >= tauwSim){
+                pileSim = emPILE_Texte(pileSim, ptr_Cel->Dt);
+            }
+        }
+        ptr_Cel = ptr_Cel->next;
+    }
+    
+    dePILE_Texte_Sans_Sauvegarde(pile);
     return pileSim;
 }
 
@@ -325,6 +416,31 @@ int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_I
     }
 
     dePILE_Img_Sans_Sauvegarde(pile);
+    return 0;
+}
+
+int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_TEXTE* ptr_descFic,char* chaine){
+    char chaine_nom[50];
+    PILE_DESCRIPTEUR_TEXTE ptr_cell = pile;
+
+    recupNomDUFic(ptr_descFic->ID,1,chaine_nom);
+
+    strcpy(chaine,"Voici les resultats suite a votre recherche : [");
+    strcat(chaine, chaine_nom);
+    strcat(chaine,"]\n");
+
+
+    while (ptr_cell != NULL){
+        recupNomDUFic(ptr_cell->Dt.ID,1,chaine_nom);
+        strcat(chaine,"- ");
+        strcat(chaine,chaine_nom);
+        strcat(chaine, "\n");
+        //strcat(chaine, " -> Nb de mot cle en commun : ");
+        //strcat(chaine, occ[]); A IMPLEMENTER
+        ptr_cell = ptr_cell->next;
+    }
+
+    dePILE_Texte_Sans_Sauvegarde(pile);
     return 0;
 }
 
@@ -390,22 +506,22 @@ DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier){
     dePILE_Audio_Sans_Sauvegarde(pile);
     return d;
 }
-/*
+
 DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier){
 
-    PILE_Txt pile = Charger_Pile_DescripteurTxt(init_PILE_Txt());
+    PILE_Texte pile = Charger_Pile_DescripteurTexte(init_PILE_Texte());
     if (pile == NULL){
         DESCRIPTEUR_TEXTE* d = (DESCRIPTEUR_TEXTE*) malloc(sizeof(DESCRIPTEUR_TEXTE));
         d->ID = 0;
         return *d;
     }
 
-    int idFic = recupIdDuFic(nom_fichier, 2);
+    int idFic = recupIdDuFic(nom_fichier, 1);
 
     CelluleT* c = pile;
     DESCRIPTEUR_TEXTE d;
 
-    while (c->Di.ID != idFic){
+    while (c->Dt.ID != idFic){
         c = c->next;
         if (c == NULL){
             break;
@@ -417,10 +533,10 @@ DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier){
         return *d;
     }
 
-    d = c->Di;
-    dePILE_Txt_Sans_Sauvegarde(pile);
+    d = c->Dt;
+    dePILE_Texte_Sans_Sauvegarde(pile);
     return d;
-}*/
+}
 
 // -----------------------------------------------------------------------------------------
 
