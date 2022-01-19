@@ -13,7 +13,7 @@
 #include "../include/recherche.h"
 #include "../include/comparaison.h"
 
-/*
+
 int main(int argc, char const *argv[])
 {
 
@@ -55,9 +55,9 @@ int main(int argc, char const *argv[])
 
 
 	return 0;
-}*/
+}
 
-
+/*
 int main(int argc, char *argv[])
 {
 	char chaine[10000];
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-/*
+
 int main(int argc, char const *argv[])
 {
 
