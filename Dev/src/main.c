@@ -5,6 +5,7 @@
 
 int main(int argc, char const *argv[])
 {
+    srand(time(NULL));
     Descripteur descripteur;
 
 	printf("Tout commence ici....\n");
