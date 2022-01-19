@@ -1,3 +1,6 @@
+start: prog.out
+	./prog.out
+
 prog.out: bin/recherche.o bin/main.o bin/admin.o bin/comparaison.o bin/indexation.o bin/img.o bin/indexation_txt.o bin/descripteurAudio.o bin/pile_Img.o bin/pile_Audio.o bin/pile_Texte.o bin/interface.o bin/pwd.o
 	gcc bin/recherche.o bin/main.o bin/admin.o bin/comparaison.o bin/indexation.o bin/img.o  bin/indexation_txt.o bin/descripteurAudio.o bin/pile_Img.o bin/pile_Audio.o bin/pile_Texte.o bin/interface.o bin/pwd.o -o prog.out -lm
 
