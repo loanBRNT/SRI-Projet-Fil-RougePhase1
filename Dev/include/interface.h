@@ -42,6 +42,8 @@ int menuRechercheParMot();
 
 int menuRechercheParNom();
 
+void recupNomRecherche(char* ch);
+
 int menuRechercheParchemin();
 
 int menuUtilisateur();

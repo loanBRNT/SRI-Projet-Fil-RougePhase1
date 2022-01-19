@@ -6,13 +6,17 @@
 #include<math.h>
 
 #include "../include/indexation.h"
-#include "../include/descripteurAudio.h"
+#include "../include/indexation_txt.h"
+#include "../include/pile_Texte.h"
 #include "../include/img.h"
-#include "../include/pile_Audio.h"
 #include "../include/pile_Img.h"
+#include "../include/descripteurAudio.h"
+#include "../include/pile_Audio.h"
 #include "../include/admin.h"
-#include "../include/pwd.h"
+#include "../include/recherche.h"
+#include "../include/comparaison.h"
 #include "../include/interface.h"
+#include "../include/pwd.h"
 
 
 //########## FONCTIONS DE GESTION DES MENUS ###############
@@ -174,22 +178,28 @@ void afficheRechercheMotCle(){
 	printf("\n");
 }
 
+void afficheRechercheParNom(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#  Vous avez lancer la RECHERCHE PAR NOM  #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#    Veuillez saisir le nom du fichier    #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+}
 
 void afficheRechercheNom(){
-	char* nom = recupNomRecherche();
+	printf("\n");
+	printf("\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#            RECHERCHE PAR NOM            #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
-	printf("#                                         #\n");
-	printf("#      1: Vous avez chercher le fichier:%s   #\n",nom);
-	printf("#                                         #\n");
-	printf("###########################################\n");
-	printf("\n");
-    free(nom);
-}
 
+}
 
 void afficheRechercheChemin(){
 	printf("###########################################\n");
@@ -621,6 +631,7 @@ int menuModifierNbBits(PTR_CONFIG config){
 int menuUtilisateur(){
 	int event = 1 ;
 	long choixMenu;
+	char nomRecherche[50], chaine_result[10000];
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
 		afficheMenuUtilisateur();
 		choixMenu=lireLong();
@@ -628,16 +639,15 @@ int menuUtilisateur(){
 		switch(choixMenu)
 		{
 			case 1:
-				//lancer recherche mot cle
-				if (menuRechercheParMot() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				
 				break;
 			case 2:
-				//lancer recherche Nom
-			if (menuRechercheParNom() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				recupNomRecherche(nomRecherche);
+				lanceRechercheViaNom(nomRecherche,chaine_result);
+				printf("%s\n",chaine_result);
 				break;
 			case 3:
 				//lancer recherche chemin
-			if (menuRechercheParchemin() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
 				break;
 			case 4:
 				//LancerRecherche Selection
@@ -684,34 +694,14 @@ int menuRechercheParMot(){
 	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
 }
 
-int menuRechercheParNom(){
-	int event = 1 ;
-	long choixMenu;
-	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
-		afficheRechercheNom();
-		choixMenu=lireLong();
-		printf("\n");
-		switch(choixMenu)
-		{
-			case 1: ;
-				char* nom = recupNomRecherche();
-                // print
-                printf("%s", nom);
-                free(nom);
-				break;
-			case 2:
-				event = -1; //retour menu utilisateur
-				break;
-			case 3:
-				event = 0; //quitte le logiciel
-				break;
-			default:
-				afficheErreurMenu();
-				break;
-		}
+
+void recupNomRecherche(char* nom){
+		
 	printf("\n");
-	}
-	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+	afficheRechercheParNom();
+	scanf("%s", nom);
+	fflush(stdin);
+
 }
 
 int menuRechercheParchemin(){
