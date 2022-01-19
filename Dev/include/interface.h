@@ -43,6 +43,7 @@ int menuRechercheParMot();
 int menuRechercheParNom();
 
 void recupNomRecherche(char* ch);
+void recupMotRecherche(char* mt);
 
 int menuRechercheParchemin();
 

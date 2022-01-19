@@ -159,7 +159,7 @@ void afficheMenuUtilisateur(){
 }
 
 
-void afficheRechercheMotCle(){
+/*void afficheRechercheMotCle(){
 	printf("###########################################\n");
 	printf("#                                         #\n");
 	printf("#          RECHERCHE PAR MOT CLÉ          #\n");
@@ -176,6 +176,18 @@ void afficheRechercheMotCle(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
+}*/
+
+void afficheRechercheParMot(){
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#  Vous avez lancer la RECHERCHE PAR MOT  #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
+	printf("#                                         #\n");
+	printf("#    Veuillez saisir le MOT CLEE :        #\n");
+	printf("#                                         #\n");
+	printf("###########################################\n");
 }
 
 void afficheRechercheParNom(){
@@ -185,7 +197,7 @@ void afficheRechercheParNom(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#    Veuillez saisir le nom du fichier    #\n");
+	printf("#    Veuillez saisir le nom du fichier :  #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 }
@@ -632,6 +644,7 @@ int menuUtilisateur(){
 	int event = 1 ;
 	long choixMenu;
 	char nomRecherche[50], chaine_result[10000];
+	char motRecherche[50], chaine_result2[10000];
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
 		afficheMenuUtilisateur();
 		choixMenu=lireLong();
@@ -639,12 +652,18 @@ int menuUtilisateur(){
 		switch(choixMenu)
 		{
 			case 1:
-				
+				recupMotRecherche(motRecherche);
+				lanceRechercheViaMotCle(motRecherche,chaine_result2);
+				printf("%s\n",chaine_result2); //cher pas si on peut mettre chaine_result aux deux
+				printf("dsl un peu triché");
+				getchar(); 
 				break;
 			case 2:
 				recupNomRecherche(nomRecherche);
 				lanceRechercheViaNom(nomRecherche,chaine_result);
 				printf("%s\n",chaine_result);
+				printf("dsl un peu triché");
+				getchar(); 
 				break;
 			case 3:
 				//lancer recherche chemin
@@ -667,7 +686,7 @@ int menuUtilisateur(){
 	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
 }
 
-int menuRechercheParMot(){
+/*int menuRechercheParMot(){
 	int event = 1 ;
 	long choixMenu;
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
@@ -692,6 +711,14 @@ int menuRechercheParMot(){
 	printf("\n");
 	}
 	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+}*/
+
+void recupMotRecherche(char* mot){
+		
+	printf("\n");
+	afficheRechercheParMot();
+	scanf("%s", mot);
+	fflush(stdin);
 }
 
 
@@ -701,7 +728,6 @@ void recupNomRecherche(char* nom){
 	afficheRechercheParNom();
 	scanf("%s", nom);
 	fflush(stdin);
-
 }
 
 int menuRechercheParchemin(){
