@@ -287,7 +287,7 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
 
     strcpy(commande, "grep ^");
     strcat(commande, mot);  
-    strcat(commande,"$ ./Database/Descripteur/table_index_texte.txt -n >fic_temp");
+    strcat(commande,"$ ./Database/Descripteur/table_index_texte.txt -n > fic_temp");
     
     system(commande);
 
@@ -298,6 +298,11 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
     }
     
     fscanf(fTit,"%d",&numLigne);
+
+    if (numLigne == 0){
+        strcpy(chaine_resultat,"Votre recherche n'a donne aucun resultats\n");
+        return 0;
+    }
 
     fclose(fTit);
 
