@@ -138,17 +138,22 @@ int comparaisonFichiersTexte(DESCRIPTEUR_TEXTE* texte1, DESCRIPTEUR_TEXTE* texte
 
     if (texte1->nbtermes == 0 || texte2->nbtermes == 0) return 0;
 
+    taux = nbMotCmmunFichierTexte(texte1,texte2);
+
+    return (taux*100/ texte1->nbtermes);
+}
+
+//continuer la relfexion sur le texte
+int nbMotCmmunFichierTexte(DESCRIPTEUR_TEXTE* texte1, DESCRIPTEUR_TEXTE* texte2){
+    int nbOcc = 0;
     for (int i = 0; i < texte1->nbtermes; ++i)
     {
         for (int j = 0; j < texte2->nbtermes; ++j)
         {
             if(!strcmp(texte1->tableau[i].token,texte2->tableau[j].token)){
-                taux++;
+                nbOcc++;
             }
         }
     }
-    printf("|%d|",taux);
-    return (taux*100/ texte1->nbtermes);
+    return nbOcc;
 }
-
-//continuer la relfexion sur le texte

@@ -84,9 +84,9 @@ int recupIdDuFic(char* nom_fic, int type){
     }
     strcpy(commande, "cat ");
     strcat(commande, chemin);
-    strcat(commande, " | grep ");
+    strcat(commande, " | grep ^");
     strcat(commande, nom_fic);
-    strcat(commande, " >fic_temp2 ");
+    strcat(commande, "$ >fic_temp2 ");
 
     fflush(stdout);
     system(commande);
@@ -268,7 +268,6 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
 
         descFic = getDescripteurAudioViaPile(nom_fichier_cible);
 
-        printf("%d\n",descFic.identifiant);
 
         if (descFic.identifiant == 0){
             strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
@@ -418,7 +417,7 @@ int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_I
         recupNomDUFic(pile->Di.ID,type,chaine_nom);
         strcat(chaine,"- ");
         strcat(chaine,chaine_nom);
-        strcat(chaine, "\n");
+        strcat(chaine,"\n");
         sauv = pile;
         pile = pile->next;
         dePILE_Img_Sans_Sauvegarde(sauv);
@@ -428,7 +427,8 @@ int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_I
 }
 
 int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_TEXTE* ptr_descFic,char* chaine){
-    char chaine_nom[50];
+    char chaine_nom[50], chaine_occ[3];
+    int nbOcc;
 
     recupNomDUFic(ptr_descFic->ID,1,chaine_nom);
 
@@ -442,9 +442,11 @@ int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_T
         recupNomDUFic(pile->Dt.ID,1,chaine_nom);
         strcat(chaine,"- ");
         strcat(chaine,chaine_nom);
-        strcat(chaine, "\n");
-        //strcat(chaine, " -> Nb de mot cle en commun : ");
-        //strcat(chaine, occ[]); A IMPLEMENTER
+        strcat(chaine, " : mots cle en commun : ");
+        nbOcc = nbMotCmmunFichierTexte(ptr_descFic, &(pile->Dt));
+        sprintf(chaine_occ,"%d",nbOcc);
+        strcat(chaine, chaine_occ);
+        strcat(chaine,"\n");
         sauv = pile;
         pile = pile->next;
         dePILE_Texte_Sans_Sauvegarde(sauv);
@@ -464,7 +466,7 @@ DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier){
 
     int idFic = recupIdDuFic(nom_fichier, 2);
 
-    CelluleI* c = pile;
+    CelluleI* c = NULL;
     CelluleI* sauv;
     DESCRIPTEUR_IMAGE d;
 
@@ -500,7 +502,7 @@ DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier){
 
     int idFic = recupIdDuFic(nom_fichier, 3);
 
-    Cellule* c = pile;
+    Cellule* c = NULL;
     Cellule* sauv;
     DESCRIPTEUR_AUDIO d;
 
@@ -538,7 +540,7 @@ DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier){
 
     int idFic = recupIdDuFic(nom_fichier, 1);
 
-    CelluleT* c = pile;
+    CelluleT* c = NULL;
     CelluleT* sauv;
     DESCRIPTEUR_TEXTE d;
 

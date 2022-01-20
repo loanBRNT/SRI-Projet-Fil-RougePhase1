@@ -39,5 +39,6 @@ void calculSimValeur(double* somme, int fVal1, int fVal2, long* val1, long* val2
 
 // ==========================================================================
 
+int nbMotCmmunFichierTexte(DESCRIPTEUR_TEXTE* texte1, DESCRIPTEUR_TEXTE* texte2);
 
 #endif
