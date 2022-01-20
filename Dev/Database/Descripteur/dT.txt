@@ -1,507 +1,508 @@
-24241
+ 
+29426
 0
 50
 
-29514
+21453
 3
 293
 arctique 10 
 superficie 8 
 plus 8 
 
-24553
+21147
 3
 475
 Œdipe 14 
 colone 9 
 scène 6 
 
-29307
+22728
 2
 389
 ososphère 8 
 octobre 6 
 
-24264
+20146
 3
 435
 on 7 
 robyn 6 
 sud 6 
 
-27300
+24395
 3
 360
 avait 7 
 était 6 
 lui 6 
 
-21659
+22834
 3
 823
 plus 15 
 voyager 11 
 solaire 10 
 
-27331
+29594
 0
 185
 
-28162
+29835
 3
 730
 stade 25 
 france 16 
 lille 13 
 
-27031
+24988
 3
 561
 louvre 9 
 lens 8 
 région 8 
 
-27278
+23025
 0
 289
 
-21062
+29723
 3
 359
 s' 7 
 c' 6 
 n' 6 
 
-26873
+25325
 2
 233
 jazz 8 
 katché 7 
 
-29483
+29453
 0
 193
 
-29677
+28263
 1
 512
 effet 8 
 
-25644
+23563
 1
 285
 points 6 
 
-23980
+29518
 3
 667
 france 13 
 ted 10 
 américain 9 
 
-21412
+21736
 0
 236
 
-23398
+24417
 3
 571
 football 12 
 saison 11 
 plus 9 
 
-23064
+28560
 3
 618
 virus 12 
 contre 9 
 vaccin 7 
 
-20684
+22545
 3
 757
 girodet 13 
 n' 9 
 louvre 7 
 
-22694
+22857
 3
 560
 architectes 14 
 architecture 9 
 on 9 
 
-26036
+26428
 3
 734
 j' 14 
 on 12 
 ne 10 
 
-22373
+23781
 2
 438
 sao 7 
 paulo 6 
 
-26478
+24281
 1
 283
 exposition 6 
 
-20397
+22368
 2
 364
 se 6 
 champions 6 
 
-20786
+23013
 0
 54
 
-20459
+28676
 1
 145
 000 6 
 
-26604
+21578
 0
 28
 
-27646
+20653
 3
 379
 france 8 
 deux 6 
 deuxième 6 
 
-24034
+26493
 3
 676
 cellules 30 
 souches 16 
 chez 13 
 
-28582
+20345
 3
 441
 devi 9 
 girija 8 
 ville 6 
 
-25250
+24955
 2
 407
 prévision 9 
 france 8 
 
-20901
+20400
 3
 333
 se 8 
 c' 8 
 plus 7 
 
-27648
+23542
 3
 700
 plus 11 
 sonde 9 
 se 8 
 
-20581
+20551
 3
 474
 n' 11 
 ne 11 
 basket 9 
 
-29137
+24560
 2
 309
 se 9 
 quasar 7 
 
-24628
+27846
 3
 496
 se 7 
 lille 6 
 n' 6 
 
-20053
+20217
 2
 312
 théâtre 7 
 acoustique 6 
 
-20748
+23759
 3
 573
 film 14 
 robert 13 
 wise 13 
 
-23805
+23311
 0
 228
 
-21443
+23572
 3
 621
 co2 21 
 gaz 6 
 n' 6 
 
-21385
+25108
 3
 622
 co2 20 
 gaz 6 
 n' 6 
 
-21229
+25410
 2
 276
 pays 8 
 grippe 7 
 
-25503
+23582
 3
 451
 c' 11 
 ol 9 
 club 8 
 
-21912
+20175
 3
 646
 avc 16 
 troubles 8 
 plus 7 
 
-25894
+29145
 0
 190
 
-24564
+20958
 3
 343
 plus 8 
 explosion 6 
 milliards 6 
 
-20728
+29191
 3
 428
 plus 7 
 kg 7 
 équipe 6 
 
-24351
+25208
 3
 394
 raman 10 
 susheela 9 
 mills 6 
 
-27028
+25779
 1
 266
 oberon 6 
 
-21959
+28763
 3
 647
 marie 11 
 sevestre 10 
 librairie 10 
 
-29864
+28575
 0
 403
 
-29286
+24060
 3
 668
 federer 10 
 agassi 9 
 roger 9 
 
-21587
+20768
 1
 373
 no2 6 
 
-26018
+25605
 2
 456
 nasa 6 
 s' 6 
 
-23793
+24438
 3
 505
 3d 9 
 se 8 
 réalité 6 
 
-23140
+26008
 0
 271
 
-26425
+25831
 0
 64
 
-21669
+24881
 1
 313
 c' 7 
 
-22396
+29346
 3
 640
 carbone 16 
 sols 12 
 effet 9 
 
-26781
+29741
 0
 277
 
-20934
+20451
 3
 657
 ont 13 
 été 11 
 comète 9 
 
-24669
+24403
 1
 236
 france 6 
 
-21763
+25840
 3
 578
 fado 27 
 été 8 
 j' 7 
 
-23020
+25695
 3
 333
 fédération 7 
 francis 7 
 delattre 7 
 
-24175
+20334
 0
 24
 
-22037
+20800
 3
 699
 personnes 11 
 virus 11 
 vaccination 10 
 
-24470
+28183
 3
 691
 france 19 
 n' 8 
 coupe 8 
 
-28610
+26645
 3
 539
 maïs 9 
 transgènes 6 
 été 6 
 
-23010
+22299
 3
 492
 athlètes 7 
 aux 6 
 été 6 
 
-26224
+21549
 3
 428
 on 12 
 the 8 
 plus 7 
 
-25940
+23637
 3
 458
 patrimoine 8 
 prague 6 
 palais 6 
 
-29473
+24933
 1
 221
 visa 6 
 
-28982
+26264
 2
 320
 can 8 
 sacd 8 
 
-24587
+22624
 3
 861
 théâtre 33 
 public 15 
 c' 14 
 
-24832
+20984
 3
 838
 mclaren 12 
 renault 10 
 points 9 
 
-21543
+23937
 3
 619
 vih 12 
 circoncision 11 
 hommes 9 
 
-21184
+25179
 3
 492
 on 10 
 se 8 
 plus 7 
 
-22417
+24075
 3
 449
 jean 6 
 christophe 6 
 s' 6 
 
-28135
+20281
 1
 289
 plus 7 
 
-27741
+25367
 0
 266
 
-20372
+27995
 0
 284
 
-23846
+22970
 3
 341
 cellules 21 

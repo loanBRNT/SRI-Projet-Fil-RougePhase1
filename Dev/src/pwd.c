@@ -42,6 +42,17 @@ long lireLong()
     }
 }
 
+
+void viderBuffer()
+{
+    int c = 0;
+    while (c != '\n' && c != EOF)
+    {
+        c = getchar();
+    }
+}
+
+
 int verifierPwdAdmin(){
     char pwdPropose[20];
     char pwd[30];

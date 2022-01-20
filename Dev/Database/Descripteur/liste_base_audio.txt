@@ -1,4 +1,5 @@
-25367 corpus_fi.bin
-26808 corpus_m6.bin
-22685 jingle_fi.bin
-27858 jingle_m6.bin
+ 
+21831 corpus_fi.bin
+25826 corpus_m6.bin
+26426 jingle_fi.bin
+22530 jingle_m6.bin

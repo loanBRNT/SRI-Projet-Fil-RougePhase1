@@ -60,30 +60,33 @@ int main(int argc, char const *argv[])
 /*
 int main(int argc, char *argv[])
 {
+	int valeur;
+	int retour=0;
 	char chaine[10000];
-	lanceRechercheViaMotCle(*(argv+1),chaine);
-	//char adresse[100];
-	//strcpy(adresse, "./Requete/51.bmp");
-	//lanceRechercheViaAdresse(adresse,chaine);
-	printf("\n==========\n%s",chaine);
+	while(retour==0){
+		retour=scanf("%d",&valeur);
+		if(retour==0){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			 viderBuffer();
+		}
+		else{
+			printf("%d\n",valeur );
+			
+		}
+	} 
+	fflush(stdin);
+	
+	return 1;
+
+	retour=scanf("%d",&valeur);
+	printf("%d\n",retour );
+	printf("%d\n",valeur );
 	return 0;
+	
+
 }
-
-
-int main(int argc, char const *argv[])
-{
-
-	FILE * f;
-	PILE_Texte pT=init_PILE_Texte();
-	pT=Charger_Pile_DescripteurTexte(pT);
-	f=fopen("./Database/Descripteur/dTtest.txt","a+");
-	while(!PILE_Texte_estVide(pT)){
-		pT=dePILE_Texte(pT,f);
-	}
-	fclose(f);
-
-
-     
-};
 */
+
+
+
 
