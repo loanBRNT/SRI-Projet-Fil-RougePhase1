@@ -258,6 +258,7 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
         if (pileSim != NULL){
             generationChaineCaracViaPileIMAGE(pileSim, &descFic,chaine_resultat,t);
         }
+
     } else if (t == 3 ){
 
         DESCRIPTEUR_AUDIO descFic;
@@ -351,25 +352,39 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
 PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descFic){
     PILE_DESCRIPTEUR_IMAGE pile = Charger_Pile_DescripteurImg(init_PILE_Img());
     PILE_DESCRIPTEUR_IMAGE pileSim = init_PILE_Img();
-    int tauwSim = recupTauxSimmilaritudeDuConfig(), tauxAct;
+
+    int tauwSim = recupTauxSimmilaritudeDuConfig(), tauxAct, tauxMax=0;
 
     if (pile == NULL){
         printf("ERREUR : ECHEC CHARGEMENT DE LA PILE DES IMAGES\n");
         return pileSim;
     }
 
+    DESCRIPTEUR_IMAGE sauvMax;
+    sauvMax.ID = 0;
     CelluleI* sauv;
 
     while (pile != NULL){
         if (pile->Di.ID != ptr_descFic->ID){
             tauxAct = comparaisonFichiersImage(ptr_descFic,&(pile->Di));
             if (tauxAct >= tauwSim){
-                pileSim = emPILE_Img(pileSim , pile->Di);
+                if (tauxAct > tauxMax){
+                    if (sauvMax.ID != 0) {
+                        pileSim = emPILE_Img(pileSim , sauvMax);
+                    }
+                    sauvMax = pile->Di;
+                    tauxMax = tauxAct;
+                } else {
+                    pileSim = emPILE_Img(pileSim , pile->Di);
+                }
             }
         }
         sauv = pile;
         pile = pile->next;
         dePILE_Img_Sans_Sauvegarde(sauv);   
+    }
+    if (sauvMax.ID != 0){
+        pileSim = emPILE_Img(pileSim , sauvMax);
     }
     return pileSim;
 }
@@ -403,7 +418,7 @@ PILE_DESCRIPTEUR_TEXTE rechercheTexteParDescripteur(DESCRIPTEUR_TEXTE* ptr_descF
 
 
 int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine, int type){
-    char chaine_nom[50];
+    char chaine_nom[50], chaine_nomSauv[50];
 
     recupNomDUFic(ptr_descFic->ID,type,chaine_nom);
 
@@ -413,19 +428,25 @@ int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_I
 
     CelluleI* sauv;
 
+    if (pile == NULL) return 1;
+
+    recupNomDUFic(pile->Di.ID,type,chaine_nom);
+    strcpy(chaine_nomSauv,chaine_nom);
+
     while (pile != NULL){
-        recupNomDUFic(pile->Di.ID,type,chaine_nom);
         strcat(chaine,"- ");
         strcat(chaine,chaine_nom);
         strcat(chaine,"\n");
         sauv = pile;
         pile = pile->next;
         dePILE_Img_Sans_Sauvegarde(sauv);
+        if (pile == NULL) continue;;
+        recupNomDUFic(pile->Di.ID,type,chaine_nom);
     }
 
-    /*if (!ouvertureFichier()){
+    if (!ouvertureFichier(chaine_nomSauv)){
         printf("Ouverture du fichier impossible. Verifier que xdg est correctement installe (sudo apt install xdg-utils)");
-    }*/
+    }
 
     return 0;
 }
