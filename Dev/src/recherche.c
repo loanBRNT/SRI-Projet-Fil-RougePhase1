@@ -84,9 +84,9 @@ int recupIdDuFic(char* nom_fic, int type){
     }
     strcpy(commande, "cat ");
     strcat(commande, chemin);
-    strcat(commande, " | grep ^");
+    strcat(commande, " | grep \" ");
     strcat(commande, nom_fic);
-    strcat(commande, "$ >fic_temp2 ");
+    strcat(commande, "$\" >fic_temp2 ");
 
     fflush(stdout);
     system(commande);
@@ -423,12 +423,16 @@ int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_I
         dePILE_Img_Sans_Sauvegarde(sauv);
     }
 
+    /*if (!ouvertureFichier()){
+        printf("Ouverture du fichier impossible. Verifier que xdg est correctement installe (sudo apt install xdg-utils)");
+    }*/
+
     return 0;
 }
 
 int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_TEXTE* ptr_descFic,char* chaine){
-    char chaine_nom[50], chaine_occ[3];
-    int nbOcc;
+    char chaine_nom[50], chaine_occ[3], chaine_nomSauv[50];
+    int nbOcc, occMax = 0;
 
     recupNomDUFic(ptr_descFic->ID,1,chaine_nom);
 
@@ -447,10 +451,21 @@ int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_T
         sprintf(chaine_occ,"%d",nbOcc);
         strcat(chaine, chaine_occ);
         strcat(chaine,"\n");
+
+        if (nbOcc > occMax){
+            occMax = nbOcc;
+            strcpy(chaine_nomSauv,chaine_nom);
+        }
+
         sauv = pile;
         pile = pile->next;
         dePILE_Texte_Sans_Sauvegarde(sauv);
     }
+
+    if (!ouvertureFichier(chaine_nomSauv)){
+        printf("Ouverture du fichier impossible. Verifier que xdg est correctement installe (sudo apt install xdg-utils)");
+    }
+
     return 0;
 }
 
@@ -596,4 +611,42 @@ int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
         dePILE_Audio_Sans_Sauvegarde(sauv);
     } 
     return 0;
+}
+
+//----------------------------------------------------------------------------------------
+
+int ouvertureFichier(char* nom){
+    char commande[150];
+
+    char CHEMIN[100];
+
+    switch(getTypeDuFichier(nom)){
+        case 1:
+            strcpy(CHEMIN,"./Database/Texte/");
+            break;
+        case 2:
+            strcpy(CHEMIN,"./Database/Image/RGB/");
+            break;
+        case 3:
+            strcpy(CHEMIN,"./Database/Audio/");
+            break;
+        case 4:
+            strcpy(CHEMIN,"./Database/Image/NB/");
+            break;
+        default:
+            return 1;
+    }
+
+    strcpy(commande,"xdg-open ");
+    strcat(commande, CHEMIN);
+    strcat(commande, nom);
+    strcat(commande, " 2>fic");
+
+    system(commande);
+
+    printf("exec de %s\n",commande);
+
+    system("rm fic");
+
+    return 1;
 }

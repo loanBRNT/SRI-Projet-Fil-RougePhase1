@@ -139,7 +139,7 @@ void Indexation(){
      			if (strstr(nom_fic, ".xml")){
     				strcpy(CHEMIN_INDEXATION,"./Database/Texte/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
-    				DescripteurTxt Dt =indexationTxt(CHEMIN_INDEXATION, OccMot, NbMot);
+    				DescripteurTxt Dt =indexationTxt(CHEMIN_INDEXATION, NbMot,OccMot);
     				pT=emPILE_Texte(pT,Dt);
     				sprintf(id,"%d", Dt.ID);
     				strcpy(commande, "echo ");
