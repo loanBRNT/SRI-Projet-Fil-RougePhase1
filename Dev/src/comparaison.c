@@ -54,7 +54,7 @@ int comparaisonFichiersImage(DESCRIPTEUR_IMAGE* image1, DESCRIPTEUR_IMAGE* image
 
 int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpus, char* chaine_resultat){
     char tab[20];
-    int taux = 0, tauxSim = recupTauxSimmilaritudeDuConfig();
+    int taux = 0, tauxSim = recupTauxSimmilaritudeDuConfig(),pres=0;
     float s;
     if (jingle == NULL || corpus == NULL) return 0;
     if (jingle->taille > corpus->taille) return 0;
@@ -74,6 +74,7 @@ int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpu
                  sprintf(tab,"%f",s);
                  strcat(chaine_resultat,tab);
                  strcat(chaine_resultat,"s ");
+                 pres++;
                  for (int j = 1 ; j < jingle->taille ; j++){
                     ptr_CorpusHisto = ptr_CorpusHisto->fenetre_suivante;
                     i++;
@@ -86,7 +87,7 @@ int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpu
         ptr_CorpusHisto = ptr_CorpusHisto->fenetre_suivante;
 
     }
-    return 0;
+    return pres;
 }
 
 int calculSimHisto(Histogramme histoJingle, Histogramme histoCorpus){

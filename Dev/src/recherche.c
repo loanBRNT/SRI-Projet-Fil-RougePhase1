@@ -122,7 +122,7 @@ void recupNomDUFic(int id, int type,char* nom){
         changerExtension(extension,".xml");
     }  else {
         strcat(chemin, "/liste_base_audio.txt");
-        changerExtension(extension,".bin");
+        changerExtension(extension,".wav");
     }
     extension[4] = '\0';
 
@@ -462,7 +462,7 @@ int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_T
         dePILE_Texte_Sans_Sauvegarde(sauv);
     }
 
-    if (!ouvertureFichier(chaine_nomSauv)){
+    if (!ouvertureFichier(chaine_nomSauv) && (occMax > 0)){
         printf("Ouverture du fichier impossible. Verifier que xdg est correctement installe (sudo apt install xdg-utils)");
     }
 
@@ -583,7 +583,8 @@ DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier){
 // -----------------------------------------------------------------------------------------
 
 int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
-    char chaine_nom[50];
+    char chaine_nom[50], chaine_nomSauv[50];
+    int pres, presMax=0;
 
     recupNomDUFic(descFic->identifiant,3,chaine_nom);
     strcpy(chaine_resultat,"Voici les resultats suite a votre recherche : [");
@@ -603,13 +604,22 @@ int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
             recupNomDUFic(pile->Da->identifiant,3,chaine_nom);
             strcat(chaine_resultat, chaine_nom);
             strcat(chaine_resultat, " : ");
-            comparaisonFichiersAudio(descFic,pile->Da,chaine_resultat);
+            pres = comparaisonFichiersAudio(descFic,pile->Da,chaine_resultat);
+            if (pres > presMax){
+                presMax = pres;
+                strcpy(chaine_nomSauv, chaine_nom);
+            }
             strcat(chaine_resultat,"\n");
         }
         sauv = pile;
         pile = pile->next;
         dePILE_Audio_Sans_Sauvegarde(sauv);
     } 
+    if (presMax > 0){
+        if (!ouvertureFichier(chaine_nomSauv)){
+            printf("Ouverture du fichier impossible. Verifier que xdg est correctement installe (sudo apt install xdg-utils)");
+        }
+    }
     return 0;
 }
 
@@ -643,8 +653,6 @@ int ouvertureFichier(char* nom){
     strcat(commande, " 2>fic");
 
     system(commande);
-
-    printf("exec de %s\n",commande);
 
     system("rm fic");
 
