@@ -214,8 +214,9 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
 
     int t = getTypeDuFichierEtChangeLextension(nom_fichier_cible);
 
+    strcpy(chaine_resultat,"La recherche n'a donne aucun resultat");
+
     if (t == 1){
-        printf("Le fichier est un fichier Texte\n");
 
         DESCRIPTEUR_TEXTE descFic;
 
@@ -244,8 +245,8 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
             Indexation();
         }
 
-        descFic = getDescripteurImageViaPile(nom_fichier_cible);
 
+        descFic = getDescripteurImageViaPile(nom_fichier_cible);
 
         if (descFic.ID == 0){
             strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
@@ -266,6 +267,8 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
         }
 
         descFic = getDescripteurAudioViaPile(nom_fichier_cible);
+
+        printf("%d\n",descFic.identifiant);
 
         if (descFic.identifiant == 0){
             strcpy(chaine_resultat,"ERREUR : LA RECHERCHE N'A PU ABOUTIR\nVERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES\n");
@@ -344,8 +347,6 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
 
 }
 
-//DEMANDER A ELIOTT POUR LE DEPILER
-
 // ===============================================================================================
 
 PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descFic){
@@ -358,18 +359,19 @@ PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descF
         return pileSim;
     }
 
-    CelluleI* ptr_Cel = pile;
-    while (ptr_Cel != NULL){
-        if (ptr_Cel->Di.ID != ptr_descFic->ID){
-            tauxAct = comparaisonFichiersImage(ptr_descFic,&(ptr_Cel->Di));
-            printf("%d sim à %d%\n",ptr_Cel->Di.ID,tauxAct); //pour les TEST
+    CelluleI* sauv;
+
+    while (pile != NULL){
+        if (pile->Di.ID != ptr_descFic->ID){
+            tauxAct = comparaisonFichiersImage(ptr_descFic,&(pile->Di));
             if (tauxAct >= tauwSim){
-                pileSim = emPILE_Img(pileSim , ptr_Cel->Di);
+                pileSim = emPILE_Img(pileSim , pile->Di);
             }
         }
-        ptr_Cel = ptr_Cel->next;
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Img_Sans_Sauvegarde(sauv);   
     }
-    dePILE_Img_Sans_Sauvegarde(pile);
     return pileSim;
 }
 
@@ -383,27 +385,26 @@ PILE_DESCRIPTEUR_TEXTE rechercheTexteParDescripteur(DESCRIPTEUR_TEXTE* ptr_descF
         return pileSim;
     }
 
-    
-    CelluleT* ptr_Cel = pile;
-    while (ptr_Cel != NULL){
-        if (ptr_Cel->Dt.ID != ptr_descFic->ID){
-            tauxAct = comparaisonFichiersTexte(ptr_descFic,&(ptr_Cel->Dt));
-            printf("%d : %d\n",ptr_Cel->Dt.ID,tauxAct); // pr les tests
+    CelluleT* sauv;
+
+    while (pile != NULL){
+        if (pile->Dt.ID != ptr_descFic->ID){
+            tauxAct = comparaisonFichiersTexte(ptr_descFic,&(pile->Dt));
             if (tauxAct >= tauwSim){
-                pileSim = emPILE_Texte(pileSim, ptr_Cel->Dt);
+                pileSim = emPILE_Texte(pileSim, pile->Dt);
             }
         }
-        ptr_Cel = ptr_Cel->next;
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Texte_Sans_Sauvegarde(sauv);
     }
     
-    dePILE_Texte_Sans_Sauvegarde(pile);
     return pileSim;
 }
 
 
 int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_IMAGE* ptr_descFic,char* chaine, int type){
     char chaine_nom[50];
-    PILE_DESCRIPTEUR_IMAGE ptr_cell = pile;
 
     recupNomDUFic(ptr_descFic->ID,type,chaine_nom);
 
@@ -411,22 +412,23 @@ int generationChaineCaracViaPileIMAGE(PILE_DESCRIPTEUR_IMAGE pile, DESCRIPTEUR_I
     strcat(chaine, chaine_nom);
     strcat(chaine,"]\n");
 
+    CelluleI* sauv;
 
-    while (ptr_cell != NULL){
-        recupNomDUFic(ptr_cell->Di.ID,type,chaine_nom);
+    while (pile != NULL){
+        recupNomDUFic(pile->Di.ID,type,chaine_nom);
         strcat(chaine,"- ");
         strcat(chaine,chaine_nom);
         strcat(chaine, "\n");
-        ptr_cell = ptr_cell->next;
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Img_Sans_Sauvegarde(sauv);
     }
 
-    dePILE_Img_Sans_Sauvegarde(pile);
     return 0;
 }
 
 int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_TEXTE* ptr_descFic,char* chaine){
     char chaine_nom[50];
-    PILE_DESCRIPTEUR_TEXTE ptr_cell = pile;
 
     recupNomDUFic(ptr_descFic->ID,1,chaine_nom);
 
@@ -434,18 +436,19 @@ int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_T
     strcat(chaine, chaine_nom);
     strcat(chaine,"]\n");
 
+    CelluleT* sauv;
 
-    while (ptr_cell != NULL){
-        recupNomDUFic(ptr_cell->Dt.ID,1,chaine_nom);
+    while (pile != NULL){
+        recupNomDUFic(pile->Dt.ID,1,chaine_nom);
         strcat(chaine,"- ");
         strcat(chaine,chaine_nom);
         strcat(chaine, "\n");
         //strcat(chaine, " -> Nb de mot cle en commun : ");
         //strcat(chaine, occ[]); A IMPLEMENTER
-        ptr_cell = ptr_cell->next;
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Texte_Sans_Sauvegarde(sauv);
     }
-
-    dePILE_Texte_Sans_Sauvegarde(pile);
     return 0;
 }
 
@@ -462,14 +465,20 @@ DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier){
     int idFic = recupIdDuFic(nom_fichier, 2);
 
     CelluleI* c = pile;
+    CelluleI* sauv;
     DESCRIPTEUR_IMAGE d;
 
-    while (c->Di.ID != idFic){
-        c = c->next;
-        if (c == NULL){
-            break;
+    while (pile != NULL){
+        if (pile->Di.ID == idFic){
+            c = pile;
+            pile = pile->next;
+            if (pile == NULL) break;
         }
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Img_Sans_Sauvegarde(sauv);
     }
+
     if (c == NULL){
         DESCRIPTEUR_IMAGE* d = (DESCRIPTEUR_IMAGE*) malloc(sizeof(DESCRIPTEUR_IMAGE));
         d->ID = 0;
@@ -477,7 +486,6 @@ DESCRIPTEUR_IMAGE getDescripteurImageViaPile(char* nom_fichier){
     }
 
     d = c->Di;
-    dePILE_Img_Sans_Sauvegarde(pile);
     return d;
 }
 
@@ -493,14 +501,21 @@ DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier){
     int idFic = recupIdDuFic(nom_fichier, 3);
 
     Cellule* c = pile;
+    Cellule* sauv;
     DESCRIPTEUR_AUDIO d;
 
-    while (c->Da->identifiant != idFic){
-        c = c->next;
-        if (c == NULL){
-            break;
+    while (pile != NULL){
+        if (pile->Da->identifiant == idFic){
+            c = pile;
+            pile = pile->next;
+            if (pile == NULL) break;
         }
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Audio_Sans_Sauvegarde(sauv);
     }
+
+
     if (c == NULL){
         DESCRIPTEUR_AUDIO* d = (DESCRIPTEUR_AUDIO*) malloc(sizeof(DESCRIPTEUR_AUDIO));
         d->identifiant = 0;
@@ -508,7 +523,7 @@ DESCRIPTEUR_AUDIO getDescripteurAudioViaPile(char* nom_fichier){
     }
 
     d = *(c->Da);
-    dePILE_Audio_Sans_Sauvegarde(pile);
+
     return d;
 }
 
@@ -524,14 +539,20 @@ DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier){
     int idFic = recupIdDuFic(nom_fichier, 1);
 
     CelluleT* c = pile;
+    CelluleT* sauv;
     DESCRIPTEUR_TEXTE d;
 
-    while (c->Dt.ID != idFic){
-        c = c->next;
-        if (c == NULL){
-            break;
+    while (pile != NULL){
+        if (pile->Dt.ID == idFic){
+            c = pile;
+            pile = pile->next;
+            if (pile == NULL) break;
         }
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Texte_Sans_Sauvegarde(sauv);
     }
+
     if (c == NULL){
         DESCRIPTEUR_TEXTE* d = (DESCRIPTEUR_TEXTE*) malloc(sizeof(DESCRIPTEUR_TEXTE));
         d->ID = 0;
@@ -539,7 +560,6 @@ DESCRIPTEUR_TEXTE getDescripteurTexteViaPile(char* nom_fichier){
     }
 
     d = c->Dt;
-    dePILE_Texte_Sans_Sauvegarde(pile);
     return d;
 }
 
@@ -552,22 +572,26 @@ int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
     strcpy(chaine_resultat,"Voici les resultats suite a votre recherche : [");
     strcat(chaine_resultat, chaine_nom);
     strcat(chaine_resultat,"]\n");
+
     PILE_DESCRIPTEUR_AUDIO pile = Charger_Pile_DescripteurAudio(init_PILE_Audio());
     if (pile == NULL){
         strcpy(chaine_resultat, "ERREUR : chargement de la PILE impossible");
         return 1;
     }
-    Cellule* ptr_cell = pile;
-    while (ptr_cell != NULL){
-        if (ptr_cell->Da->identifiant != descFic->identifiant) {
-            recupNomDUFic(ptr_cell->Da->identifiant,3,chaine_nom);
+
+    Cellule* sauv;
+
+    while (pile != NULL){
+        if (pile->Da->identifiant != descFic->identifiant) {
+            recupNomDUFic(pile->Da->identifiant,3,chaine_nom);
             strcat(chaine_resultat, chaine_nom);
             strcat(chaine_resultat, " : ");
-            comparaisonFichiersAudio(descFic,ptr_cell->Da,chaine_resultat);
+            comparaisonFichiersAudio(descFic,pile->Da,chaine_resultat);
             strcat(chaine_resultat,"\n");
         }
-        ptr_cell = ptr_cell->next;
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Audio_Sans_Sauvegarde(sauv);
     } 
-    dePILE_Audio_Sans_Sauvegarde(pile);
     return 0;
 }

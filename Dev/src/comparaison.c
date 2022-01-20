@@ -58,30 +58,31 @@ int comparaisonFichiersAudio(DESCRIPTEUR_AUDIO* jingle, DESCRIPTEUR_AUDIO* corpu
     float s;
     if (jingle == NULL || corpus == NULL) return 0;
     if (jingle->taille > corpus->taille) return 0;
-    Histogramme ptr_JingleHisto = jingle->histo;
+
     Histogramme ptr_CorpusHisto = corpus->histo;
-    for (int i = 0; i < corpus->taille-jingle->taille; ++i)
+
+    for (int i = 0; i < corpus->taille - jingle->taille; ++i)
     {
         if (ptr_CorpusHisto == NULL) break;
 
-        taux = calculSimHisto(ptr_JingleHisto,ptr_CorpusHisto);
+        taux = calculSimHisto(jingle->histo,ptr_CorpusHisto);
 
         if (taux >= tauxSim){
-            taux = verifierSim(ptr_JingleHisto,ptr_CorpusHisto,jingle->taille);
-            if (taux >= tauxSim){
-                s = calculSeconde(i);
-                sprintf(tab,"%f",s);
-                strcat(chaine_resultat,tab);
-                strcat(chaine_resultat, "s ");
-                for (int j = 0 ; j < jingle->taille-1 ; j++){
-                    if (ptr_CorpusHisto == NULL) break;
+            taux = verifierSim(jingle->histo,ptr_CorpusHisto,jingle->taille);
+            if (taux > tauxSim){
+                 s = calculSeconde(i);
+                 sprintf(tab,"%f",s);
+                 strcat(chaine_resultat,tab);
+                 strcat(chaine_resultat,"s ");
+                 for (int j = 1 ; j < jingle->taille ; j++){
                     ptr_CorpusHisto = ptr_CorpusHisto->fenetre_suivante;
                     i++;
-                }
+                    if (ptr_CorpusHisto == NULL) break;
+                 }
             }
+
         }
         
-        if (ptr_CorpusHisto == NULL) break;
         ptr_CorpusHisto = ptr_CorpusHisto->fenetre_suivante;
 
     }
@@ -125,9 +126,9 @@ int verifierSim(Histogramme histoJingle, Histogramme histoCorpus, int repetition
 
 float calculSeconde(int ligneActuelle){
     int nbPoints = recupNbPointsDuConfig();
-    float nouvelleRefLigne = ( ( (float)nbPoints) * 15.8 ) / 1024;
-    nouvelleRefLigne = (float)ligneActuelle / nouvelleRefLigne;
-    return nouvelleRefLigne;
+    float tempsRef = ( 0.06319 * (float)nbPoints) / (float)1024 ;
+    float seconde = (float)ligneActuelle * tempsRef;
+    return seconde;
 }
 
 // ________________________________________________________________________________________________
