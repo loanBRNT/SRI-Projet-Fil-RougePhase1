@@ -8,8 +8,14 @@ void afficheMenuAdmin();
 void afficheMenuControleur();
 void afficheAccueil();
 void afficheErreurMenu();
+void afficheMenuUtilisateur();
 
-// void afficheMessageQuitter(); CETTE FONCTION N'EXISTE PAS
+
+void afficheRechercheParMot();
+void afficheRechercheParNom();
+void afficheRechercheChemin();
+void afficheRechercheSelection();
+
 
 void afficheMenuPrincipal();
 void afficheMenuPointConfig();
@@ -42,7 +48,10 @@ int menuRechercheParMot();
 
 int menuRechercheParNom();
 
-int menuRechercheParchemin();
+void recupNomRecherche(char* );
+void recupMotRecherche(char* );
+void recupAdresseRecherche(char* );
+
 
 int menuUtilisateur();
 

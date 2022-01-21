@@ -77,21 +77,3 @@ int main(int argc, char *argv[])
 	return 0;
 }
 */
-/*
-int main(int argc, char const *argv[])
-{
-
-	FILE * f;
-	PILE_Texte pT=init_PILE_Texte();
-	pT=Charger_Pile_DescripteurTexte(pT);
-	f=fopen("./Database/Descripteur/dTtest.txt","a+");
-	while(!PILE_Texte_estVide(pT)){
-		pT=dePILE_Texte(pT,f);
-	}
-	fclose(f);
-
-
-     
-};
-*/
-

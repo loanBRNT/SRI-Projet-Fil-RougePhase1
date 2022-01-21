@@ -4,6 +4,7 @@
 long lireLong();
 
 int lire(char* chaine, int longueur ,FILE* fichier);
+void viderBuffer();
 
 int verifierPwdAdmin();
 

@@ -6,13 +6,17 @@
 #include<math.h>
 
 #include "../include/indexation.h"
-#include "../include/descripteurAudio.h"
+#include "../include/indexation_txt.h"
+#include "../include/pile_Texte.h"
 #include "../include/img.h"
-#include "../include/pile_Audio.h"
 #include "../include/pile_Img.h"
+#include "../include/descripteurAudio.h"
+#include "../include/pile_Audio.h"
 #include "../include/admin.h"
-#include "../include/pwd.h"
+#include "../include/recherche.h"
+#include "../include/comparaison.h"
 #include "../include/interface.h"
+#include "../include/pwd.h"
 
 
 //########## FONCTIONS DE GESTION DES MENUS ###############
@@ -123,7 +127,7 @@ void afficheMenuPointConfig(){
 void afficheErreurMenu(){
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#    SAISIE INCORECT VEUILLEZ RÉESSAYER   #\n");
+	printf("#  SAISIE INCORRECTE VEUILLEZ RÉESSAYER   #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("\n");
@@ -142,9 +146,9 @@ void afficheMenuUtilisateur(){
 	printf("#                                         #\n");
 	printf("#        2: PAR NOM                       #\n");
 	printf("#                                         #\n");
-	printf("#        3: PAR ADRESSE                   #\n");
+	printf("#        3: PAR CHEMIN                    #\n");
 	printf("#                                         #\n");
-	printf("#        4: PAR selection                 #\n");
+	printf("#        4: PAR SELECTION                 #\n");
 	printf("#                                         #\n");
 	printf("#        5: RETOUR MENU PRINCIPAL         #\n");
 	printf("#                                         #\n");
@@ -155,61 +159,56 @@ void afficheMenuUtilisateur(){
 }
 
 
-void afficheRechercheMotCle(){
+
+void afficheRechercheParMot(){
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#          RECHERCHE PAR MOT CLÉ          #\n");
+	printf("#  Vous avez lance la RECHERCHE PAR MOT   #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#        1: // AFFICHAGE DES DIFF CONFIG  #\n");
-	printf("#                                         #\n");
-	printf("#        2: RETOUR MENU ADMIN             #\n");
-	printf("#                                         #\n");
-	printf("#        3: QUITTER                       #\n");
-	printf("#                                         #\n");
-	printf("#        << choisissez un menu >>         #\n");
+	printf("#    Veuillez saisir le MOT CLEE :        #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
-	printf("\n");
 }
 
-
-void afficheRechercheNom(){
-	char* nom = recupNomRecherche();
+void afficheRechercheParNom(){
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#            RECHERCHE PAR NOM            #\n");
+	printf("#  Vous avez lance la RECHERCHE PAR NOM   #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#      1: Vous avez chercher le fichier:%s   #\n",nom);
+	printf("#    Veuillez saisir le nom du fichier :  #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
-	printf("\n");
-    free(nom);
 }
 
 
 void afficheRechercheChemin(){
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#           RECHERCHE PAR CHEMIN          #\n");
+	printf("# Vous avez lance la RECHERCHE PAR CHEMIN #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#        1: // AFFICHAGE DES DIFF CONFIG  #\n");
-	printf("#                                         #\n");
-	printf("#        2: RETOUR MENU ADMIN             #\n");
-	printf("#                                         #\n");
-	printf("#        3: RETOUR MENU PRINCIPAL         #\n");
-	printf("#                                         #\n");
-	printf("#        0: QUITTER                       #\n");
-	printf("#                                         #\n");
-	printf("#        << choisissez un menu >>         #\n");
+	printf("#    Veuillez saisir le chemin d'acces    #\n");
+	printf("#               du fichier :              #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
-	printf("\n");
+}
+
+void afficheRechercheSelection(){
+	printf("############################################\n");
+	printf("#                                          #\n");
+	printf("#Vous avez lance la RECHERCHE PAR SELECTION#\n");
+	printf("#                                          #\n");
+	printf("############################################\n");
+	printf("#                                          #\n");
+	printf("#    Veuillez choisir un fichier de la     #\n");
+	printf("#                database :                #\n");
+	printf("#                                          #\n");
+	printf("###########################################\n");
 }
 
 void affichageSaisieTauxSim(){
@@ -416,7 +415,9 @@ int menuAdmin(){
 		switch(choixMenu)
 		{
 			case 1:
-				if (menuPointConfig() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				if (menuPointConfig() == 0){
+					event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				}
 				break;
 			case 2:
 				printf("indexation en cours ...");
@@ -447,42 +448,47 @@ int menuPointConfig(){
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
 		afficheMenuPointConfig();
 		choixMenu=lireLong();
-		fflush(stdin);
 		printf("\n");
 		switch(choixMenu)
 		{
 			case 1:
 				event=menuModifierTauxSim(ptr_sur_config);
+				getchar();
 				break;
 			case 2:
 				event=menuModifierNbMaxMot(ptr_sur_config );
 				system("echo ' ' > ./Database/Descripteur/liste_base_texte.txt");
 				system("echo ' ' > ./Database/Descripteur/dT.txt");
 				maj=1;
+				getchar();
 				break;
 			case 3:
 				event= menuModifierSeuilOccurence(ptr_sur_config);
 				system("echo ' ' > ./Database/Descripteur/liste_base_texte.txt");
 				system("echo ' ' > ./Database/Descripteur/dT.txt");
 				maj=1;
+				getchar();
 				break;
 			case 4:
 				event=menuModifierNbIntervalle(ptr_sur_config);
 				system("echo ' ' > ./Database/Descripteur/liste_base_audio.txt");
 				system("echo ' ' > ./Database/Descripteur/dA.txt");
 				maj=1;
+				getchar();
 				break;
 			case 5:
 				event=menuModifierNbPoints(ptr_sur_config);
 				system("echo ' ' > ./Database/Descripteur/liste_base_audio.txt");
 				system("echo ' ' > ./Database/Descripteur/dA.txt");
 				maj=1;
+				getchar();
 				break;
 			case 6:
 				event=menuModifierNbBits(ptr_sur_config);
 				system("echo ' ' > ./Database/Descripteur/liste_base_image.txt");
 				system("echo ' ' > ./Database/Descripteur/dI.txt");
 				maj=1;
+				getchar();
 				break;
 			case 7:
 				afficheValeurConfig();
@@ -515,32 +521,50 @@ int menuModifierTauxSim(PTR_CONFIG config){
 	affichageSaisieTauxSim();
 	int event=0;
 	int choix = 0; //Pour lire l'entree
-	
+	int retour;
 	while(event==0){
-		scanf("%d",&choix);
-		fflush(stdin);
-		event=changerTauxSimmilaritude(config, choix);
-		if(event==0)
-			printf("Veuillez choisir un taux de similarité entre 0 et 100 \n");
+		retour=scanf("%d",&choix);
+		if(retour==0 ){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+		}
+		else{
+			event=changerTauxSimmilaritude(config, choix);
+			if(event==0){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+			}
+			
+		}
 	} 
-	printf("ca c'est bien passe");
+	fflush(stdin);
 	
 	return 1;
 }
+	
+		
 
 int menuModifierNbMaxMot(PTR_CONFIG config ){
 	affichageSaisieNbMot();
 	int event=0;
 	int choix = 0; //Pour lire l'entree
-	
+	int retour; // verif retour scanf
 	while(event==0){
-		scanf("%d",&choix);
-		fflush(stdin);
-		event=changerNbMotParTexte(config, choix);
-		if(event==0)
+		retour=scanf("%d",&choix);
+		if(retour==0 ){
 			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+		}
+		else{
+			event=changerNbMotParTexte(config, choix);
+			if(event==0){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+			}
+			
+		}
 	} 
-	printf("ca c'est bien passe\n");
+	fflush(stdin);
 	
 	return 1;
 }
@@ -549,18 +573,27 @@ int menuModifierSeuilOccurence(PTR_CONFIG  config){
 	affichageSaisieOccurenceMot();
 	int event=0;
 	int choix = 0; //Pour lire l'entree
-	
+	int retour;
 	while(event==0){
-		scanf("%d",&choix);
-		fflush(stdin);
-		event=changerSeuilOccurence(config, choix);
-		if(event==0)
-			printf("Veuillez choisir un seuil superieur a 0 \n");
+		retour=scanf("%d",&choix);
+		if(retour==0 ){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+		}
+		else{
+			event=changerSeuilOccurence(config, choix);
+			if(event==0){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+			}
+			
+		}
 	} 
-	printf("ca c'est bien passe \n");
+	fflush(stdin);
 	
 	return 1;
 }
+	
 
 
 
@@ -568,15 +601,23 @@ int menuModifierNbIntervalle(PTR_CONFIG config ){
 	affichageSaisieNbIntervalle();
 	int event=0;
 	int choix = 0; //Pour lire l'entree
-	
+	int retour;
 	while(event==0){
-		scanf("%d",&choix);
-		fflush(stdin);
-		event=changerNbIntervalle(config,choix);
-		if(event==0)
-			printf("Veuillez choisir un seuil superieur a 0 \n");
+		retour=scanf("%d",&choix);
+		if(retour==0 ){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+		}
+		else{
+			event=changerNbIntervalle(config,choix);
+			if(event==0){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+			}
+			
+		}
 	} 
-	printf("ca c'est bien passe \n");
+	fflush(stdin);
 	
 	return 1;
 }
@@ -585,35 +626,53 @@ int menuModifierNbPoints(PTR_CONFIG config){
 	affichageSaisieNbPoint();
 	int event=0;
 	int choix = 0; //Pour lire l'entree
-	
+	int retour;
 	while(event==0){
-		scanf("%d",&choix);
-		fflush(stdin);
-		event=changerNbPoints(config, choix);
-		if(event==0)
-			printf("Veuillez choisir un nombre qui est une puissance de 2 \n");
+		retour=scanf("%d",&choix);
+		if(retour==0 ){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+		}
+		else{
+			event=changerNbPoints(config, choix);
+			if(event==0){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+			}
+			
+		}
 	} 
-	printf("ca c'est bien passe \n");
+	fflush(stdin);
 	
 	return 1;
 }
 
+
 int menuModifierNbBits(PTR_CONFIG config){
 	affichageSaisieNbBits();
-	int event=0;
+		int event=0;
 	int choix = 0; //Pour lire l'entree
-	
+	int retour;
 	while(event==0){
-		scanf("%d",&choix);
-		fflush(stdin);
-		event=changerNbBits(config,choix);
-		if(event==0)
-			printf("Veuillez choisir un chiffre entre 1 et 8 \n");
+		retour=scanf("%d",&choix);
+		if(retour==0 ){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+		}
+		else{
+			event=changerNbBits(config,choix);
+			if(event==0){
+			printf("Veuillez choisir un nombre superieur a 0 \n");
+			viderBuffer();
+			}
+			
+		}
 	} 
-	printf("ca c'est bien passe \n");
+	fflush(stdin);
 	
 	return 1;
 }
+
 
 //#################################################################################################################################
 //######### MENUS DE LA PARTIE UTILISATEUR ########################################################################################
@@ -621,6 +680,9 @@ int menuModifierNbBits(PTR_CONFIG config){
 int menuUtilisateur(){
 	int event = 1 ;
 	long choixMenu;
+	char nomRecherche[50], chaine_result[10000];
+	char motRecherche[50];
+	char adresse[100];
 	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
 		afficheMenuUtilisateur();
 		choixMenu=lireLong();
@@ -628,16 +690,22 @@ int menuUtilisateur(){
 		switch(choixMenu)
 		{
 			case 1:
-				//lancer recherche mot cle
-				if (menuRechercheParMot() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				recupMotRecherche(motRecherche);
+				lanceRechercheViaMotCle(motRecherche,chaine_result);
+				printf("%s\n",chaine_result);
+				getchar(); 
 				break;
 			case 2:
-				//lancer recherche Nom
-			if (menuRechercheParNom() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				recupNomRecherche(nomRecherche);
+				lanceRechercheViaNom(nomRecherche,chaine_result);
+				printf("%s\n",chaine_result);
+				getchar(); 
 				break;
 			case 3:
-				//lancer recherche chemin
-			if (menuRechercheParchemin() == 0) event = 0; //si la valeur de retour du menu suivant est 0 alors on doit quitter
+				recupAdresseRecherche(adresse);
+				lanceRechercheViaAdresse(adresse,chaine_result);
+				printf("%s\n",chaine_result);
+				getchar();
 				break;
 			case 4:
 				//LancerRecherche Selection
@@ -657,86 +725,28 @@ int menuUtilisateur(){
 	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
 }
 
-int menuRechercheParMot(){
-	int event = 1 ;
-	long choixMenu;
-	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
-		afficheRechercheMotCle();
-		choixMenu=lireLong();
-		printf("\n");
-		switch(choixMenu)
-		{
-			case 1:
-				printf("Vous avez lancer la recherche par Mot");
-				break;
-			case 2:
-				event = -1; //retour menu utilisateur
-				break;
-			case 3:
-				event = 0; //quitte le logiciel
-				break;
-			default:
-				afficheErreurMenu();
-				break;
-		}
+
+void recupMotRecherche(char* mot){
+		
 	printf("\n");
-	}
-	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+	afficheRechercheParMot();
+	scanf("%s", mot);
+	fflush(stdin);
 }
 
-int menuRechercheParNom(){
-	int event = 1 ;
-	long choixMenu;
-	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
-		afficheRechercheNom();
-		choixMenu=lireLong();
-		printf("\n");
-		switch(choixMenu)
-		{
-			case 1: ;
-				char* nom = recupNomRecherche();
-                // print
-                printf("%s", nom);
-                free(nom);
-				break;
-			case 2:
-				event = -1; //retour menu utilisateur
-				break;
-			case 3:
-				event = 0; //quitte le logiciel
-				break;
-			default:
-				afficheErreurMenu();
-				break;
-		}
+
+void recupNomRecherche(char* nom){
+		
 	printf("\n");
-	}
-	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
+	afficheRechercheParNom();
+	scanf("%s", nom);
+	fflush(stdin);
+}
+void recupAdresseRecherche(char* adresse){
+		
+	printf("\n");
+	afficheRechercheChemin();
+	scanf("%s",adresse);
+	fflush(stdin);
 }
 
-int menuRechercheParchemin(){
-	int event = 1 ;
-	long choixMenu;
-	while((event != -1) && (event != 0)){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
-		afficheRechercheChemin();
-		choixMenu=lireLong();
-		printf("\n");
-		switch(choixMenu)
-		{
-			case 1:
-				printf("Vous avez lancer la recherche par chemin");
-				break;
-			case 2:
-				event = -1; //retour menu utilisateur
-				break;
-			case 3:
-				event = 0; //quitte le logiciel
-				break;
-			default:
-				afficheErreurMenu();
-				break;
-		}
-	printf("\n");
-	}
-	return event; //pr indiquer au menu précédent s'il doit tourner (retour simple -1) ou s'arrêter lui aussi (quitter 0)
-}

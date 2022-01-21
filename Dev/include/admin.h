@@ -58,8 +58,6 @@ int changerNbBits(PTR_CONFIG config, int nb);
 
 //--------------------------------- ACCESSEUR ----------------------------------
 
-char* recupNomRecherche();
-
 int recupTauxSimmilaritudeDuConfig();
 
 int recupNbMotParTexteDuConfig();
