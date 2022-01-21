@@ -981,3 +981,17 @@ ont 5
 institut 4 
 chez 4 
 
+25788
+10
+691
+france 19 
+n' 8 
+coupe 8 
+équipe 7 
+monde 7 
+2006 6 
+match 6 
+groupe 6 
+deux 6 
+matches 6 
+

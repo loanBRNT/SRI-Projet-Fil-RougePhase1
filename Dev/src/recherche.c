@@ -158,6 +158,11 @@ int lanceRechercheViaAdresse(char* adresse_fichier_cible, char* chaine_resultat)
     char* ptr_debutExtension = strrchr(adresse_fichier_cible,'.');
     char* ptr_debutNom = strrchr(adresse_fichier_cible, '/');
 
+    if (ptr_debutExtension == NULL || ptr_debutNom == NULL){
+        strcpy(chaine_resultat, "ERREUR : Saisie invalide\n");
+        return 1;
+    }
+
     if (!strcmp(ptr_debutExtension,".xml")){
         type = 1;
         strcpy(cheminBase, "./Database/Texte");

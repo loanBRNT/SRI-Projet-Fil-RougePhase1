@@ -13,7 +13,7 @@
 #include "../include/recherche.h"
 #include "../include/comparaison.h"
 
-/*
+
 int main(int argc, char const *argv[])
 {
 
@@ -55,29 +55,29 @@ int main(int argc, char const *argv[])
 
 
 	return 0;
-}*/
+}
 
+/*
 int main(int argc, char *argv[])
 {
 	char chaine[1000];
 	lanceRechercheViaNom(*(argv+1),chaine);
 	printf("%s\n",chaine);
 	return 0;
-}
+}*/
 
 /*
 int main(int argc, char *argv[])
 {
 	char chaine[10000];
-	lanceRechercheViaMotCle(*(argv+1),chaine);
-	//char adresse[100];
-	//strcpy(adresse, "./Requete/51.bmp");
-	//lanceRechercheViaAdresse(adresse,chaine);
+	char adresse[100];
+	strcpy(adresse, "./Requete/copiesMauvaisCompte.xml");
+	lanceRechercheViaAdresse(adresse,chaine);
 	printf("\n==========\n%s",chaine);
 	return 0;
 }
-
-
+*/
+/*
 int main(int argc, char const *argv[])
 {
 
