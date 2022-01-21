@@ -1,13 +1,41 @@
-27178
-0
-50
-
-27276
+ 
+22363
 10
-293
+665
+france 19 
+coupe 8 
+équipe 7 
+monde 7 
+2006 6 
+match 6 
+groupe 6 
+deux 6 
+matches 6 
+millions 6 
+
+27136
+10
+423
+jean 6 
+christophe 6 
+bette 5 
+bateau 5 
+quatre 4 
+ans 4 
+était 4 
+été 4 
+monde 4 
+dès 4 
+
+28429
+0
+49
+
+24915
+10
+272
 arctique 10 
 superficie 8 
-plus 8 
 septembre 5 
 dernières 5 
 glace 5 
@@ -15,39 +43,39 @@ calotte 4
 était 4 
 faible 4 
 nsidc 4 
+effectuées 4 
 
-26808
+29828
 10
-475
+453
 Œdipe 14 
 colone 9 
 scène 6 
-n' 6 
 homme 5 
 mario 5 
 martone 5 
-s' 5 
 où 5 
 sophocle 4 
+rome 4 
+metteur 4 
 
-21087
+22018
 10
-389
+375
 ososphère 8 
 octobre 6 
 festival 5 
 strasbourg 5 
 1er 5 
-se 5 
 électronique 4 
 musique 4 
 deux 4 
 30 4 
+septembre 4 
 
-23750
-10
-435
-on 7 
+28659
+8
+413
 robyn 6 
 sud 6 
 sida 6 
@@ -56,46 +84,45 @@ ans 5
 danse 4 
 danseurs 4 
 pièce 4 
-plus 4 
 
-24043
+21576
 10
-360
+336
 avait 7 
 était 6 
 lui 6 
-c' 6 
 hossegor 5 
 kelly 5 
 slater 5 
 septième 5 
-n' 5 
-j' 5 
+titre 4 
+me 4 
+première 4 
 
-20364
+27556
 10
-823
-plus 15 
+775
 voyager 11 
 solaire 10 
 système 9 
-ne 9 
 choc 9 
-s' 7 
 soleil 7 
-ont 7 
 sonde 6 
+aura 6 
+été 6 
+avait 5 
+aux 5 
 
-25434
+29030
 3
-185
+180
 cinémathèque 5 
 scorsese 4 
 film 4 
 
-23367
+24266
 10
-730
+699
 stade 25 
 france 16 
 lille 13 
@@ -103,77 +130,72 @@ lille 13
 saint 10 
 français 8 
 club 8 
-ne 8 
 denis 7 
 ligue 7 
+rugby 7 
 
-28814
+29632
 10
-561
+539
 louvre 9 
 lens 8 
 région 8 
 m2 5 
-se 5 
-ont 4 
 projet 4 
 sanaa 4 
 musée 4 
 000 4 
+être 4 
+président 4 
 
-20545
-6
-289
+25782
+5
+276
 avait 5 
 tour 5 
 boonen 4 
 ans 4 
 était 4 
-s' 4 
 
-29582
-6
-359
-s' 7 
-c' 6 
-n' 6 
-on 6 
+28040
+2
+331
 tête 5 
 entraîneur 4 
 
-23895
+25048
 5
-233
+225
 jazz 8 
 katché 7 
 manu 5 
 disque 4 
 star 4 
 
-26124
+23494
 3
-193
+187
 grippe 5 
 aviaire 5 
 homme 4 
 
-25857
+24360
 10
-512
+486
 effet 8 
 europe 5 
 2003 5 
-plus 5 
 végétation 5 
 carbone 5 
-se 5 
 serre 4 
 été 4 
-on 4 
+000 4 
+forêts 4 
+gaz 4 
 
-21313
+28315
 7
-285
+272
 points 6 
 lituanie 4 
 demi 4 
@@ -182,31 +204,27 @@ basket 4
 france 4 
 très 4 
 
-21729
-10
-667
+25652
+8
+616
 france 13 
 ted 10 
 américain 9 
-n' 9 
-s' 7 
-c' 6 
-ne 6 
 aux 6 
 stanger 5 
 français 5 
+paris 5 
+pays 4 
 
-20846
-1
-236
-s' 4 
+29743
+0
+227
 
-26505
+27644
 10
-571
+550
 football 12 
 saison 11 
-plus 9 
 prix 7 
 matches 7 
 stades 6 
@@ -214,88 +232,86 @@ britannique 6
 clubs 5 
 league 5 
 fréquentation 5 
+entre 5 
 
-20336
+23188
 10
-618
+593
 virus 12 
 contre 9 
 vaccin 7 
-ont 7 
 oms 6 
 h5n1 6 
-se 5 
 pandémie 5 
-chez 5 
 millions 5 
+grippe 4 
+aviaire 4 
+malte 4 
 
-26327
+22685
 10
-757
+713
 girodet 13 
-n' 9 
 louvre 7 
-se 7 
 jusqu' 7 
-c' 7 
 aux 7 
 lui 6 
 même 5 
 david 5 
+toile 5 
+musée 4 
+artiste 4 
 
-27084
+22797
 10
-560
+518
 architectes 14 
 architecture 9 
-on 9 
-ne 8 
 postes 6 
 profession 6 
 entreprises 5 
-plus 5 
-n' 5 
 agence 5 
+ans 5 
+agences 5 
+année 4 
+activité 4 
 
-20925
+22734
 10
-734
-j' 14 
-on 12 
-ne 10 
-ai 9 
-se 7 
+658
 ogm 6 
 même 6 
 exploitation 5 
 autres 5 
-n' 5 
+agricole 5 
+agriculteurs 5 
+étais 5 
+très 5 
+début 5 
+faucheurs 4 
 
-22305
-7
-438
+28097
+6
+427
 sao 7 
 paulo 6 
 cartoucherie 4 
 ivaldo 4 
 bertazzo 4 
-ont 4 
 30 4 
 
-27281
-6
-283
+24893
+5
+271
 exposition 6 
-plus 5 
 fertilité 4 
 masculine 4 
 aux 4 
 présents 4 
 
-26996
+21471
 10
-364
-se 6 
+345
 champions 6 
 équipe 5 
 tony 5 
@@ -305,53 +321,54 @@ après 4
 europe 4 
 match 4 
 claude 4 
+bergeaud 4 
 
-29170
+27401
 0
 54
 
-26862
+21095
 3
-145
+137
 000 6 
 journées 4 
 visiteurs 4 
 
-21873
+27308
 0
-28
+27
 
-29956
+20059
 10
-379
+361
 france 8 
 deux 6 
 deuxième 6 
 très 5 
 français 5 
-se 5 
 slovénie 4 
 barrage 4 
 parker 4 
-ont 4 
+matches 4 
+points 4 
 
-28980
+26256
 10
-676
+620
 cellules 30 
 souches 16 
-chez 13 
 cardiaque 10 
 embryonnaires 10 
-ont 9 
 infarctus 9 
-plus 8 
 être 7 
-ne 7 
+greffe 6 
+équipe 5 
+mouton 5 
+aux 4 
 
-26091
-10
-441
+21900
+9
+428
 devi 9 
 girija 8 
 ville 6 
@@ -360,12 +377,11 @@ théâtre 5
 chaurasia 5 
 voix 4 
 art 4 
-plus 4 
-s' 4 
+ans 4 
 
-23526
+20914
 6
-407
+395
 prévision 9 
 france 8 
 météo 5 
@@ -373,88 +389,77 @@ inondations 4
 eau 4 
 ministère 4 
 
-26413
-10
-333
-se 8 
-c' 8 
-plus 7 
-ne 7 
-s' 6 
+24751
+6
+293
 deux 5 
 lui 5 
 là 5 
 anouk 4 
 aimée 4 
+même 4 
 
-24370
+26194
 10
-700
-plus 11 
+660
 sonde 9 
-se 8 
 terre 7 
 lui 7 
 itokawa 7 
 mission 6 
-s' 6 
 échantillons 5 
 astéroïde 5 
+japonais 5 
+hayabusa 5 
+surface 5 
 
-28315
-10
-474
-n' 11 
-ne 11 
+20485
+6
+425
 basket 9 
 équipe 9 
 france 8 
-on 7 
-c' 7 
-se 5 
 joueurs 5 
 sélectionneur 4 
+championnat 4 
 
-24324
-5
-309
-se 9 
+27924
+3
+283
 quasar 7 
 galaxie 5 
 astronomes 4 
-plus 4 
 
-25198
+23248
 10
-496
-se 7 
+468
 lille 6 
-n' 6 
 aux 5 
-ne 5 
 benfica 4 
 mercredi 4 
 équipe 4 
-ont 4 
 claude 4 
+puel 4 
+stade 4 
+juventus 4 
+turin 4 
 
-28537
-10
-312
+26225
+9
+302
 théâtre 7 
 acoustique 6 
 salle 5 
 être 5 
 champs 4 
 elysées 4 
-s' 4 
 travaux 4 
-ont 4 
 acoustiques 4 
+scène 4 
 
-23784
+28232
 10
-573
+555
 film 14 
 robert 13 
 wise 13 
@@ -463,46 +468,46 @@ lui 6
 west 5 
 side 5 
 story 5 
-plus 5 
 réalisateur 4 
+welles 4 
 
-24919
+22288
 2
-228
+223
 preljocaj 5 
 opéra 4 
 
-24421
+27328
 10
-621
+593
 co2 21 
 gaz 6 
-n' 6 
 capture 6 
-plus 6 
-s' 5 
 stockage 5 
 000 5 
 effet 4 
 géologiques 4 
+même 4 
+charbon 4 
+coût 4 
 
-27373
+20380
 10
-622
+594
 co2 20 
 gaz 6 
-n' 6 
 capture 6 
-plus 6 
-s' 5 
 stockage 5 
 000 5 
 effet 4 
 géologiques 4 
+même 4 
+charbon 4 
+coût 4 
 
-26229
-8
-276
+21489
+7
+266
 pays 8 
 grippe 7 
 docteur 5 
@@ -510,28 +515,26 @@ stohr 5
 oms 4 
 plans 4 
 pandémie 4 
-plus 4 
 
-28042
+28264
 10
-451
-c' 11 
+416
 ol 9 
 club 8 
-on 6 
 football 5 
 été 5 
 communication 5 
 michael 5 
 real 4 
 madrid 4 
+essien 4 
+grand 4 
 
-25011
+20671
 10
-646
+623
 avc 16 
 troubles 8 
-plus 7 
 cérébrale 7 
 accidents 5 
 vasculaires 5 
@@ -539,44 +542,41 @@ cérébraux 5
 cause 5 
 charge 5 
 ischémie 5 
+trois 5 
 
-28456
+22464
 2
-190
+178
 goutte 5 
 huile 4 
 
-21393
-10
-343
-plus 8 
+29258
+9
+320
 explosion 6 
 milliards 6 
 années 6 
-ont 6 
 lumière 5 
 univers 5 
 être 5 
 astronomes 4 
 gamma 4 
+septembre 4 
 
-28167
-10
-428
-plus 7 
+28606
+7
+390
 kg 7 
 équipe 6 
 été 6 
-n' 6 
-on 6 
-ne 5 
-ont 4 
 championnats 4 
 caire 4 
+stéphane 4 
+traineau 4 
 
-23069
+24039
 10
-394
+382
 raman 10 
 susheela 9 
 mills 6 
@@ -588,14 +588,14 @@ sam 4
 music 4 
 chanteuse 4 
 
-23058
+27751
 1
-266
+263
 oberon 6 
 
-24022
+24588
 10
-647
+620
 marie 11 
 sevestre 10 
 librairie 10 
@@ -603,16 +603,13 @@ jean 8
 rentrée 7 
 titres 6 
 sauramps 6 
-s' 6 
 montpellier 5 
 livre 5 
+littérature 4 
 
-29802
-10
-403
-plus 5 
-ne 5 
-n' 4 
+27904
+7
+377
 septembre 4 
 spa 4 
 fia 4 
@@ -621,39 +618,37 @@ pilote 4
 course 4 
 mclaren 4 
 
-23929
+24910
 10
-668
+635
 federer 10 
 agassi 9 
 roger 9 
 lui 9 
-plus 8 
 andre 8 
 tournoi 8 
 grand 8 
-s' 7 
 chelem 7 
+américain 6 
+ans 6 
 
-23135
-10
-373
+24344
+9
+359
 no2 6 
-plus 5 
 granier 5 
 autres 5 
 directement 4 
 polluants 4 
-ont 4 
 deux 4 
 combustion 4 
 claire 4 
+mme 4 
 
-24067
+27445
 10
-456
+437
 nasa 6 
-s' 6 
 navette 5 
 2006 5 
 katrina 4 
@@ -662,103 +657,94 @@ vols 4
 même 4 
 fin 4 
 centre 4 
+spatial 4 
 
-25123
+27811
 10
-505
+486
 3d 9 
-se 8 
 réalité 6 
 virtuelle 6 
 archéologiques 5 
-ont 5 
 données 5 
 être 5 
 recherche 4 
 archéopôle 4 
+public 4 
+institut 4 
 
-22862
-2
-271
+20989
+1
+262
 angleterre 4 
-plus 4 
 
-21530
+24839
 0
-64
+63
 
-25782
-6
-313
-c' 7 
+25408
+3
+285
 deux 4 
 jules 4 
-ne 4 
-s' 4 
 scène 4 
 
-26429
+29145
 10
-640
+618
 carbone 16 
 sols 12 
 effet 9 
 réchauffement 5 
 chercheurs 5 
 climatique 5 
-ont 5 
 pays 5 
 régions 5 
 zones 5 
+également 5 
 
-22567
+25153
 2
-277
+272
 paysagiste 5 
 archives 4 
 
-25368
+29353
 10
-657
-ont 13 
+612
 été 11 
 comète 9 
 impact 8 
 tempel 8 
-ne 8 
-n' 7 
 sonde 6 
 deep 5 
-se 5 
+très 5 
+mission 4 
+violence 4 
+collision 4 
 
-25211
-8
-236
+20429
+5
+208
 france 6 
 équipe 4 
-se 4 
 président 4 
 demandé 4 
 joueurs 4 
-ont 4 
-c' 4 
 
-25736
-9
-578
+26826
+6
+550
 fado 27 
 été 8 
-j' 7 
 do 6 
 carmo 6 
 carlos 5 
 amalia 5 
-on 5 
-ont 5 
 
-29172
+22946
 10
-333
+317
 fédération 7 
 francis 7 
 delattre 7 
@@ -770,29 +756,28 @@ lecomte 5
 député 4 
 équestres 4 
 
-23426
+27908
 0
-24
+23
 
-20540
+23340
 10
-699
+666
 personnes 11 
 virus 11 
 vaccination 10 
 grippe 9 
 aviaire 8 
 contre 6 
-plus 6 
-on 6 
 couverture 6 
 vaccinale 6 
+dgs 5 
+être 5 
 
-23926
+24608
 10
-691
+665
 france 19 
-n' 8 
 coupe 8 
 équipe 7 
 monde 7 
@@ -801,51 +786,49 @@ match 6
 groupe 6 
 deux 6 
 matches 6 
+millions 6 
 
-27763
+22545
 10
-539
+515
 maïs 9 
 transgènes 6 
 été 6 
 contamination 5 
 2004 5 
 région 5 
-plus 5 
-ont 5 
-n' 5 
 être 5 
+chapela 5 
+ogm 4 
+2003 4 
 
-20059
+21499
 10
-492
+477
 athlètes 7 
 aux 6 
 été 6 
 saut 5 
 euros 5 
 décanation 4 
-ont 4 
 leurs 4 
 être 4 
 équipe 4 
+france 4 
 
-28690
-9
-428
-on 12 
+20798
+6
+399
 the 8 
-plus 7 
 sufjan 5 
 stevens 5 
 illinois 4 
 disque 4 
-s' 4 
 feel 4 
 
-20027
+22712
 10
-458
+446
 patrimoine 8 
 prague 6 
 palais 6 
@@ -857,19 +840,18 @@ tchèque 5
 mois 4 
 historiques 4 
 
-22362
-6
-221
+29709
+5
+215
 visa 6 
 été 5 
 or 4 
 festival 4 
-s' 4 
 prix 4 
 
-21421
+22673
 6
-320
+314
 can 8 
 sacd 8 
 musique 5 
@@ -877,37 +859,37 @@ groupe 5
 landed 5 
 quatre 4 
 
-26649
+29006
 10
-861
+797
 théâtre 33 
 public 15 
-c' 14 
-on 12 
 avignon 11 
 festival 10 
-plus 10 
-n' 9 
-se 6 
 art 6 
+deux 5 
+années 5 
+ans 5 
+français 5 
+être 5 
 
-20492
+22065
 10
-838
+805
 mclaren 12 
 renault 10 
 points 9 
 pilotes 7 
-n' 7 
 kimi 7 
 juan 6 
 pablo 6 
 montoya 6 
 grand 6 
+prix 6 
 
-25386
+28424
 10
-619
+595
 vih 12 
 circoncision 11 
 hommes 9 
@@ -919,79 +901,59 @@ sida 5
 sud 5 
 résultats 5 
 
-28335
-10
-492
-on 10 
-se 8 
-plus 7 
+25154
+8
+448
 mètres 7 
 néry 6 
-n' 6 
 monde 6 
 guillaume 5 
 record 5 
-ne 5 
+français 4 
+était 4 
+dont 4 
 
-27793
+24018
 10
-449
+423
 jean 6 
 christophe 6 
-s' 6 
 bette 5 
 bateau 5 
 quatre 4 
 ans 4 
 était 4 
 été 4 
-se 4 
+monde 4 
+dès 4 
 
-26915
-3
-289
-plus 7 
+29783
+1
+274
 étude 5 
-ont 4 
 
-22777
+26489
 4
-266
+251
 abidjan 5 
 victoire 5 
 rêve 4 
 pays 4 
 
-20886
+23891
 2
-284
+272
 comportement 4 
 hôte 4 
 
-29383
-9
-341
+20458
+7
+331
 cellules 21 
 souches 10 
 chercheurs 6 
 souris 5 
 musculaires 5 
 adultes 5 
-ont 5 
 institut 4 
-chez 4 
-
-25788
-10
-691
-france 19 
-n' 8 
-coupe 8 
-équipe 7 
-monde 7 
-2006 6 
-match 6 
-groupe 6 
-deux 6 
-matches 6 
 

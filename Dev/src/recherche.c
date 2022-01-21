@@ -290,8 +290,8 @@ int lanceRechercheViaNom(char* nom_fichier_cible,char* chaine_resultat){
 }
 
 int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
-    char commande[100], num[5];
-    int numLigne=0;
+    char commande[100], numChar[5], nom[50], nomSauv[50];
+    int numLigne=0, id, numMax=0, num;
 
     strcpy(commande, "grep ^");
     strcat(commande, mot);  
@@ -316,11 +316,11 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
 
     numLigne++;
 
-    sprintf(num,"%d",numLigne);
+    sprintf(numChar,"%d",numLigne);
 
 
     strcpy(commande, "cat ./Database/Descripteur/table_index_texte.txt | head -");
-    strcat(commande, num);
+    strcat(commande, numChar);
     strcat(commande, " | tail -1 > fic");
 
     system(commande);
@@ -331,21 +331,29 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
         return 0;
     }
 
-    int id;
-    char nom[40];
-
     strcpy(chaine_resultat,"Voici les resultats pour votre recherche [");
     strcat(chaine_resultat, mot);
     strcat(chaine_resultat, "]:\n");
 
     while (!feof(f)){
-        fscanf(f,"%d %s ",&id,num);
+        fscanf(f,"%d %d ",&id,&num);
+        sprintf(numChar,"%d",num);
         recupNomDUFic(id,1,nom);
         strcat(chaine_resultat, "-");
         strcat(chaine_resultat,nom);
         strcat(chaine_resultat, " : Apparait ");
-        strcat(chaine_resultat,num);
+        strcat(chaine_resultat,numChar);
         strcat(chaine_resultat, " fois\n");
+        if (num > numMax){
+            numMax = num;
+            strcpy(nomSauv, nom);
+        }
+    }
+
+    if (numMax > 0){
+        if (!ouvertureFichier(nomSauv)){
+            printf("Ouverture du fichier impossible. Verifier que xdg est correctement installe (sudo apt install xdg-utils)");
+        }
     }
 
     return 0;
@@ -487,10 +495,12 @@ int generationChaineCaracViaPileTexte(PILE_DESCRIPTEUR_TEXTE pile, DESCRIPTEUR_T
         pile = pile->next;
         dePILE_Texte_Sans_Sauvegarde(sauv);
     }
-
-    if (!ouvertureFichier(chaine_nomSauv) && (occMax > 0)){
+    if ((occMax > 0)){
+        if (!ouvertureFichier(chaine_nomSauv)){
         printf("Ouverture du fichier impossible. Verifier que xdg est correctement installe (sudo apt install xdg-utils)");
     }
+    }
+   
 
     return 0;
 }
