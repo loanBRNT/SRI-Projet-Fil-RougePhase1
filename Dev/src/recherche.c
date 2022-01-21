@@ -360,6 +360,7 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
 
 }
 
+
 // ===============================================================================================
 
 PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descFic){

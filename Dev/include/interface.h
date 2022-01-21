@@ -16,6 +16,9 @@ void afficheRechercheParNom();
 void afficheRechercheChemin();
 void afficheRechercheSelection();
 
+void afficheDataSelection();
+
+
 
 void afficheMenuPrincipal();
 void afficheMenuPointConfig();
@@ -52,6 +55,7 @@ void recupNomRecherche(char* );
 void recupMotRecherche(char* );
 void recupAdresseRecherche(char* );
 
+void recupSelectionRecherche(char*);
 
 int menuUtilisateur();
 

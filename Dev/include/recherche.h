@@ -50,9 +50,6 @@ int lanceRechercheViaAdresse(char* adresse_fichier_cible, char* chaine_resultat)
 int lanceRechercheViaNom(char* nom_fichier_cible, char* chaine_resultat);
 
 //Lance une recherche via le fichier (selectione depuis une liste deroulante)
-int lanceRechercheViaSelection(char* id_fichier, char* chaine_resultat);
-
-//Lance une recherche via le fichier (selectione depuis une liste deroulante)
 int lanceRechercheViaMotCle(char* mot, char* chaine_resultat);
 
 //----------------------------- FONCTIONS SECONDAIRES  ------------------------------
