@@ -163,7 +163,7 @@ int changerNbPoints(PTR_CONFIG config, int nb){
 
 int changerNbBits(PTR_CONFIG config, int nb){
 	if (config != NULL) {
-		if ((nb > 0) && (nb < 9)){
+		if ((nb > 0) && (nb < 5)){
 			config->nbBits = nb;
 			config->maj = 1;
 			return 1;

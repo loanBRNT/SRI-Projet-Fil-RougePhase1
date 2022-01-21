@@ -167,7 +167,7 @@ void afficheRechercheParMot(){
 	printf("#                                         #\n");
 	printf("###########################################\n");
 	printf("#                                         #\n");
-	printf("#    Veuillez saisir le MOT CLEE :        #\n");
+	printf("#    Veuillez saisir le MOT CLE :         #\n");
 	printf("#                                         #\n");
 	printf("###########################################\n");
 }
@@ -223,7 +223,7 @@ void afficheRechercheSelection(){
 	printf("#                                          #\n");
 	printf("#               1-TEXTE                    #\n");
 	printf("#                                          #\n");
-	printf("#               2-VIDEO                    #\n");
+	printf("#               2-AUDIO                    #\n");
 	printf("#                                          #\n");
 	printf("#               3-IMAGE                    #\n");
 	printf("#                                          #\n");
@@ -329,7 +329,7 @@ void affichageSaisieNbBits(){
 	printf("#        VALEUR ACTUELLE : %d             #\n",recupNbBitsDuConfig());
 	printf("#                                         #\n");
 	printf("#        DOIT ETRE COMPRIS ENTRE          #\n");
-	printf("#                1 ET 8                   #\n");
+	printf("#                1 ET 4                   #\n");
 	printf("#                                         #\n");
 	printf("#        << Saisissez un entier >>        #\n");
 	printf("#                                         #\n");
