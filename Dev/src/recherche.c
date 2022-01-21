@@ -343,6 +343,9 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
     return 0;
 
 }
+int lanceRechercheViaSelection(char* id_fichier, char* chaine_resultat){
+    return 0;
+}
 
 //DEMANDER A ELIOTT POUR LE DEPILER
 

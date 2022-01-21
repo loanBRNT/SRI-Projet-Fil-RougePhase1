@@ -198,7 +198,7 @@ void afficheRechercheChemin(){
 	printf("###########################################\n");
 }
 
-void afficheRechercheSelection(){
+void afficheDataSelection(){
 	printf("############################################\n");
 	printf("#                                          #\n");
 	printf("#Vous avez lance la RECHERCHE PAR SELECTION#\n");
@@ -207,6 +207,24 @@ void afficheRechercheSelection(){
 	printf("#                                          #\n");
 	printf("#    Veuillez choisir un fichier de la     #\n");
 	printf("#                database :                #\n");
+	printf("#                                          #\n");
+	printf("###########################################\n");
+}
+
+void afficheRechercheSelection(){
+	printf("############################################\n");
+	printf("#                                          #\n");
+	printf("#Vous avez lance la RECHERCHE PAR SELECTION#\n");
+	printf("#                                          #\n");
+	printf("############################################\n");
+	printf("#                                          #\n");
+	printf("#    Veuillez choisir le type de fichier   #\n");
+	printf("#                                          #\n");
+	printf("#               1-TEXTE                    #\n");
+	printf("#                                          #\n");
+	printf("#               2-VIDEO                    #\n");
+	printf("#                                          #\n");
+	printf("#               3-IMAGE                    #\n");
 	printf("#                                          #\n");
 	printf("###########################################\n");
 }
@@ -708,7 +726,10 @@ int menuUtilisateur(){
 				getchar();
 				break;
 			case 4:
-				//LancerRecherche Selection
+				recupSelectionRecherche(adresse);
+				lanceRechercheViaSelection(adresse, chaine_result);
+				printf("%s\n",chaine_result);
+				getchar(); 
 				break;
 			case 5:
 				event = -1; //retour menu d'avant
@@ -742,6 +763,7 @@ void recupNomRecherche(char* nom){
 	scanf("%s", nom);
 	fflush(stdin);
 }
+
 void recupAdresseRecherche(char* adresse){
 		
 	printf("\n");
@@ -750,3 +772,43 @@ void recupAdresseRecherche(char* adresse){
 	fflush(stdin);
 }
 
+void recupSelectionRecherche(char* id_fichier){
+
+	int event;
+	printf("\n");
+	afficheRechercheSelection();
+	long choixMenu;
+while(event != 0){ //Event 0 représente une fermeture du programme, -1 pour un retour simple au menu précédent
+		choixMenu=lireLong();
+		printf("\n");
+		switch(choixMenu)
+		{
+			case 1:
+				event=0;
+				afficheDataSelection();
+				system("ls  ./Database/Texte/");
+				printf("Veuillez choisir un fichier\n");
+				break;
+			case 2:
+				event=0;
+				afficheDataSelection();
+				system("ls  ./Database/Audio/ | grep wav$");
+				printf("Veuillez choisir un fichier\n");
+				break;
+			case 3:
+				event=0;
+				afficheDataSelection();
+				system("ls ./Database/Image/NB | grep bmp$");
+				system("ls  ./Database/Image/RGB| grep jpg$");
+				printf("Veuillez choisir un fichier\n");
+				break;
+			default:
+				afficheErreurMenu();
+				break;
+		}
+	printf("\n");
+	}
+	
+	scanf("%s",id_fichier);
+	fflush(stdin);
+}
