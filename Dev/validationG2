@@ -1,0 +1,1513 @@
+Script started on 2022-01-21 13:50:08+01:00 [TERM="xterm-256color" TTY="/dev/tty1" COLUMNS="135" LINES="40"]
+]0;loanbernat@DELL-Loan-BERNAT: ~/SRI-Projet-Fil-Rouge/Dev[01;32mloanbernat@DELL-Loan-BERNAT[00m:[01;34m~/SRI-Projet-Fil-Rouge/Dev[00m$ make
+gcc -c src/interface.c -o bin/interface.o -Wall
+gcc bin/recherche.o bin/main.o bin/admin.o bin/comparaison.o bin/indexation.o bin/img.o  bin/indexation_txt.o bin/descripteurAudio.o bin/pile_Img.o bin/pile_Audio.o bin/pile_Texte.o bin/interface.o bin/pwd.o -o prog.out -lm
+]0;loanbernat@DELL-Loan-BERNAT: ~/SRI-Projet-Fil-Rouge/Dev[01;32mloanbernat@DELL-Loan-BERNAT[00m:[01;34m~/SRI-Projet-Fil-Rouge/Dev[00m$ ./prog.out 
+###########################################
+#                                         #
+#            BIENVENUE DANS LA            #
+#                                         #
+#            DESQL CORPORATION            #
+#                                         #
+###########################################
+#                                         #
+#                                         #
+#          ***************                #
+#          ****************               #
+#          ****          ***              #
+#          *** *        * ***             #
+#          ***  *      *   ***            #
+#          ***   *    *     ***           #
+#          ***    *  *       ***          #
+#          ***     **         ***         #
+#          ***     **         ***         #
+#          ***    *  *       ***          #
+#          ***   *    *     ***           #
+#          ***  *      *   ***            #
+#          *** *        * ***             #
+#          ****          ***              #
+#          ***************                #
+#          **************                 #
+#                                         #
+###########################################
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+1
+
+####################################################
+#       veuillez saisir votre identifiant  :       #
+####################################################
+
+quentin
+
+####################################################
+#       veuillez saisir votre mot de passe :       #
+####################################################
+
+augdsjr
+
+###########################################
+#       le mot de passe est errone        #
+###########################################
+
+###########################################
+#             !! ATTENTION !!             #
+#                                         #
+#          Il vous reste 2 essai(s)       #
+###########################################
+
+####################################################
+#       veuillez saisir votre identifiant  :       #
+####################################################
+
+dgfges
+
+###########################################
+#           identifiant invalide          #
+###########################################
+
+###########################################
+#             !! ATTENTION !!             #
+#                                         #
+#          Il vous reste 1 essai(s)       #
+###########################################
+
+####################################################
+#       veuillez saisir votre identifiant  :       #
+####################################################
+
+fezgua
+
+###########################################
+#           identifiant invalide          #
+###########################################
+
+###########################################
+#                                         #
+#  SAISIE INCORRECTE VEUILLEZ RÉESSAYER   #
+#                                         #
+###########################################
+
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+1
+
+####################################################
+#       veuillez saisir votre identifiant  :       #
+####################################################
+
+quentin
+
+####################################################
+#       veuillez saisir votre mot de passe :       #
+####################################################
+
+123456
+
+#############################################
+# vous etes connecte au menu administrateur #
+#############################################
+
+###########################################
+#                                         #
+#  Bienvenue sur le MODE ADMINISTRATEUR   #
+#                                         #
+###########################################
+#                                         #
+#         1: OUVRIR PANNEAU CONFIG        #
+#                                         #
+#         2: LANCER INDEXATION            #
+#                                         #
+#         3: RETOUR MENU PRINCIPAL        #
+#                                         #
+#         4: QUITTER                      #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+1
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        1: TAUX DE SIMILARITE            #
+#                                         #
+#        2: NB MOTS PAR TEXTE             #
+#                                         #
+#        3: SEUIL OCCURENCE MOTS          #
+#                                         #
+#        4: NB INTERVALLE                 #
+#                                         #
+#        5: NB POINTS PAR FENETRE         #
+#                                         #
+#        6: NB BITS DE QUANTIFICATION     #
+#                                         #
+#        7: AFFICHER VALEUR .CONFIG       #
+#                                         #
+#        8: RETOUR MENU ADMIN             #
+#                                         #
+#        9: QUITTER                       #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+7
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        TAUX DE SIMILARITE: 80           #
+#                                         #
+#        NB MOTS PAR TEXTE: 10            #
+#                                         #
+#        SEUIL OCCURENCE MOTS: 3         #
+#                                         #
+#        NB INTERVALLE: 100                #
+#                                         #
+#        NB POINTS PAR FENETRE: 512        #
+#                                         #
+#        NB BITS DE QUANTIFICATION: 2    #
+#                                         #
+###########################################
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        1: TAUX DE SIMILARITE            #
+#                                         #
+#        2: NB MOTS PAR TEXTE             #
+#                                         #
+#        3: SEUIL OCCURENCE MOTS          #
+#                                         #
+#        4: NB INTERVALLE                 #
+#                                         #
+#        5: NB POINTS PAR FENETRE         #
+#                                         #
+#        6: NB BITS DE QUANTIFICATION     #
+#                                         #
+#        7: AFFICHER VALEUR .CONFIG       #
+#                                         #
+#        8: RETOUR MENU ADMIN             #
+#                                         #
+#        9: QUITTER                       #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+5
+
+###########################################
+#                                         #
+#        MODIFIER NB POINTS               #
+#                                         #
+###########################################
+#                                         #
+#        VALEUR ACTUELLE : 512             #
+#                                         #
+#                                         #
+#     DOIT ETRE UNE PUISSANCE DE 2        #
+#                                         #
+#                                         #
+#        << Saisissez un entier >>        #
+#                                         #
+###########################################
+
+1àé'   2 024
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        1: TAUX DE SIMILARITE            #
+#                                         #
+#        2: NB MOTS PAR TEXTE             #
+#                                         #
+#        3: SEUIL OCCURENCE MOTS          #
+#                                         #
+#        4: NB INTERVALLE                 #
+#                                         #
+#        5: NB POINTS PAR FENETRE         #
+#                                         #
+#        6: NB BITS DE QUANTIFICATION     #
+#                                         #
+#        7: AFFICHER VALEUR .CONFIG       #
+#                                         #
+#        8: RETOUR MENU ADMIN             #
+#                                         #
+#        9: QUITTER                       #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+8
+
+
+indexation avec les nouvelles valeurs en cours ...
+###########################################
+#                                         #
+#  Bienvenue sur le MODE ADMINISTRATEUR   #
+#                                         #
+###########################################
+#                                         #
+#         1: OUVRIR PANNEAU CONFIG        #
+#                                         #
+#         2: LANCER INDEXATION            #
+#                                         #
+#         3: RETOUR MENU PRINCIPAL        #
+#                                         #
+#         4: QUITTER                      #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+1
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        1: TAUX DE SIMILARITE            #
+#                                         #
+#        2: NB MOTS PAR TEXTE             #
+#                                         #
+#        3: SEUIL OCCURENCE MOTS          #
+#                                         #
+#        4: NB INTERVALLE                 #
+#                                         #
+#        5: NB POINTS PAR FENETRE         #
+#                                         #
+#        6: NB BITS DE QUANTIFICATION     #
+#                                         #
+#        7: AFFICHER VALEUR .CONFIG       #
+#                                         #
+#        8: RETOUR MENU ADMIN             #
+#                                         #
+#        9: QUITTER                       #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+5
+
+###########################################
+#                                         #
+#        MODIFIER NB POINTS               #
+#                                         #
+###########################################
+#                                         #
+#        VALEUR ACTUELLE : 1024             #
+#                                         #
+#                                         #
+#     DOIT ETRE UNE PUISSANCE DE 2        #
+#                                         #
+#                                         #
+#        << Saisissez un entier >>        #
+#                                         #
+###########################################
+
+gadhss
+Veuillez choisir un nombre superieur a 0 
+1à 024
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        1: TAUX DE SIMILARITE            #
+#                                         #
+#        2: NB MOTS PAR TEXTE             #
+#                                         #
+#        3: SEUIL OCCURENCE MOTS          #
+#                                         #
+#        4: NB INTERVALLE                 #
+#                                         #
+#        5: NB POINTS PAR FENETRE         #
+#                                         #
+#        6: NB BITS DE QUANTIFICATION     #
+#                                         #
+#        7: AFFICHER VALEUR .CONFIG       #
+#                                         #
+#        8: RETOUR MENU ADMIN             #
+#                                         #
+#        9: QUITTER                       #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+8
+
+
+indexation avec les nouvelles valeurs en cours ...
+###########################################
+#                                         #
+#  Bienvenue sur le MODE ADMINISTRATEUR   #
+#                                         #
+###########################################
+#                                         #
+#         1: OUVRIR PANNEAU CONFIG        #
+#                                         #
+#         2: LANCER INDEXATION            #
+#                                         #
+#         3: RETOUR MENU PRINCIPAL        #
+#                                         #
+#         4: QUITTER                      #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+3
+
+
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+2
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+6
+
+
+
+###########################################
+#       fermeture de 'lapplication        #
+###########################################
+]0;loanbernat@DELL-Loan-BERNAT: ~/SRI-Projet-Fil-Rouge/Dev[01;32mloanbernat@DELL-Loan-BERNAT[00m:[01;34m~/SRI-Projet-Fil-Rouge/Dev[00m$ ./prog.out 
+###########################################
+#                                         #
+#            BIENVENUE DANS LA            #
+#                                         #
+#            DESQL CORPORATION            #
+#                                         #
+###########################################
+#                                         #
+#                                         #
+#          ***************                #
+#          ****************               #
+#          ****          ***              #
+#          *** *        * ***             #
+#          ***  *      *   ***            #
+#          ***   *    *     ***           #
+#          ***    *  *       ***          #
+#          ***     **         ***         #
+#          ***     **         ***         #
+#          ***    *  *       ***          #
+#          ***   *    *     ***           #
+#          ***  *      *   ***            #
+#          *** *        * ***             #
+#          ****          ***              #
+#          ***************                #
+#          **************                 #
+#                                         #
+###########################################
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+2
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+1
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR MOT   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le MOT CLE :         #
+#                                         #
+###########################################
+MONDE     monde
+Voici les resultats pour votre recherche [monde]:
+-TestJean.xml : Apparait 4 fois
+-21-La_France_se_réveille_pour.xml : Apparait 4 fois
+-06-Les_mauvais_comptes_d_une_élimination.xml : Apparait 7 fois
+-05-L_apnéiste_français_Guillaume_Néry_plonge.xml : Apparait 6 fois
+-05-Jean-Christophe_Bette_a_dû_attendre.xml : Apparait 4 fois
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+& 1
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR MOT   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le MOT CLE :         #
+#                                         #
+###########################################
+feuille
+Votre recherche n'a donne aucun resultat
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+4
+
+
+############################################
+#                                          #
+#Vous avez lance la RECHERCHE PAR SELECTION#
+#                                          #
+############################################
+#                                          #
+#    Veuillez choisir le type de fichier   #
+#                                          #
+#               1-TEXTE                    #
+#                                          #
+#               2-AUDIO                    #
+#                                          #
+#               3-IMAGE                    #
+#                                          #
+###########################################
+1
+
+############################################
+#                                          #
+#Vous avez lance la RECHERCHE PAR SELECTION#
+#                                          #
+############################################
+#                                          #
+#    Veuillez choisir un fichier de la     #
+#                database :                #
+#                                          #
+###########################################
+03-Des_chercheurs_parviennent_à_régénérer.xml	      15-Danse___Preljocaj_emmène_l_Opéra.xml
+03-Mimer_un_signal_nerveux_pour.xml		      15-La_mort_de_Robert_Wise,.xml
+05-Au_stade_d_Abidjan,_la_défaite.xml		      15-Le_Théâtre_des_Champs-Elysées_s_offre.xml
+05-Edition___les_mots_et.xml			      15-Lille_s_incline_dans_les.xml
+05-Jean-Christophe_Bette_a_dû_attendre.xml	      15-Un_quasar_solitaire_bouleverse_les.xml
+05-L_apnéiste_français_Guillaume_Néry_plonge.xml      15-_Si_on_veut_aller_trop.xml
+05-La_circoncision_pourrait_réduire_le.xml	      16-Une_sonde_japonaise_va_tenter.xml
+05-Le_Colombien_Juan_Pablo_Montoya.xml		      17-Anouk_Aimée_et_Philippe_Noiret.xml
+05-Le_théâtre_de_texte_confronté.xml		      17-De_la_difficulté_d_anticiper_les.xml
+05-Musique_électronique___l_élan_collectif.xml	      17-La_voix_envoûtante_de_Girija.xml
+05-Photographie___Philip_Blenkinsop_a.xml	      17-Une_équipe_française_a_réussi.xml
+05-Prague_inaugure_les_Journées_européennes.xml       18-Battue_par_la_Slovénie,_l_équipe.xml
+05-Rock___l_Illinois_magique_de.xml		      18-L_équipe_de_France_de_tennis.xml
+05-Tours_d_honneur_pour_les_athlètes.xml	      18-Les_22e_Journées_du_Patrimoine.xml
+06-La_contamination_du_maïs_par.xml		      18-Ligue_1___Lyon_a.xml
+06-Les_mauvais_comptes_d_une_élimination.xml	      21-La_France_se_réveille_pour.xml
+06-Sensibiliser_à_la_vaccination_grippale.xml	      21-Matières_plastiques_et_pesticides_pourraient.xml
+06-US_Open___Mauresmo_et.xml			      22-Danse___quarante_jeunes_de.xml
+07-Un_député_UMP_lance_une.xml			      22-Des_laboureurs,_des_OGM..._et.xml
+08-Carlos_do_Carmo____Le.xml			      22-Dominique_Noël____Les_architectes.xml
+08-L_équipe_de_France_victime_d_un.xml		      22-Exposition___les_métamorphoses_picturales.xml
+08-La_mission_Deep_Impact_permet.xml		      22-Grippe_aviaire___la_course.xml
+08-Pavé,_tour_ou_silo,_cinq.xml			      22-Les_clubs_de_football_anglais.xml
+08-Sous_l_effet_du_réchauffement,_les.xml	      22-Sursaut_des_Monégasques_après_le.xml
+08-Théâtre___l_échappée_belle,_peu.xml		      22-Ted_Stanger,_l_Américain_de_service.xml
+08-US_Open___Pierce_élimine.xml			      23-Les_Bleus,_tombeurs_de_la.xml
+09-Miracle___le_cricket_est.xml			      24-Canicules_et_sécheresses_menacent_de.xml
+10-La_réalité_virtuelle_et_l_informatique.xml	      26-Grippe_aviaire___une_sixième.xml
+10-Le_cyclone_Katrina_complique_le.xml		      26-Jazz___Manu_Katché,_haut.xml
+11-La_troposphère_paie,_au_prix.xml		      26-Lyon_prend_ses_aises_en.xml
+12-Agassi_plie_face_au_meilleur.xml		      26-Tom_Boonen_sacré_champion_du.xml
+12-Fernando_Alonso_n_est_plus_qu_à.xml		      27-A_Lens,_le_Louvre_sera.xml
+12-Jean-Marie_Sevestre,_libraire_et_PDG.xml	      27-Le_Stade_de_France_s_ouvre.xml
+12-Musique_classique___un__Oberon_.xml		      27-Martin_Scorsese_inaugure_la_Cinémathèque.xml
+12-Musiques_du_monde___les.xml			      27-Voyager_1_s_aventure_dans_l_au-delà.xml
+12-Succès_sur_les_tatamis,_polémique.xml	      28-A_Hossegor,_Kelly_Slater_peut.xml
+13-Des_astronomes_détectent_l_explosion_cosmique.xml  28-Danse___Robyn_Orlin_et.xml
+13-L_inattendue_lévitation_de_la_goutte.xml	      28-Festival___Ososphère,_un_week-end.xml
+13-Les_accidents_vasculaires_cérébraux,_à.xml	      28-_Œdipe_à_Colone_,_la_rage.xml
+13-Ligue_des_champions____Si.xml		      29-Forte_réduction_de_la_calotte.xml
+14-Grippe_aviaire___l_OMS_exhorte.xml		      29-Ligue_des_champions___Lyon.xml
+15-Capturer_et_emprisonner_le_CO.xml		      TestJean.xml
+15-Capturer_et_emprisonner_le_CO2,.xml
+Veuillez choisir un fichier
+
+05-Jean-Christophe_Bette_a_dû_attendre.xml
+Voici les resultats suite a votre recherche : [05-Jean-Christophe_Bette_a_dû_attendre.xml]
+- TestJean.xml : mots cle en commun : 10
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+" 3
+
+
+###########################################
+#                                         #
+# Vous avez lance la RECHERCHE PAR CHEMIN #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le chemin d'acces    #
+#               du fichier :              #
+#                                         #
+###########################################
+./Requete/02Copie.txt   jpg
+Voici les resultats suite a votre recherche : [02Copie.jpg]
+- 02.jpg
+- 10.jpg
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+co  corpus.wav
+ERREUR : LA RECHERCHE N'A PU ABOUTIR
+VERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+corpus_fi.wav
+Voici les resultats suite a votre recherche : [corpus_fi.wav]
+corpus_m6.wav : 
+jingle_fi.wav : 
+jingle_m6.wav : 
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+jingle_fi.wav
+Voici les resultats suite a votre recherche : [jingle_fi.wav]
+corpus_fi.wav : 29.256969s 
+corpus_m6.wav : 
+jingle_m6.wav : 
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+4
+
+
+############################################
+#                                          #
+#Vous avez lance la RECHERCHE PAR SELECTION#
+#                                          #
+############################################
+#                                          #
+#    Veuillez choisir le type de fichier   #
+#                                          #
+#               1-TEXTE                    #
+#                                          #
+#               2-AUDIO                    #
+#                                          #
+#               3-IMAGE                    #
+#                                          #
+###########################################
+2
+
+############################################
+#                                          #
+#Vous avez lance la RECHERCHE PAR SELECTION#
+#                                          #
+############################################
+#                                          #
+#    Veuillez choisir un fichier de la     #
+#                database :                #
+#                                          #
+###########################################
+corpus_fi.wav
+corpus_m6.wav
+jingle_fi.wav
+jingle_m6.wav
+Veuillez choisir un fichier
+
+jingle_m6.wav
+Voici les resultats suite a votre recherche : [jingle_m6.wav]
+corpus_fi.wav : 
+corpus_m6.wav : 14.091370s 86.507111s 132.383041s 169.349197s 238.163101s 293.012024s 328.524811s 
+jingle_fi.wav : 
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+corpus
+Erreur de lecture du fichier :
+Type non reconnu
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+corpus.w        2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+corpus.wav
+ERREUR : LA RECHERCHE N'A PU ABOUTIR
+VERIFIEZ QUE LE PROGRAMME DISPOSE DE L'ENSEMBLE DES DROITS AUX FICHIERS NECESSAIRES
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+02.   62.bmp
+Voici les resultats suite a votre recherche : [62.bmp]
+- 57.bmp
+- 63.bmp
+- 58.bmp
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+02.jpg
+Voici les resultats suite a votre recherche : [02.jpg]
+- 02Copie.jpg
+- 10.jpg
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+5
+
+
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+1
+
+####################################################
+#       veuillez saisir votre identifiant  :       #
+####################################################
+
+quentin
+
+####################################################
+#       veuillez saisir votre mot de passe :       #
+####################################################
+
+123456
+
+#############################################
+# vous etes connecte au menu administrateur #
+#############################################
+
+###########################################
+#                                         #
+#  Bienvenue sur le MODE ADMINISTRATEUR   #
+#                                         #
+###########################################
+#                                         #
+#         1: OUVRIR PANNEAU CONFIG        #
+#                                         #
+#         2: LANCER INDEXATION            #
+#                                         #
+#         3: RETOUR MENU PRINCIPAL        #
+#                                         #
+#         4: QUITTER                      #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+1
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        1: TAUX DE SIMILARITE            #
+#                                         #
+#        2: NB MOTS PAR TEXTE             #
+#                                         #
+#        3: SEUIL OCCURENCE MOTS          #
+#                                         #
+#        4: NB INTERVALLE                 #
+#                                         #
+#        5: NB POINTS PAR FENETRE         #
+#                                         #
+#        6: NB BITS DE QUANTIFICATION     #
+#                                         #
+#        7: AFFICHER VALEUR .CONFIG       #
+#                                         #
+#        8: RETOUR MENU ADMIN             #
+#                                         #
+#        9: QUITTER                       #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+1
+
+###########################################
+#                                         #
+#     MODIFIER LE TAUX DE SIMILARITE      #
+#                                         #
+###########################################
+#                                         #
+#        VALEUR ACTUELLE : 80             #
+#                                         #
+#        DOIT ETRE COMPRIS ENTRE          #
+#                1 ET 100                 #
+#                                         #
+#        << Saisissez un entier >>        #
+#                                         #
+###########################################
+
+30
+
+###########################################
+#                                         #
+#         PANNEAU DE CONFIGURATION        #
+#                                         #
+###########################################
+#                                         #
+#        1: TAUX DE SIMILARITE            #
+#                                         #
+#        2: NB MOTS PAR TEXTE             #
+#                                         #
+#        3: SEUIL OCCURENCE MOTS          #
+#                                         #
+#        4: NB INTERVALLE                 #
+#                                         #
+#        5: NB POINTS PAR FENETRE         #
+#                                         #
+#        6: NB BITS DE QUANTIFICATION     #
+#                                         #
+#        7: AFFICHER VALEUR .CONFIG       #
+#                                         #
+#        8: RETOUR MENU ADMIN             #
+#                                         #
+#        9: QUITTER                       #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+8
+
+
+
+###########################################
+#                                         #
+#  Bienvenue sur le MODE ADMINISTRATEUR   #
+#                                         #
+###########################################
+#                                         #
+#         1: OUVRIR PANNEAU CONFIG        #
+#                                         #
+#         2: LANCER INDEXATION            #
+#                                         #
+#         3: RETOUR MENU PRINCIPAL        #
+#                                         #
+#         4: QUITTER                      #
+#                                         #
+#        << choisissez un menu >>         #
+#                                         #
+###########################################
+
+3
+
+
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+2
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+62.bmp
+Voici les resultats suite a votre recherche : [62.bmp]
+- 57.bmp
+- 63.bmp
+- 58.bmp
+- 54.bmp
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+2
+
+
+###########################################
+#                                         #
+#  Vous avez lance la RECHERCHE PAR NOM   #
+#                                         #
+###########################################
+#                                         #
+#    Veuillez saisir le nom du fichier :  #
+#                                         #
+###########################################
+02.jpg
+Voici les resultats suite a votre recherche : [02.jpg]
+- 02Copie.jpg
+- 50.jpg
+- 49.jpg
+- 48.jpg
+- 43.jpg
+- 41.jpg
+- 40.jpg
+- 39.jpg
+- 37.jpg
+- 36.jpg
+- 35.jpg
+- 34.jpg
+- 33.jpg
+- 32.jpg
+- 31.jpg
+- 30.jpg
+- 29.jpg
+- 28.jpg
+- 26.jpg
+- 25.jpg
+- 24.jpg
+- 23.jpg
+- 21.jpg
+- 19.jpg
+- 15.jpg
+- 14.jpg
+- 12.jpg
+- 11.jpg
+- 10.jpg
+- 09.jpg
+- 08.jpg
+- 06.jpg
+- 05.jpg
+- 04.jpg
+- 03.jpg
+- 01.jpg
+
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+5
+
+
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+2
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+5
+
+
+
+###########################################
+#                                         #
+#            MENU PRINCIPAL               #
+#                                         #
+###########################################
+#                                         #
+#            1:ADMINISTRATEUR             #
+#                                         #
+#            2:UTILISATEUR                #
+#                                         #
+#            3:QUITTER                    #
+#                                         #
+#       !! choisissez le Mode !!          #
+#                                         #
+###########################################
+
+2
+
+###########################################
+#                                         #
+#    Bienvenue sur le MODE UTILISATEUR    #
+#                                         #
+###########################################
+#                                         #
+# << choisissez le type de recherche: >>  #
+#                                         #
+#        1: PAR MOT CLÉ                   #
+#                                         #
+#        2: PAR NOM                       #
+#                                         #
+#        3: PAR CHEMIN                    #
+#                                         #
+#        4: PAR SELECTION                 #
+#                                         #
+#        5: RETOUR MENU PRINCIPAL         #
+#                                         #
+#        6: QUITTER                       #
+#                                         #
+###########################################
+
+- 6
+
+
+
+###########################################
+#       fermeture de 'lapplication        #
+###########################################
+]0;loanbernat@DELL-Loan-BERNAT: ~/SRI-Projet-Fil-Rouge/Dev[01;32mloanbernat@DELL-Loan-BERNAT[00m:[01;34m~/SRI-Projet-Fil-Rouge/Dev[00m$ exit
+exit
+
+Script done on 2022-01-21 14:05:36+01:00 [COMMAND_EXIT_CODE="0"]

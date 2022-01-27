@@ -308,7 +308,7 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
     fscanf(fTit,"%d",&numLigne);
 
     if (numLigne == 0){
-        strcpy(chaine_resultat,"Votre recherche n'a donne aucun resultats\n");
+        strcpy(chaine_resultat,"Votre recherche n'a donne aucun resultat\n");
         return 0;
     }
 

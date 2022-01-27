@@ -372,7 +372,7 @@ int menuAdminVerif(){
 	int valeur=1;
 	int choix = 1;
 	while(cpt != (-1)) {
-		printf("La verif du mot de passe se lance\n\n");
+		
 		//on informe l'utilisateur qui rentre sur un menu prive
         // on verifie la valeur de retour de verifierPwdAdmin pour savoir si l'utilisateur a saisi le bon mot de passe
         cpt = verifierPwdAdmin();
@@ -383,7 +383,7 @@ int menuAdminVerif(){
 				printf("###########################################\n");
  				printf("#             !! ATTENTION !!             #\n");
   				printf("#                                         #\n");
-  				printf("#          Il vous reste 1 essai          #\n");
+  				printf("#          Il vous reste 1 essai(s)       #\n");
  				printf("###########################################\n");
 				printf("\n");
 				choix = choix+1;
@@ -394,7 +394,7 @@ int menuAdminVerif(){
 				printf("###########################################\n");
  				printf("#             !! ATTENTION !!             #\n");
   				printf("#                                         #\n");
-  				printf("#          Il vous reste 2 essai          #\n");
+  				printf("#          Il vous reste 2 essai(s)       #\n");
  				printf("###########################################\n");
 				printf("\n");
 				choix = choix+1;
