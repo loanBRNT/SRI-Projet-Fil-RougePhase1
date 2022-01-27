@@ -363,6 +363,73 @@ int lanceRechercheViaMotCle(char* mot, char* chaine_resultat){
 
 // ===============================================================================================
 
+// ===============================================================================================
+
+PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descFic){
+    PILE_DESCRIPTEUR_IMAGE pile = Charger_Pile_DescripteurImg(init_PILE_Img());
+    PILE_DESCRIPTEUR_IMAGE pileSim = init_PILE_Img();
+    PILE_DESCRIPTEUR_IMAGE pileSimTrie = init_PILE_Img();
+    int min,rang;
+
+    int tauwSim = recupTauxSimmilaritudeDuConfig(), tauxAct, cpt=0;
+
+    int tabOcc[200];
+
+    if (pile == NULL){
+        printf("ERREUR : ECHEC CHARGEMENT DE LA PILE DES IMAGES\n");
+        return pileSim;
+    }
+
+    CelluleI* sauv;
+
+    while (pile != NULL){
+        if (pile->Di.ID != ptr_descFic->ID){
+            tauxAct = comparaisonFichiersImage(ptr_descFic,&(pile->Di));
+            if (tauxAct >= tauwSim){
+                pileSim = emPILE_Img(pileSim , pile->Di);
+                tabOcc[cpt]=tauxAct;
+                cpt++;
+                if (cpt == 199){
+                    printf("DEPASSEMENT CAPACITE : VEUILLEZ AUGMENTER LE SEUIL DE SIMILARITE\n");
+                }
+            }
+        }
+        sauv = pile;
+        pile = pile->next;
+        dePILE_Img_Sans_Sauvegarde(sauv);   
+    }
+
+    for (int i = 0 ; i < cpt ; i++){
+        min = tabOcc[0];
+        rang=0;
+        for (int j = 0 ; j < cpt ; j++){
+            if (tabOcc[j] < min){
+                min = tabOcc[j];
+                rang=j;
+            }
+        }
+
+        sauv = pileSim;
+        for (int r = 0 ; r < cpt - rang -1 ; r++){
+            sauv = sauv->next;
+        }
+
+        pileSimTrie = emPILE_Img(pileSimTrie, sauv->Di);
+        tabOcc[rang] = 500;
+
+    }
+
+    while(pileSim != NULL){
+        sauv = pileSim;
+        pileSim = pileSim->next;
+        dePILE_Img_Sans_Sauvegarde(sauv);
+    }
+
+
+    return pileSimTrie;
+}
+
+/* VERSION DE L'ORAL
 PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descFic){
     PILE_DESCRIPTEUR_IMAGE pile = Charger_Pile_DescripteurImg(init_PILE_Img());
     PILE_DESCRIPTEUR_IMAGE pileSim = init_PILE_Img();
@@ -397,16 +464,19 @@ PILE_DESCRIPTEUR_IMAGE rechercheImageParDescripteur(DESCRIPTEUR_IMAGE* ptr_descF
         pile = pile->next;
         dePILE_Img_Sans_Sauvegarde(sauv);   
     }
+
+
     if (sauvMax.ID != 0){
         pileSim = emPILE_Img(pileSim , sauvMax);
     }
     return pileSim;
-}
+} */
 
 PILE_DESCRIPTEUR_TEXTE rechercheTexteParDescripteur(DESCRIPTEUR_TEXTE* ptr_descFic){
     PILE_DESCRIPTEUR_TEXTE pile = Charger_Pile_DescripteurTexte(init_PILE_Texte());
     PILE_DESCRIPTEUR_TEXTE pileSim = init_PILE_Texte();
-    int tauwSim = recupTauxSimmilaritudeDuConfig(), tauxAct;
+
+    int tauwSim = recupTauxSimmilaritudeDuConfig()-20, tauxAct;
 
     if (pile == NULL){
         printf("ERREUR : ECHEC CHARGEMENT DE LA PILE DES IMAGES\n");

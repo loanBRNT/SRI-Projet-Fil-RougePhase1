@@ -141,7 +141,7 @@ int comparaisonFichiersTexte(DESCRIPTEUR_TEXTE* texte1, DESCRIPTEUR_TEXTE* texte
 
     taux = nbMotCmmunFichierTexte(texte1,texte2);
 
-    return (taux*200/ texte1->nbtermes);
+    return (taux*300/ texte1->nbtermes);
 }
 
 //continuer la relfexion sur le texte
