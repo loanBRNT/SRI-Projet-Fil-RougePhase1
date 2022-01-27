@@ -78,7 +78,6 @@ PILE_Img Charger_Pile_DescripteurImg(PILE_Img PI){
     else{
     	//tant qu'on est pas a la fin du fichier on vient lire 2 valeurs l'id puis la taille d'un descripteur
         while(!feof(f)){
-        while(!feof(f)){
             fscanf(f,"%s",lu);
             id=atoi(lu);
             fscanf(f,"%s",lu);
@@ -92,7 +91,6 @@ PILE_Img Charger_Pile_DescripteurImg(PILE_Img PI){
          }
       }
 	return PI;
-
-};
+}
 
 
