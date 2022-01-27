@@ -1,6 +1,17 @@
 #ifndef PILE_AUDIO_H
 #define PILE_AUDIO_H
 
+/* 
+ ----------------------- Signature -------------------------
+|                                                           |
+|       Auteur : GAUDILLAT Eliott                           |
+|       Date de creation : 19/12/21                         |
+|       Date de derniere MAJ : 29/12/22                     |
+|                                                           |
+ ----------------------------------------------------------- 
+ */
+
+//------------ DEFINITION STRUCT------------------
 
 typedef struct s_cellule{
 	DescripteurAudio Da;
@@ -9,6 +20,8 @@ typedef struct s_cellule{
 
 
 typedef Cellule* PILE_Audio;
+
+//----------PROTOTYPE FONCTION-----------------------
 
 PILE_Audio init_PILE_Audio();
 

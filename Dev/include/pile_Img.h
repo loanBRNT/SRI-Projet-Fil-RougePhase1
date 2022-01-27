@@ -1,6 +1,17 @@
 #ifndef PILE_IMG_H
 #define PILE_IMG_H
 
+/* 
+ ----------------------- Signature -------------------------
+|                                                           |
+|       Auteur : GAUDILLAT Eliott                           |
+|       Date de creation : 21/12/21                         |
+|       Date de derniere MAJ : 29/12/22                     |
+|                                                           |
+ ----------------------------------------------------------- 
+ */
+
+//------------ DEFINITION STRUCT------------------
 
 typedef struct s_celluleI{
 	Descripteur Di;
@@ -9,6 +20,9 @@ typedef struct s_celluleI{
 
 
 typedef CelluleI* PILE_Img;
+
+
+//----------PROTOTYPE FONCTION-----------------------
 
 PILE_Img init_PILE_Img();
 
