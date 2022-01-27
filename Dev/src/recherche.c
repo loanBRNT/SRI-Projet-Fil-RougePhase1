@@ -646,6 +646,9 @@ int rechercheJingle(DESCRIPTEUR_AUDIO* descFic, char* chaine_resultat){
                 presMax = pres;
                 strcpy(chaine_nomSauv, chaine_nom);
             }
+            if (pres == 0){
+                strcat(chaine_resultat, "aucune corespondance");
+            }
             strcat(chaine_resultat,"\n");
         }
         sauv = pile;
