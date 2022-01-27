@@ -16,12 +16,13 @@
 |                                                           |
 |       Auteur : GAUDILLAT Eliott                           |
 |       Date de creation : 10/12/21                         |
-|       Date de derniere MAJ : 22/12/21                     |
+|       Date de derniere MAJ : 26/01/22                     |
 |                                                           |
  ----------------------------------------------------------- 
 */
 
-
+/* VerificationTraitee(char* nom_fic) verifie si le fichier nom_fic à déjà été indexé 
+return 1 si traité 0 sinon*/
 int VerificationTraitee(char* nom_fic){
 	// V1 => si fichier perso meme nom que un fichier de la base de données alors renvoie deja traitee
 	FILE * ptr_fic;
@@ -29,6 +30,7 @@ int VerificationTraitee(char* nom_fic){
 	char CHEMIN_FICHIER_INDEXEE[100];
 	char valeur[5];
 	int traite;
+	// on verife l'extension du texte pour savoir si on a affaire un fichier audio ,texte ou image et donc savoir quelle fichier contenant les fichiers déjà traité a ouvrir
 	if (strstr(nom_fic, ".xml")){
     	strcpy( CHEMIN_FICHIER_INDEXEE,"./Database/Descripteur/liste_base_texte.txt");
     }
@@ -42,6 +44,8 @@ int VerificationTraitee(char* nom_fic){
     	fprintf(stderr, "ERREUR :  PB avec type du fichier\n");
     	return 0;
     } 
+    // execution commande unix : cat CHEMIN_FICHIER_INDEXEE |grep nom_fic |wc -l >fic-temp2
+    // cat renvoie le contenue de liste_base choisi , grep renvoie les lignes contenant le nom du fichier  et wc -l conmpte le nombre de ligne recu et ecrit le resultat dans fictemp2
     strcpy(commande, "cat ");
 	strcat(commande, CHEMIN_FICHIER_INDEXEE);
 	strcat(commande, " | grep ");
@@ -52,6 +56,7 @@ int VerificationTraitee(char* nom_fic){
 	fflush(stdout);
 	system(commande);
 
+// ouverture de fic-temp2 pour lire la valeur de la commande si 1 alors le fichier est déjà traité si 0 non traité.
 	ptr_fic = fopen("fic_temp2", "r");
 
 	if( ptr_fic != NULL){
@@ -67,13 +72,13 @@ int VerificationTraitee(char* nom_fic){
    	}
    	fclose(ptr_fic);
 	return traite;	
-		// supp fic-temp2
+		
 };
 
 
 
 
-//Integrer indexation texte
+
 
 void Indexation(){
 
@@ -103,7 +108,7 @@ void Indexation(){
 
 
 
-	// creation de la commande a executer ==> doit etre une chaine de carcatere//
+	// creation de la commande a executer 
 
 	//------------------------------------------------------//
 	// RECUPERATION DU CONTENU DU REPERTOIRE  CHEMIN_TEXTE //
@@ -120,6 +125,7 @@ void Indexation(){
 	//system("cat fic_temp");
 	//printf("---------------------------------\n");
 
+//ouverture de fic-temp en mode read
 	ptr_fic = fopen("fic_temp", "r");
 
 	if( ptr_fic != NULL){   
@@ -130,18 +136,23 @@ void Indexation(){
 	    fscanf( ptr_fic, "%*s %*s");    //  SAUTER LA PREMIERE LIGNE CONSTITUEE DE 2 CHAINES total xxxx //
     
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
+	    // tant qu'on est pas a la fin du fichier on traite la donnee recuperer
  	    while ( !feof(ptr_fic) ){
+ 	    	// verifie si nom-fic a deja ete indexé ou pas
  	    	if(VerificationTraitee(nom_fic)){
  	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
  	    		//printf("fichier deja indexee\n");
  	    	}
  	    	else{
      			if (strstr(nom_fic, ".xml")){
+     				//concatenation pour avoir une chaine conteanant le chemin menant au fichier depuis le prog.out
     				strcpy(CHEMIN_INDEXATION,"./Database/Texte/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
+    				//indexation du fichier nom_fic
     				DescripteurTxt Dt =indexationTxt(CHEMIN_INDEXATION, NbMot,OccMot);
     				pT=emPILE_Texte(pT,Dt);
     				sprintf(id,"%d", Dt.ID);
+    				//ecriture du nom du fichier et de son id unique dans la liste des fichiers traités
     				strcpy(commande, "echo ");
     				strcat(commande,id);
     				strcat(commande," " );
@@ -192,6 +203,7 @@ void Indexation(){
     
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
 	   
+	   // tant qu'on est pas a la fin du fichier on traite la donnee recuperer
  	    while ( !feof(ptr_fic) ){
  	    	if(VerificationTraitee(nom_fic)){
  	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
@@ -199,11 +211,14 @@ void Indexation(){
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".bin")){
+    				//concatenation pour avoir une chaine conteanant le chemin menant au fichier depuis le prog.out
     				strcpy(CHEMIN_INDEXATION,"./Database/Audio/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
+    				//indexation du fichier nom_fic
     				DescripteurAudio DA =IndexationFichierAudio(CHEMIN_INDEXATION,intervalleAudio,nbrPointAudio);
     				pA=emPILE_Audio(pA,DA);
     				sprintf(id,"%d", DA->identifiant);
+    				//ecriture du nom du fichier et de son id unique dans la liste des fichiers traités
     				strcpy(commande, "echo ");
     				strcat(commande,id);
     				strcat(commande," " );
@@ -256,6 +271,7 @@ void Indexation(){
  	    // FORMAT DE LA LIGNE :  -rw-r--r--   1 ferrane  minfg       4834 Sep 23  2008 28-Danse___Robyn_Orlin_et.xml //
    
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
+ 	    // tant qu'on est pas a la fin du fichier on traite la donnee recuperer
  	    while ( !feof(ptr_fic) ){
  	    	if(VerificationTraitee(nom_fic)){
  	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
@@ -263,11 +279,14 @@ void Indexation(){
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".txt")){
+    				//concatenation pour avoir une chaine conteanant le chemin menant au fichier depuis le prog.out
     				strcpy(CHEMIN_INDEXATION,"./Database/Image/NB/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
+    				//indexation du fichier nom_fic
     				Descripteur DI=indexer_image(CHEMIN_INDEXATION, bitQ);
     				pI=emPILE_Img(pI,DI);
     				sprintf(id,"%d", DI.ID);
+    				//ecriture du nom du fichier et de son id unique dans la liste des fichiers traités
     				strcpy(commande, "echo ");
     				strcat(commande, id );
     				strcat(commande," " );
@@ -315,6 +334,7 @@ void Indexation(){
  	    // FORMAT DE LA LIGNE :  -rw-r--r--   1 ferrane  minfg       4834 Sep 23  2008 28-Danse___Robyn_Orlin_et.xml //
    
 	    fscanf(ptr_fic, "%*s %*s %*s %*s %*s %*s %*s %*s %s", nom_fic);  // %*s INGNORE LA CHAINE LUE //
+	    // tant qu'on est pas a la fin du fichier on traite la donnee recuperer
  	    while ( !feof(ptr_fic) ){
  	    	if(VerificationTraitee(nom_fic)){
  	    		//affichage de verification lors du developpement ( non necessaire lors de l'utilisation par le client)
@@ -322,11 +342,14 @@ void Indexation(){
  	    	}
  	    	else{
     			if(strstr(nom_fic, ".txt")){
+    				//concatenation pour avoir une chaine conteanant le chemin menant au fichier depuis le prog.out
     				strcpy(CHEMIN_INDEXATION,"./Database/Image/RGB/");	
     				strcat(CHEMIN_INDEXATION,nom_fic);
+    				//indexation du fichier nom_fic
     				Descripteur DI=indexer_image(CHEMIN_INDEXATION, bitQ);
     				pI=emPILE_Img(pI,DI);
     				sprintf(id,"%d", DI.ID);
+    				//ecriture du nom du fichier et de son id unique dans la liste des fichiers traités
     				strcpy(commande, "echo ");
     				strcat(commande, id );
     				strcat(commande," " );
@@ -357,6 +380,7 @@ void Indexation(){
 	// Sauvegarde des descripteurs dans un fichier                         //
 	//---------------------------------------------------------------------//
 
+/* Meme procede pour les 3 piles si la pile n'est pas vide alors on ouvre le fichier de sauvegarde associé  on depile la pile dans le fichier puis on ferme le fichier*/
 	FILE * f;
 	if(!PILE_Audio_estVide(pA)){
 		f=fopen("./Database/Descripteur/dA.txt","a+");
@@ -382,10 +406,11 @@ void Indexation(){
 			pT=dePILE_Texte(pT,f);
 		}
 		fclose(f);
+		// on appel la fonction sauvegarderMotCle() pour sauver les termes present dans les descripteurs texte
 		sauvegardeMotCle();
 	}
 
-
+// suppression des fichiers temporaire 
 	strcpy(commande, "rm fic_temp fic_temp2 ");
 	system(commande); 
 
