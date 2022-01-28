@@ -7,7 +7,7 @@
 /* 
  ----------------------- Signature -------------------------
 |															|
-|		Auteur : BERNAT Loan								|
+|		Auteur : BERNAT Loan et PHAN Quentin				|
 |		Date de creation : 10/12/21							|
 |		Date de derniere MAJ : 14/12/22						|
 |															|

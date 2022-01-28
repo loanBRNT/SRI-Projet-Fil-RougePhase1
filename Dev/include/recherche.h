@@ -64,6 +64,6 @@ int recupIdDuFic(char* nom_fic, int type); //Renvoie l'ID du fichier passé en p
 
 void recupNomDUFic(int id, int type, char* chaine); //Ecrit dans chaine le nom du fichier correspondant à l'ID passe en param selon son type (1,2,3,4)
 
-int ouvertureFichier(char* nom);
+int ouvertureFichier(char* nom); //Permet d'ouvrir l'image/l'audio/le texte directement
 
 #endif

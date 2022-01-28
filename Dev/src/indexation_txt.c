@@ -9,9 +9,20 @@
 
 //------------------------------------------------------------------------------------------------------------------------
 
-void cleaning(char* nom){												//Fonction CLEAN (ajouter le param char*)
+/* 
+ ----------------------- Signature -------------------------
+|                                                           |
+|       Auteur : MISSIER Samuel	                            |
+|       Date de creation : 6/12/21                          |
+|       Date de derniere MAJ : 15/01/22                     |
+|                                                           |
+ ----------------------------------------------------------- 
+ */
+
+
+void cleaning(char* nom){												//Fonction CLEAN (épure texte)
 	FILE* fclean=fopen("test_temp.clean","w+");	
-	FILE* findex=fopen(nom,"r");										//mettre le char*	
+	FILE* findex=fopen(nom,"r");										
 	int carac=0;
 	rewind(findex);
 	if(fclean!=NULL && findex!=NULL){							//verif ouverture/creation fichiers
@@ -60,7 +71,7 @@ void cleaning(char* nom){												//Fonction CLEAN (ajouter le param char*)
 		printf("\n Erreur ouverture/creation \n");
 	}
 	fclose(fclean);
-	fclose(findex);
+	fclose(findex);								//fermeture fic
 }
 
 //------------------------------------------------------------------------------------------------------------------------
@@ -69,7 +80,7 @@ int CleanToTok(){
 																		//Fonction TOKEN
 	FILE* fclean=fopen("test_temp.clean","r");							
 	FILE* ftok=fopen("test_toktemp.tok","w+");							//CREATION FICHIER .TOK
-	FILE* stoplist=fopen("./Database/Descripteur/stoplist.txt","r");							//OUVERTURE FICHIER STOPLIST
+	FILE* stoplist=fopen("./Database/Descripteur/stoplist.txt","r");	//OUVERTURE FICHIER STOPLIST
 	
 	if (fclean == NULL || ftok == NULL || stoplist == NULL){
 		printf("ERREUR OUVERTURE\n");
@@ -132,12 +143,12 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 	int cpt;
 	Terme actTerme;
 
-	strcpy(commande,"cat test_toktemp.tok > toktemp2.tok");
+	strcpy(commande,"cat test_toktemp.tok > toktemp2.tok");			//copie du .tok
 
 	fflush(stdin);
 	system(commande);
 
-	FILE* ftok=fopen("test_toktemp.tok","r");
+	FILE* ftok=fopen("test_toktemp.tok","r");						//ouverture des fichiers en ecriture
 	FILE* fictemp=fopen("toktemp2.tok","r");
 
 	rewind(ftok);
@@ -153,13 +164,13 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 				occurence++;
 			}
 		}
-		if(occurence > nbocc && (strlen(mot)>1)){
+		if(occurence > nbocc && (strlen(mot)>1)){				//teste si l'occurence d'un mot > seuil
 			cpt=0;
 			actTerme =(Dt.tableau[cpt]);
 			while(cpt < nbterme){
 				actTerme = (Dt.tableau[cpt]);
 				if((occurence > actTerme.nboccurence)){
-					Dt.nbtermes = incrementerNbTerme(Dt.nbtermes,nbterme);
+					Dt.nbtermes = incrementerNbTerme(Dt.nbtermes,nbterme);				//ajout du terme au descripteur quand celui-ci est plein
 					intercalerTerme(Dt.tableau, mot, occurence, cpt, nbterme);
 					break;
 				}
@@ -168,7 +179,7 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 				
 			}
 			if(cpt < nbterme){
-				//Dt.nbtermes = incrementerNbTerme(Dt.nbtermes,nbterme);
+				//Dt.nbtermes = incrementerNbTerme(Dt.nbtermes,nbterme);				//ajout du terme au descripteur
 				Dt.tableau[cpt] = ajouterTerme(actTerme, mot, occurence);
 			}
 			
@@ -185,7 +196,7 @@ DescripteurTxt Counting(DescripteurTxt Dt, int nbocc, int nbterme){
 
 //---------------------------------------------------------------------------------------------------------------------------
 
-int incrementerNbTerme(int nb, int nbtermeMAX){
+int incrementerNbTerme(int nb, int nbtermeMAX){						//iterateur du nombre de termes deja contenus dans le descripteur
 	if (nb < nbtermeMAX ){
 		nb++;
 	}

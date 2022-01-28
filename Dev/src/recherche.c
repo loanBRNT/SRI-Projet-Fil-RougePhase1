@@ -18,7 +18,7 @@
 |															|
 |		Auteur : BERNAT Loan								|
 |		Date de creation : 07/12/21							|
-|		Date de derniere MAJ : xx/01/22						|
+|		Date de derniere MAJ : 27/01/22						|
 |															|
  ----------------------------------------------------------- 
  */

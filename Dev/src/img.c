@@ -5,6 +5,16 @@
 #include <time.h>
 #include "../include/img.h"
 
+/* 
+ ----------------------- Signature -------------------------
+|                                                           |
+|       Auteur : SOUBIRANT Damien                           |
+|       Date de creation : 6/12/21                          |
+|       Date de derniere MAJ : 24/12/22                     |
+|                                                           |
+ ----------------------------------------------------------- 
+ */
+
 Descripteur initDescripteur(int nb_composantes, int n){ //Fonction qui renvoie un nouveau descripteur avec les champs initialisé
     Descripteur descri;
     descri.t_max =pow(2,(n*nb_composantes)); //Calcul de la taille
