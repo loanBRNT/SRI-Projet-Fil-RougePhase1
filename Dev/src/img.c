@@ -5,32 +5,32 @@
 #include <time.h>
 #include "../include/img.h"
 
-Descripteur initDescripteur(int nb_composantes, int n){
+Descripteur initDescripteur(int nb_composantes, int n){ //Fonction qui renvoie un nouveau descripteur avec les champs initialisé
     Descripteur descri;
-    descri.t_max =pow(2,(n*nb_composantes));
+    descri.t_max =pow(2,(n*nb_composantes)); //Calcul de la taille
     descri.histogramme = NULL;
-    descri.histogramme = malloc(descri.t_max*sizeof(int));
+    descri.histogramme = malloc(descri.t_max*sizeof(int)); //Alloue un tableau de taille t_max
     if(descri.histogramme == NULL) {
         printf("Erreur du malloc");
         exit(0);
     }
-    for (int i = 0 ; i < descri.t_max; i++) {
+    for (int i = 0 ; i < descri.t_max; i++) { //Initialise toutes les cases de l histogramme à 0
         descri.histogramme[i] = 0;
     }
     return descri;
 }
 
-int decalageRouge(int val, int n){
+int decalageRouge(int val, int n){ //Fonction qui décale les bits de la valeur rouge selon la valeur du nbBitQuantification
     int res;
     switch(n){
         case 1 :
-            res = val >> 5;
+            res = val >> 5; //Décalage de 5 bit a droite
             break;
         case 2 :
             res = val >> 2;
             break;
         case 3 :
-            res = val << 1;
+            res = val << 1; //Décalage de 1 bit a gauche
             break;
         case 4 :
             res = val << 4;
@@ -41,7 +41,7 @@ int decalageRouge(int val, int n){
     return res;
 }
 
-int decalageVert(int val, int n){
+int decalageVert(int val, int n){ //Fonction qui décale les bits de la valeur verte selon la valeur du nbBitQuantification
     int res;
     switch(n){
         case 1 :
@@ -62,7 +62,7 @@ int decalageVert(int val, int n){
     return res;
 }
 
-int decalageBleu(int val, int n){
+int decalageBleu(int val, int n){ //Fonction qui décale les bits de la valeur Bleu selon la valeur du nbBitQuantification
     int res;
     switch(n){
         case 1 :
@@ -83,7 +83,7 @@ int decalageBleu(int val, int n){
     return res;
 }
 
-void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichier, int n){
+void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichier, int n){  //Quantifie les valeurs pour les images RGB et rempli l histogramme
     int val;
     TAB tempo;
 
@@ -103,13 +103,13 @@ void quantificationRGB(int longueur, int hauteur, Descripteur *des, FILE* fichie
         tempo[cptemp] = tempo[cptemp] + decalageBleu( (val & conversion_masques[n-1]), n);
     }
 
-    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){
+    for (int cptemp = 0; cptemp < longueur*hauteur; cptemp ++){   //Remplissage de l'histogramme
         (*des).histogramme[tempo[cptemp]]++;
     }
     free(tempo);
 }
 
-void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier, int n){
+void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE* fichier, int n){ //Quantifie les valeurs pour les images NB et rempli l histogramme
     int val;
     for (int cpt = 0; cpt < longueur*hauteur; cpt++){
             fscanf(fichier,"%d", &val);
@@ -118,7 +118,7 @@ void quantificationNB(Descripteur *descripteur, int longueur, int hauteur, FILE*
     }
 }
 
-int generationIdUnique(int choix){
+int generationIdUnique(int choix){ //Fonction qui génere un identifiant entre 20 000 et 30 000 qui n'est pas deja present dans la liste du descripteur
     char* CHEMIN_LISTE;
     char buffer[15];
     int random,res;
@@ -157,7 +157,7 @@ int generationIdUnique(int choix){
     return random;
 }
 
-void Affiche_DescripteurImg(Descripteur Di){
+void Affiche_DescripteurImg(Descripteur Di){ //Permet d'afficher les trois champs du descripteur image
     printf("%d\n",Di.ID);
     printf("%d\n",Di.t_max);
     for(int i=0;i<Di.t_max;i++){
@@ -217,7 +217,7 @@ Descripteur indexer_image(char* nom, int n){
 }
 
 
-void Sauvegarder_DescripteurImage(Descripteur Di,FILE* f){
+void Sauvegarder_DescripteurImage(Descripteur Di,FILE* f){  //Sauvegarde le descripteur image dans le fichier ouvert
     fprintf(f,"%d\n",Di.ID);
     fprintf(f,"%d\n",Di.t_max);
     for(int i=0;i<Di.t_max;i++){
@@ -227,7 +227,7 @@ void Sauvegarder_DescripteurImage(Descripteur Di,FILE* f){
 };
 
 
-Descripteur LireDescripteurImg(FILE* f, int taille, int id){
+Descripteur LireDescripteurImg(FILE* f, int taille, int id){  //Récupère les valeurs de chaque champ du descripteur image depuis un fichier
     char *lu =(char *) malloc(10*sizeof(char));
     int valeur;
     int nb_composantes = log2(taille);

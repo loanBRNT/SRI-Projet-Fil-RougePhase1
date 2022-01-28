@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
 	printf("\n");
 	}
 	printf("###########################################\n");
- 	printf("#       fermeture de 'lapplication        #\n");
+ 	printf("#       fermeture de l'application        #\n");
  	printf("###########################################\n");
 
 
