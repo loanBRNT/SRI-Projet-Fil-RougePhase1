@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" stylesheets="@../../../../../CSS%20Toggle%20Switch.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx.ParamController">
+   <children>
+      <Label fx:id="paramText" layoutX="84.0" layoutY="83.0" text="Sélection du mode :">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <ToggleButton layoutX="393.0" layoutY="84.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" />
+      <Label layoutX="84.0" layoutY="159.0" text="Recherche multimoteur :">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="238.0" text="Moteur par défaut :">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <SplitMenuButton layoutX="318.0" layoutY="240.0" mnemonicParsing="false" text="Choix du moteur">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Moteur 1" />
+          <MenuItem mnemonicParsing="false" text="Moteur 2" />
+        </items>
+      </SplitMenuButton>
+      <ToggleButton layoutX="393.0" layoutY="160.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="46.0" />
+      <Button layoutX="74.0" layoutY="360.0" mnemonicParsing="false" onAction="#onConnexionAdmin" prefHeight="37.0" prefWidth="182.0" text="Parametres administrateurs" />
+      <Button layoutX="669.0" layoutY="384.0" mnemonicParsing="false" onAction="#onBack" prefHeight="26.0" prefWidth="107.0" text="Retour" />
+   </children>
+</Pane>

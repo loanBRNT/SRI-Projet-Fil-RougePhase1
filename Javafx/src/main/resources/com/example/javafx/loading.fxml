@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx.LoadingController">
+    <children>
+        <Label fx:id="bongLoading" layoutX="366.0" layoutY="135.0" prefHeight="34.0" prefWidth="69.0" text="Bong">
+            <font>
+                <Font size="29.0" />
+            </font>
+        </Label>
+      <ProgressBar layoutX="172.0" layoutY="215.0" onMouseClicked="#onLoadingAchieve" prefHeight="20.0" prefWidth="458.0" progress="0.0" />
+    </children>
+</Pane>
